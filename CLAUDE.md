@@ -23,7 +23,7 @@ The guest website for The Nest at Twin Elms, Jo and Stuart's family-run Airbnb a
 
 - Use only design tokens (`var(--lake)`, `var(--space-4)` …), never raw hex values in components.
 - Soft by default: pale tints (`lake-tint`, `meadow`, `oat`, `tussock`, `mist`) with `ink` text. Deep colours only for things guests act on. One deep-filled button per screen; `clay` only for "Add your home town".
-- Fonts: Fraunces 600 for display headings, Figtree 400/600 for everything else, from Google Fonts. On zh/ja/ko pages also load the matching Noto Sans and Noto Serif families.
+- Fonts: Fraunces 600 for display headings, Figtree 400/600 for everything else, self-hosted via `@fontsource` (bundled at build time, no Google requests). On zh/ja/ko pages also load the matching Noto Sans and Noto Serif families.
 - Mobile first: body text 16px minimum, tap targets 44px minimum, layouts tested at 390px wide.
 - Accessibility: WCAG AA contrast (every pairing is listed in the token usage notes), real buttons, links and labelled inputs, alt text on every image in every language, visible focus states.
 - No emoji in the UI; icons are simple 1.5px line icons in `ink` or `lake`.
