@@ -1,0 +1,41 @@
+---
+import { localePath, stripLocale, type Locale } from '../i18n/config';
+import { useStrings } from '../i18n/ui';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  locale: Locale;
+  pathname: string;
+}
+const { locale, pathname } = Astro.props;
+const t = useStrings(locale);
+const current = stripLocale(pathname);
+const links = [
+  { href: '/', label: t.nav.home },
+  { href: '/guide/', label: t.nav.guide },
+  { href: '/map/', label: t.nav.map },
+  { href: '/gallery/', label: t.nav.gallery },
+];
+---
+
+<header class="nest-header">
+  <div class="nest-header-inner">
+    <a class="nest-wordmark" href={localePath(locale, '/')}>
+      The Nest at Twin Elms<small>{t.wordmarkSub}</small>
+    </a>
+    <nav aria-label={t.mainNav}>
+      <ul class="nest-nav">
+        {
+          links.map((l) => (
+            <li>
+              <a href={localePath(locale, l.href)} aria-current={current === l.href ? 'page' : undefined}>
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <LanguageSwitcher locale={locale} pathname={pathname} />
+  </div>
+</header>

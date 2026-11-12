@@ -1,12 +1,22 @@
-<!-- @dsCard group="Navigation" height=120 subtitle="Header band with language switcher" -->
+<!-- @dsCard group="Navigation" height=150 subtitle="Header band with navigation and language switcher" -->
 <div class="nest">
   <header class="nest-header">
-    <a class="nest-wordmark" href="#">The Nest at Twin Elms<small>Lake Hawea, New Zealand</small></a>
-    <ul class="nest-lang" aria-label="Language">
-      <li><a href="#" aria-current="true" lang="en">EN</a></li>
-      <li><a href="#" lang="zh-Hans">中文</a></li>
-      <li><a href="#" lang="de">DE</a></li>
-      <li><a href="#" lang="ja">日本語</a></li>
-    </ul>
+    <div class="nest-header-inner">
+      <a class="nest-wordmark" href="#">The Nest at Twin Elms<small>Lake Hawea, New Zealand</small></a>
+      <nav aria-label="Main">
+        <ul class="nest-nav">
+          <li><a href="#" aria-current="page">Home</a></li>
+          <li><a href="#">Guest guide</a></li>
+          <li><a href="#">Visitor map</a></li>
+          <li><a href="#">Gallery</a></li>
+        </ul>
+      </nav>
+      <ul class="nest-lang" aria-label="Language">
+        <li><a href="#" aria-current="true" lang="en">EN</a></li>
+        <li><a href="#" lang="zh-Hans">中文</a></li>
+        <li><a href="#" lang="de">DE</a></li>
+        <li><a href="#" lang="ja">日本語</a></li>
+      </ul>
+    </div>
   </header>
 </div>
