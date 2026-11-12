@@ -14,5 +14,5 @@ npm run tokens   # regenerate design-system/tokens.css from tokens.json
 Hosted free on Cloudflare (Workers static assets). Cloudflare builds from this repo:
 
 - Every push to `main` builds with `npm run build` and deploys `dist/` using `npx wrangler deploy` (see `wrangler.jsonc`).
-- Branches and pull requests get preview builds from `npx wrangler versions upload`, each with its own `workers.dev` preview URL (`preview_urls: true`). These URLs are public but unlisted.
+- Branches and pull requests get preview builds from `npx wrangler preview` (needs the `previews` block in `wrangler.jsonc`), each with its own preview URL. These URLs are public but unlisted.
 - Node version comes from `.node-version`.

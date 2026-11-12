@@ -3,6 +3,7 @@
   "name": "twinelms",
   "workers_dev": true,
   "preview_urls": true,
+  "previews": {},
   "compatibility_date": "2026-11-01",
   "assets": {
     "directory": "./dist"
