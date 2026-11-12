@@ -1,0 +1,13 @@
+/* Self-hosted fonts (bundled at build time, no requests to Google). */
+@import '@fontsource/fraunces/600.css';
+@import '@fontsource/figtree/400.css';
+@import '@fontsource/figtree/600.css';
+
+/* Design system: tokens first, then the nest- component classes. */
+@import '../../design-system/tokens.css';
+@import '../../design-system/components/bundle.css';
+
+body {
+  margin: 0;
+  background: var(--cream);
+}
