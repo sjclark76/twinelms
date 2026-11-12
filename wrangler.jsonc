@@ -1,6 +1,8 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "twinelms",
+  "workers_dev": true,
+  "preview_urls": false,
   "compatibility_date": "2026-11-01",
   "assets": {
     "directory": "./dist"
