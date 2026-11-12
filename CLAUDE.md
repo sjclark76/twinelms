@@ -14,7 +14,7 @@ The guest website for The Nest at Twin Elms, Jo and Stuart's family-run Airbnb a
 ## Stack and hosting (all free)
 
 - **Astro**, static output, TypeScript. Keep client-side JavaScript to small islands (copy button, language memory, gallery lightbox, map).
-- **Cloudflare Pages** hosts the site; every push to `main` deploys, and pull requests get preview URLs.
+- **Cloudflare (Workers static assets)** hosts the site; every push to `main` deploys. Preview URLs are disabled on purpose, so check changes locally before merging.
 - **Visitor map backend:** a Cloudflare Pages Function plus a Cloudflare D1 database.
 - **Map:** Leaflet with OpenStreetMap tiles; geocoding with OpenStreetMap Nominatim (server-side, cached, at most 1 request per second, with a proper User-Agent, per its usage policy). Show the "© OpenStreetMap contributors" attribution.
 - No paid services, no translation APIs, no analytics or trackers without asking.
