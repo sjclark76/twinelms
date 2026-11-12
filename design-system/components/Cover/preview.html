@@ -1,0 +1,35 @@
+<!-- @dsCard height=300 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Figtree:wght@400&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;background:var(--cream)}
+  .cover{position:relative;width:960px;height:300px;overflow:hidden;background:var(--cream)}
+  svg{position:absolute;inset:0}
+  .mist{fill:var(--lake-mist)} .tint{fill:var(--lake-tint)} .meadow{fill:var(--fern)} .tus{fill:var(--tussock)} .lake{fill:var(--lake)}
+  .rip{fill:none;stroke:var(--cream);stroke-width:8px}
+  .text{position:absolute;left:40px;bottom:40px;max-width:440px}
+  .name{font-family:var(--font-display);font-weight:600;font-size:72px;line-height:.95;color:var(--ink);margin:0}
+  .tag{font-family:var(--font-sans);font-size:14px;line-height:20px;color:var(--slate);margin:16px 0 0}
+</style>
+<div class="cover">
+  <!--
+    blocks: lake-mist 280x300 slab (bleeds off right), lake-tint 160x116, fern 160x160, lake 56x56 (the one deep note), tussock disc r96 — soft identity colours of Misty lake
+    arrangement: soft land blocks (lake-tint sky over fern hills) stepping into one tall misty lake slab bleeding off the right edge
+    pattern: concentric ripple arcs around the tussock disc (literal motif: lake ripples and a nest's rings) — the brand is the still lake and the nest
+    scales: gaps space-4 (16) and space-6 (24); ripple stroke 8 = space-2, pitch 32; corners radius-md (14); disc half its side
+  -->
+  <svg width="960" height="300" viewBox="0 0 960 300" aria-hidden="true">
+    <rect class="tint" x="496" y="0" width="160" height="116" rx="14"/>
+    <rect class="meadow" x="496" y="140" width="160" height="160" rx="14"/>
+    <rect class="mist" x="680" y="0" width="280" height="300"/>
+    <circle class="tus" cx="800" cy="300" r="96"/>
+    <circle class="rip" cx="800" cy="300" r="128"/>
+    <circle class="rip" cx="800" cy="300" r="160"/>
+    <circle class="rip" cx="800" cy="300" r="192"/>
+    <rect class="lake" x="880" y="24" width="56" height="56" rx="14"/>
+  </svg>
+  <div class="text">
+    <h1 class="name">The Nest at<br>Twin Elms</h1>
+    <p class="tag">Soft lake blues, sage and oat, like Hawea on a still morning.</p>
+  </div>
+</div>

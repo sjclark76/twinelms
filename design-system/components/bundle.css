@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Figtree:wght@400;600&display=swap");
+
+/* The Nest at Twin Elms: component styles. Everything reads tokens.css; no raw colours. */
+.nest{font-family:var(--font-sans);color:var(--ink);font-size:16px;line-height:24px;-webkit-font-smoothing:antialiased}
+.nest *,.nest *::before,.nest *::after{box-sizing:border-box}
+.nest-row{display:flex;flex-wrap:wrap;gap:var(--space-2);align-items:center}
+.nest-stack{display:flex;flex-direction:column;gap:var(--space-4)}
+
+/* Button */
+.nest-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);min-height:44px;padding:0 20px;border-radius:var(--radius-pill);border:1px solid transparent;font:600 15px/20px var(--font-sans);cursor:pointer;text-decoration:none;transition:filter .15s ease}
+.nest-btn:hover{filter:brightness(1.08)}
+.nest-btn:focus-visible{outline:3px solid var(--lake);outline-offset:2px}
+.nest-btn-primary{background:var(--lake);color:var(--white)}
+.nest-btn-secondary{background:var(--beech);color:var(--white)}
+.nest-btn-warm{background:var(--clay);color:var(--white)}
+.nest-btn-quiet{background:var(--white);color:var(--ink);border-color:var(--slate)}
+.nest-btn-quiet:hover{filter:none;background:var(--mist)}
+.nest-btn-sm{min-height:36px;padding:0 14px;font-size:14px}
+
+/* Tag */
+.nest-tag{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:var(--radius-pill);font:600 13px/16px var(--font-sans);color:var(--ink);background:var(--mist)}
+.nest-tag::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.55}
+.nest-tag-hike{background:var(--meadow)}
+.nest-tag-bike{background:var(--oat)}
+.nest-tag-lake{background:var(--lake-tint)}
+.nest-tag-river{background:var(--river)}
+.nest-tag-animal{background:var(--tussock)}
+.nest-tag-plain::before{display:none}
+
+/* Card base */
+.nest-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);padding:var(--space-4)}
+.nest-card-mist{background:var(--mist);border-color:transparent}
+
+/* Place card */
+.nest-place{display:flex;flex-direction:column;gap:var(--space-2);max-width:360px}
+.nest-place h3{margin:0;font:600 18px/24px var(--font-sans)}
+.nest-place p{margin:0}
+.nest-place .nest-meta{font-size:14px;line-height:20px;color:var(--slate);display:flex;flex-direction:column;gap:2px}
+.nest-place a{color:var(--lake);font-weight:600;text-underline-offset:3px}
+
+/* Animal card */
+.nest-animal{display:flex;gap:var(--space-4);align-items:flex-start;max-width:420px}
+.nest-animal-face{flex:none;width:64px;height:64px;border-radius:50%;background:var(--tussock);display:grid;place-items:center;font:600 26px/1 var(--font-display);color:var(--ink);overflow:hidden}
+.nest-animal-face img{width:100%;height:100%;object-fit:cover}
+.nest-animal h3{margin:0;font:600 22px/28px var(--font-display)}
+.nest-animal .nest-kind{margin:0 0 6px;font-size:14px;line-height:20px;color:var(--slate)}
+.nest-animal p{margin:0}
+
+/* Site header */
+.nest-header{background:var(--lake-tint);padding:var(--space-4) var(--space-6);display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap}
+.nest-wordmark{font:600 24px/28px var(--font-display);color:var(--ink);text-decoration:none}
+.nest-wordmark small{display:block;font:400 13px/18px var(--font-sans);color:var(--slate)}
+
+/* Language switcher */
+.nest-lang{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.nest-lang a{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border-radius:var(--radius-pill);font:600 14px/18px var(--font-sans);color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--white)}
+.nest-lang a:hover{background:var(--mist)}
+.nest-lang a[aria-current="true"]{background:var(--lake);border-color:var(--lake);color:var(--white)}
+.nest-lang-select{min-height:44px;padding:0 40px 0 14px;border-radius:var(--radius-pill);border:1px solid var(--slate);background:var(--white);font:600 15px/20px var(--font-sans);color:var(--ink)}
+
+/* Info list */
+.nest-info{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+.nest-info li{display:flex;gap:var(--space-4);align-items:flex-start;padding:12px 0;border-top:1px solid var(--line)}
+.nest-info li:first-child{border-top:0}
+.nest-info svg{flex:none;width:22px;height:22px;stroke:var(--lake);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-top:1px}
+.nest-info b{display:block;font-weight:600}
+.nest-info span{color:var(--slate);font-size:14px;line-height:20px}
+
+/* Wi-Fi card */
+.nest-wifi{display:flex;gap:var(--space-6);align-items:center;flex-wrap:wrap;max-width:520px}
+.nest-wifi-qr{flex:none;width:148px;height:148px;padding:10px;background:var(--white);border-radius:var(--radius-md);border:1px solid var(--line)}
+.nest-wifi-qr svg,.nest-wifi-qr img{width:100%;height:100%;display:block}
+.nest-wifi dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:baseline}
+.nest-wifi dt{font-size:14px;color:var(--slate)}
+.nest-wifi dd{margin:0;font-weight:600}
+.nest-wifi h3{margin:0 0 var(--space-2);font:600 22px/28px var(--font-display)}
+.nest-wifi .nest-hint{font-size:14px;line-height:20px;color:var(--slate);margin:var(--space-2) 0 var(--space-4)}
+
+/* Gallery */
+.nest-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:var(--space-2)}
+.nest-tile{position:relative;margin:0;border-radius:var(--radius-md);overflow:hidden;aspect-ratio:4/3;background:var(--lake-mist)}
+.nest-tile.wide{grid-column:span 2}
+.nest-tile img{width:100%;height:100%;object-fit:cover;display:block}
+.nest-tile figcaption{position:absolute;left:8px;bottom:8px;max-width:calc(100% - 16px);background:var(--white);color:var(--ink);font:600 12px/16px var(--font-sans);padding:4px 10px;border-radius:var(--radius-pill)}
+
+/* Map pin and visitor map */
+.nest-pin{display:inline-block;width:18px;height:18px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--tussock);border:2px solid var(--ink)}
+.nest-pin-home{background:var(--clay);border-color:var(--white);width:22px;height:22px}
+.nest-pin-label{display:inline-block;background:var(--white);border:1px solid var(--line);border-radius:var(--radius-sm);padding:4px 10px;font-size:13px;line-height:18px}
+.nest-pin-label b{display:block}
+.nest-map{position:relative;border-radius:var(--radius-md);overflow:hidden;background:var(--lake-mist)}
+.nest-map-stat{position:absolute;left:12px;top:12px;background:var(--white);border-radius:var(--radius-pill);padding:6px 14px;font:600 14px/18px var(--font-sans)}
+
+/* Home town form */
+.nest-field{display:flex;flex-direction:column;gap:6px}
+.nest-field label{font-weight:600;font-size:15px}
+.nest-field .nest-help{font-size:14px;line-height:20px;color:var(--slate)}
+.nest-input{min-height:44px;padding:0 14px;border-radius:var(--radius-sm);border:1px solid var(--slate);background:var(--white);font:400 16px/24px var(--font-sans);color:var(--ink);width:100%}
+.nest-input:focus{outline:2px solid var(--lake);outline-offset:1px;border-color:var(--lake)}
