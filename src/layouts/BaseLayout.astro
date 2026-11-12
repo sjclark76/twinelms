@@ -1,16 +1,27 @@
 ---
 import '../styles/global.css';
+import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/config';
+import { useStrings } from '../i18n/ui';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 
 interface Props {
   title: string;
   description?: string;
   noindex?: boolean;
+  locale?: Locale;
 }
-const { title, description = 'The Nest at Twin Elms, Lake Hawea', noindex = false } = Astro.props;
+const {
+  title,
+  description = 'The Nest at Twin Elms, Lake Hawea',
+  noindex = false,
+  locale = DEFAULT_LOCALE,
+} = Astro.props;
+const t = useStrings(locale);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={LOCALES[locale].htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +32,10 @@ const { title, description = 'The Nest at Twin Elms, Lake Hawea', noindex = fals
   </head>
   <body>
     <div class="nest">
+      <a class="nest-skip" href="#main">{t.skipToContent}</a>
+      <SiteHeader locale={locale} pathname={Astro.url.pathname} />
       <slot />
+      <SiteFooter locale={locale} />
     </div>
   </body>
 </html>

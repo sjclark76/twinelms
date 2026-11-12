@@ -35,7 +35,7 @@ Every text pairing in the colour usage notes meets WCAG AA (4.5:1 or better), wi
 
 ## Components
 
-Plain HTML and CSS, ready for the Astro build: every class starts `nest-` and lives in `components/bundle.css`, which reads only these tokens. Wrap a page in `.nest`. Actions: Button, Tag. Navigation: SiteHeader, LanguageSwitcher. Content: PlaceCard, AnimalCard, InfoList, GalleryTile. Features: WifiCard, VisitorMap.
+Plain HTML and CSS, ready for the Astro build: every class starts `nest-` and lives in `components/bundle.css`, which reads only these tokens. Wrap a page in `.nest`. Actions: Button, Tag. Navigation: SiteHeader, LanguageSwitcher, SiteFooter. Content: PlaceCard, AnimalCard, InfoList, GalleryTile. Features: WifiCard, VisitorMap.
 
 ## Still to come
 

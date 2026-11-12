@@ -1,0 +1,49 @@
+---
+import { ENABLED_LOCALES, LOCALES, localePath, stripLocale, type Locale } from '../i18n/config';
+import { useStrings } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  pathname: string;
+}
+const { locale, pathname } = Astro.props;
+const t = useStrings(locale);
+const rest = stripLocale(pathname);
+const items = ENABLED_LOCALES.map((code) => ({
+  code,
+  ...LOCALES[code],
+  href: localePath(code, rest),
+  current: code === locale,
+}));
+---
+
+{
+  items.length > 1 && (
+    <div class="nest-lang-switch">
+      <ul class="nest-lang" aria-label={t.language}>
+        {items.map((l) => (
+          <li>
+            <a href={l.href} lang={l.htmlLang} aria-current={l.current ? 'true' : undefined}>
+              {l.chip}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <select class="nest-lang-select" aria-label={t.language} data-lang-select>
+        {items.map((l) => (
+          <option value={l.href} lang={l.htmlLang} selected={l.current}>
+            {l.name}
+          </option>
+        ))}
+      </select>
+    </div>
+  )
+}
+
+<script>
+  document.querySelectorAll<HTMLSelectElement>('[data-lang-select]').forEach((select) => {
+    select.addEventListener('change', () => {
+      window.location.href = select.value;
+    });
+  });
+</script>

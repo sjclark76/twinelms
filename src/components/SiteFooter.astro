@@ -1,0 +1,42 @@
+---
+import type { Locale } from '../i18n/config';
+import { useStrings } from '../i18n/ui';
+import { address, hosts, medicalCentre } from '../data/contact';
+
+interface Props {
+  locale: Locale;
+}
+const t = useStrings(Astro.props.locale);
+---
+
+<footer class="nest-footer">
+  <div class="nest-container nest-footer-grid">
+    <div>
+      <p class="nest-footer-name">The Nest at Twin Elms</p>
+      <p>{address[0]}<br />{address[1]}</p>
+    </div>
+    <div>
+      <p class="nest-footer-heading">{t.footer.contact}</p>
+      <p>
+        {
+          hosts.map((h, i) => (
+            <>
+              {i > 0 && <br />}
+              {h.name} <a href={`tel:${h.tel}`}>{h.display}</a>
+            </>
+          ))
+        }
+      </p>
+    </div>
+    <div>
+      <p class="nest-footer-heading">{t.footer.emergency}</p>
+      <p>
+        {medicalCentre.name}<br /><a href={`tel:${medicalCentre.tel}`}>{medicalCentre.display}</a>
+        {' '}{t.footer.walkIn}
+      </p>
+    </div>
+  </div>
+  <div class="nest-container nest-footer-end">
+    <p>{t.footer.note}</p>
+  </div>
+</footer>
