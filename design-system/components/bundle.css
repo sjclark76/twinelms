@@ -111,7 +111,7 @@
 
 /* Site footer */
 .nest-footer{background:var(--beech);color:var(--white);margin-top:calc(var(--space-10) + var(--space-6))}
-.nest-footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-6);padding-top:var(--space-10);padding-bottom:var(--space-10)}
+.nest-footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:var(--space-6);padding-top:var(--space-10);padding-bottom:var(--space-10)}
 .nest-footer p{margin:0;font-size:15px;line-height:22px}
 .nest-footer-name{font:600 22px/28px var(--font-display)}
 .nest-footer-heading{font-weight:600}

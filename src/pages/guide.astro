@@ -174,7 +174,7 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
   }
   .two-col {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: var(--space-4);
     align-items: start;
   }
@@ -205,7 +205,7 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: var(--space-4);
   }
   .group {
@@ -216,7 +216,7 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
     padding: 0;
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
     gap: var(--space-4);
   }
   .trails li {
@@ -234,7 +234,7 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
     border-radius: var(--radius-md);
     padding: var(--space-6);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
     gap: 20px;
   }
   .emergency > div {
