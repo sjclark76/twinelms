@@ -32,7 +32,7 @@ export const ja: PartialStrings = {
         '美しい Lake Hawea の私たちの家にお泊まりいただき、ありがとうございます。このガイドが、ご滞在を楽しんでいただく助けになれば幸いです。ほかにも知りたいことがあれば、お気軽にお尋ねください。',
       joinWifi: 'Wi-Fi に接続',
       openGuide: 'ゲストガイドを開く',
-      photoLabel: '写真：The Nest から見た湖',
+      photoAlt: 'Lake Haweaの石の多い岸辺に、流木の文字で「HAWEA」と並べた様子。湖の向こうには雪をかぶった山々が見えます。',
     },
     stay: {
       label: 'ご滞在について',

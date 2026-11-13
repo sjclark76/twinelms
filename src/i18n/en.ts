@@ -36,7 +36,7 @@ export const en = {
         'We are delighted you’ve chosen to stay with us in beautiful Lake Hawea. This guide will help you make the most of your stay, and if there’s anything else you’d like to know, just ask us.',
       joinWifi: 'Join the Wi-Fi',
       openGuide: 'Open the guest guide',
-      photoLabel: 'Photo: the lake from The Nest',
+      photoAlt: 'Driftwood letters spelling HAWEA on the stony shore of Lake Hawea, with snow-capped mountains across the water.',
     },
     stay: {
       label: 'Your stay',

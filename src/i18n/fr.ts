@@ -32,7 +32,7 @@ export const fr: PartialStrings = {
         'Nous sommes ravis que vous ayez choisi de séjourner chez nous, à Lake Hawea, un coin magnifique. Ce guide vous aidera à profiter pleinement de votre séjour, et si vous avez la moindre question, n’hésitez pas à nous la poser.',
       joinWifi: 'Se connecter au Wi-Fi',
       openGuide: 'Ouvrir le guide du séjour',
-      photoLabel: 'Photo : le lac vu depuis The Nest',
+      photoAlt: 'Des lettres en bois flotté formant le mot HAWEA sur la rive caillouteuse du lac Hawea, avec des montagnes enneigées de l’autre côté de l’eau.',
     },
     stay: {
       label: 'Votre séjour',

@@ -32,7 +32,7 @@ export const ko: PartialStrings = {
         '아름다운 Lake Hawea에서 저희와 함께 지내 주셔서 감사합니다. 이 가이드가 즐거운 숙박에 도움이 되기를 바랍니다. 궁금한 점이 더 있으면 언제든지 물어보세요.',
       joinWifi: 'Wi-Fi 연결하기',
       openGuide: '게스트 가이드 열기',
-      photoLabel: '사진: The Nest에서 본 호수',
+      photoAlt: 'Lake Hawea의 자갈 해변에 유목으로 만든 HAWEA 글자, 호수 건너편으로 눈 덮인 산이 보입니다.',
     },
     stay: {
       label: '숙박 안내',
