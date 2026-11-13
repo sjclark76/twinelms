@@ -34,7 +34,7 @@ export const PREFIXED_LOCALES = ALL_LOCALES.filter((l) => l !== DEFAULT_LOCALE);
  * Every locale has routes, but one that isn't listed here is hidden and marked noindex.
  * Add each language here once its translation is done (issue #9).
  */
-export const ENABLED_LOCALES: Locale[] = ['en'];
+export const ENABLED_LOCALES: Locale[] = ['en', 'zh', 'de', 'ja', 'ko', 'fr', 'es'];
 
 /** Remove a locale prefix from a pathname: "/de/guide/" -> "/guide/". */
 export function stripLocale(pathname: string): string {
