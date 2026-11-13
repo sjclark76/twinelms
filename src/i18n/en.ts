@@ -206,6 +206,7 @@ export const en = {
     visits: { one: '{n} visit', other: '{n} visits' },
     legendGuests: 'A guest’s home town',
     legendHome: 'The Nest, Lake Hawea',
+    legendVisits: 'Bigger pins mean more visits',
     listToggle: 'See the list of towns',
     loadError: 'The map couldn’t load the towns just now. Please try again later.',
     noscript: 'The map needs JavaScript to show the pins and to add your town.',

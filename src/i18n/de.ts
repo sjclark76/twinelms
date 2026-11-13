@@ -202,6 +202,7 @@ export const de: PartialStrings = {
     visits: { one: '{n} Besuch', other: '{n} Besuche' },
     legendGuests: 'Heimatort eines Gastes',
     legendHome: 'The Nest, Lake Hawea',
+    legendVisits: 'Größere Nadeln bedeuten mehr Besuche',
     listToggle: 'Liste der Orte anzeigen',
     loadError: 'Die Karte konnte die Orte gerade nicht laden. Bitte versuchen Sie es später noch einmal.',
     noscript: 'Die Karte braucht JavaScript, um die Nadeln anzuzeigen und Ihren Ort einzutragen.',

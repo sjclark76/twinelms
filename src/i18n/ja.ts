@@ -202,6 +202,7 @@ export const ja: PartialStrings = {
     visits: { one: '訪問 {n} 回', other: '訪問 {n} 回' },
     legendGuests: 'ゲストの出身地',
     legendHome: 'The Nest, Lake Hawea',
+    legendVisits: 'ピンが大きいほど訪問回数が多い町です',
     listToggle: '町の一覧を見る',
     loadError: '現在、マップに町を読み込めません。しばらくしてからもう一度お試しください。',
     noscript: 'ピンの表示と出身地の追加には JavaScript が必要です。',
