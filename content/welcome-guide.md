@@ -66,6 +66,7 @@ Please use the bins provided:
 - **Wanaka Lavender Farm** – 20 acres of stunning lavender fields, farm animals and display gardens. 36 Morris Road, Wanaka.
 
 - **National Transport and ****Toy Museum** – One of the world’s largest private collections of aircraft, vehicles and toys. 891 Wanaka -Luggate Highway, Wanaka.
+- **Puzzling World** – Mazes, illusion rooms and puzzles for all ages. 188 Wanaka-Luggate Highway, Wanaka. [DESCRIPTION: added from research; hosts to confirm]
 
 - **Cinema**** Paradiso** – Quirky seating, freshly baked intermission cookies and full food menu. Perfect for a rainy day. 72 Brownston Street, Wanaka.
 
@@ -75,13 +76,13 @@ Please use the bins provided:
 
 - **The Hawea Store and Kitchen****:**** **Great little local café and country store. Serves breakfast and lunch, including fantastic pies and fresh pastries from the Albert town patisserie. Take out menu available.
 
-- **Wingin**** ****It**** ****food truck: **81 Longview Drive, Hawea. Blend of Indian flavours with Kiwi classics.  Open 7 days 12pm-8pm.
+- **Wingin**** ****It**** ****food truck: **81 Longview Drive, Hawea. Blend of Indian flavours with Kiwi classics.  Open 7 days 11am-8pm.
 
 - **The Camp**** food truck and bar: **Open summer months only. Great for evening swims and live music.
 
 **Wanaka Eateries**
 
-- **The Albert Town Patisserie****: **Famous for its pastries! Albert Town shops
+- **The Pembroke Patisserie****: **Famous for its pastries! 20 Alison Avenue, Albert Town
 
 - **Scroggin****: **Best for breakfast. 71 Ardmore Street, Wanaka
 
@@ -170,7 +171,7 @@ Safe travels and hope to welcome you again soon,
 
 - Kirimoko Trails
 
-- Bike Glenhu 
+- Bike Glendhu 
 
 - Cardrona Bike Park
 

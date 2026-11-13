@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { tagVariant, type TagKey } from '../data/places';
 
 interface Props {
@@ -6,17 +7,39 @@ interface Props {
   tags: { key: TagKey; label: string }[];
   body?: string;
   meta?: string[];
+  /** Optional photo shown above the card. Needs `imageAlt`. */
+  image?: ImageMetadata;
+  imageAlt?: string;
+  /** Links shown under the card text; they open in a new tab. */
+  links?: { label: string; href: string }[];
+  /** Screen-reader text added to each link, e.g. "(opens in a new tab)". */
+  newTab?: string;
 }
-const { name, tags, body, meta = [] } = Astro.props;
+const { name, tags, body, meta = [], image, imageAlt, links = [], newTab = '' } = Astro.props;
 ---
 
 <article class="nest-card nest-place">
+  {image && imageAlt && <Image class="nest-place-photo" src={image} alt={imageAlt} widths={[360, 720]} sizes="(min-width: 700px) 360px, 100vw" />}
   <div class="nest-row">
     {tags.map((t) => <span class={`nest-tag nest-tag-${tagVariant[t.key]}`}>{t.label}</span>)}
   </div>
   <h3>{name}</h3>
   {body && <p>{body}</p>}
   {meta.length > 0 && <div class="nest-meta">{meta.map((m) => <span>{m}</span>)}</div>}
+  {
+    links.length > 0 && (
+      <ul class="nest-place-links">
+        {links.map((l) => (
+          <li>
+            <a href={l.href} target="_blank" rel="noopener">
+              {l.label}
+              {newTab && <span class="nest-sr-only"> {newTab}</span>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
 </article>
 
 <style>
