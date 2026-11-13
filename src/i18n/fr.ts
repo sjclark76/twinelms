@@ -209,13 +209,11 @@ export const fr: PartialStrings = {
     townLabel: 'Votre ville',
     townPlaceholder: 'Lyon, France',
     townHelp: 'Ajoutez aussi le pays pour que nous trouvions le bon endroit.',
-    codeLabel: 'Code invité',
-    codeHelp: 'Vous le trouverez dans votre message de réservation.',
     submit: 'Ajouter ma ville',
     submitting: 'Ajout en cours…',
     success: 'Merci ! {town} est sur la carte.',
     errors: {
-      invalid_code: 'Ce code invité ne semble pas correct. Vérifiez votre message de réservation.',
+      verification_failed: 'Nous n’avons pas pu vérifier que vous n’êtes pas un robot. Veuillez réessayer.',
       invalid_town: 'Veuillez saisir le nom d’une ville.',
       not_found: 'Nous n’avons pas trouvé cette ville. Essayez d’ajouter le pays, par exemple « Lyon, France ».',
       rate_limited: 'Cela fait beaucoup de villes d’un coup ! Patientez une minute, puis réessayez.',
@@ -227,7 +225,7 @@ export const fr: PartialStrings = {
     how: [
       { title: 'Seule votre ville est affichée', body: 'Nous n’affichons jamais votre nom et ne conservons aucune autre information sur vous.' },
       { title: 'Une épingle par ville', body: 'Si plusieurs hôtes viennent de la même ville, son épingle indique le nombre de visites.' },
-      { title: 'Une carte bien tenue', body: 'Pour ajouter une ville, il faut le code invité de votre message de réservation : la carte reste ainsi sans spam.' },
+      { title: 'Une carte bien tenue', body: 'Une vérification automatique rapide de Cloudflare bloque les robots : la carte reste ainsi sans spam.' },
     ],
   },
   notFound: {

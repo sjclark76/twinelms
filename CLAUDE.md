@@ -57,7 +57,7 @@ Every page shares the site header (wordmark, navigation, language switcher) and 
 ## Visitor map rules
 
 - Store only the town (as returned by geocoding: name, country, latitude, longitude) and a visit count per town. Never store names, emails or IP addresses.
-- Submitting a town requires the guest code from the booking message. Keep the code in an environment variable, never in the repo, and check it in the Pages Function.
+- Submitting a town is protected by Cloudflare Turnstile (verified in the Worker; the secret is the `TURNSTILE_SECRET` Worker secret, never in the repo) plus a rate limit. There is no guest code: the hosts chose this so there's nothing to hand out.
 - Basic rate limiting on the function. Validate and sanitise all input.
 - One pin per town, showing the number of visits. The Nest is a separate terracotta pin.
 

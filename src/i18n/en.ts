@@ -213,13 +213,11 @@ export const en = {
     townLabel: 'Your home town',
     townPlaceholder: 'Melbourne, Australia',
     townHelp: 'Add the country too, so we find the right place.',
-    codeLabel: 'Guest code',
-    codeHelp: 'You’ll find it in your booking message.',
     submit: 'Add your home town',
     submitting: 'Adding…',
     success: 'Thank you! {town} is on the map.',
     errors: {
-      invalid_code: 'That guest code doesn’t look right. Please check your booking message.',
+      verification_failed: 'We couldn’t confirm you’re not a robot. Please try again.',
       invalid_town: 'Please enter the name of a town.',
       not_found: 'We couldn’t find that town. Try adding the country, for example “Melbourne, Australia”.',
       rate_limited: 'That’s a lot of towns at once! Please wait a minute and try again.',
@@ -231,7 +229,7 @@ export const en = {
     how: [
       { title: 'Only your town is shown', body: 'We never show your name, and we don’t store anything else about you.' },
       { title: 'One pin per town', body: 'If several guests share a home town, its pin shows how many visits.' },
-      { title: 'Kept tidy', body: 'Adding a town needs the guest code from your booking message, so the map stays spam-free.' },
+      { title: 'Kept tidy', body: 'A quick automatic check from Cloudflare keeps robots out, so the map stays spam-free.' },
     ],
   },
   notFound: {

@@ -209,13 +209,11 @@ export const ko: PartialStrings = {
     townLabel: '내 고향',
     townPlaceholder: 'Busan, South Korea',
     townHelp: '정확한 장소를 찾을 수 있도록 나라 이름도 함께 적어 주세요. 영어나 한국어 모두 괜찮아요.',
-    codeLabel: '게스트 코드',
-    codeHelp: '예약 메시지에서 확인할 수 있어요.',
     submit: '내 고향 추가하기',
     submitting: '추가하는 중…',
     success: '감사합니다! {town}이(가) 지도에 추가되었어요.',
     errors: {
-      invalid_code: '게스트 코드가 맞지 않는 것 같아요. 예약 메시지를 확인해 주세요.',
+      verification_failed: '로봇이 아니라는 것을 확인하지 못했어요. 다시 시도해 주세요.',
       invalid_town: '도시 이름을 입력해 주세요.',
       not_found: '그 도시를 찾지 못했어요. “Busan, South Korea”처럼 나라 이름도 함께 적어 보세요.',
       rate_limited: '한 번에 너무 많은 도시를 추가했어요! 1분 정도 기다린 뒤 다시 시도해 주세요.',
@@ -227,7 +225,7 @@ export const ko: PartialStrings = {
     how: [
       { title: '도시만 표시돼요', body: '이름은 절대 표시하지 않으며, 그 밖의 정보도 저장하지 않아요.' },
       { title: '도시마다 핀 하나', body: '같은 도시에서 온 손님이 여러 명이면 핀에 방문 횟수가 표시돼요.' },
-      { title: '깔끔하게 관리해요', body: '도시를 추가하려면 예약 메시지의 게스트 코드가 필요해요. 그래서 스팸이 없어요.' },
+      { title: '깔끔하게 관리해요', body: 'Cloudflare의 간단한 자동 확인으로 로봇을 막아서 지도에 스팸이 없어요.' },
     ],
   },
   notFound: {

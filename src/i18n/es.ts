@@ -209,13 +209,11 @@ export const es: PartialStrings = {
     townLabel: 'Su ciudad',
     townPlaceholder: 'Madrid, España',
     townHelp: 'Añada también el país para que encontremos el lugar correcto.',
-    codeLabel: 'Código de huésped',
-    codeHelp: 'Lo encontrará en su mensaje de reserva.',
     submit: 'Añadir mi ciudad',
     submitting: 'Añadiendo…',
     success: '¡Gracias! {town} ya está en el mapa.',
     errors: {
-      invalid_code: 'Ese código de huésped no parece correcto. Revise su mensaje de reserva.',
+      verification_failed: 'No hemos podido comprobar que no es un robot. Inténtelo de nuevo.',
       invalid_town: 'Escriba el nombre de una ciudad.',
       not_found: 'No hemos encontrado esa ciudad. Pruebe a añadir el país, por ejemplo «Madrid, España».',
       rate_limited: '¡Son muchas ciudades a la vez! Espere un minuto y vuelva a intentarlo.',
@@ -227,7 +225,7 @@ export const es: PartialStrings = {
     how: [
       { title: 'Solo se muestra su ciudad', body: 'Nunca mostramos su nombre ni guardamos ningún otro dato sobre usted.' },
       { title: 'Una chincheta por ciudad', body: 'Si varios huéspedes son de la misma ciudad, su chincheta muestra cuántas visitas hay.' },
-      { title: 'Un mapa ordenado', body: 'Para añadir una ciudad hace falta el código de huésped de su mensaje de reserva, así el mapa no tiene spam.' },
+      { title: 'Un mapa ordenado', body: 'Una comprobación automática rápida de Cloudflare impide el paso a los robots, así el mapa no tiene spam.' },
     ],
   },
   notFound: {

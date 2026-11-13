@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cleanTown, normaliseQuery, pickPlace, safeEqual, toPlace } from './towns';
+import { cleanTown, normaliseQuery, pickPlace, toPlace } from './towns';
 
 describe('cleanTown', () => {
   it('accepts towns in any script and tidies spaces', () => {
@@ -39,12 +39,7 @@ describe('toPlace', () => {
   });
 });
 
-describe('safeEqual and normaliseQuery', () => {
-  it('compares exactly', () => {
-    expect(safeEqual('NEST2026', 'NEST2026')).toBe(true);
-    expect(safeEqual('NEST2026', 'NEST2027')).toBe(false);
-    expect(safeEqual('NEST', 'NEST2026')).toBe(false);
-  });
+describe('normaliseQuery', () => {
   it('normalises case for the cache', () => {
     expect(normaliseQuery('BERLIN')).toBe(normaliseQuery('berlin'));
   });

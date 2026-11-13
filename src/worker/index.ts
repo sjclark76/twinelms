@@ -1,18 +1,18 @@
 // Visitor map API. Static pages are served by the assets binding; only /api/* reaches this code.
-import { cleanTown, normaliseQuery, pickPlace, safeEqual, type NominatimResult, type Place } from './towns';
+import { cleanTown, normaliseQuery, pickPlace, type NominatimResult, type Place } from './towns';
 
 interface Env {
   ASSETS: Fetcher;
   DB: D1Database;
   SUBMIT_LIMITER: RateLimit;
-  GUEST_CODE?: string;
+  TURNSTILE_SECRET?: string;
 }
 
 const USER_AGENT = 'TheNestAtTwinElms-VisitorMap/1.0 (+https://twinelms.sjclark76.workers.dev)';
 const NOMINATIM_GAP_MS = 1100;
 
 type ErrorCode =
-  | 'invalid_request' | 'invalid_town' | 'invalid_code' | 'not_found' | 'rate_limited' | 'geocoder_unavailable'
+  | 'invalid_request' | 'invalid_town' | 'verification_failed' | 'not_found' | 'rate_limited' | 'geocoder_unavailable'
   | 'not_configured' | 'not_found_route';
 
 const json = (body: unknown, status = 200, headers: Record<string, string> = {}) =>
@@ -44,25 +44,25 @@ async function listTowns(env: Env): Promise<Response> {
 }
 
 async function addTown(request: Request, env: Env): Promise<Response> {
-  if (!env.GUEST_CODE) return fail('not_configured', 503);
+  if (!env.TURNSTILE_SECRET) return fail('not_configured', 503);
   if (!(request.headers.get('content-type') ?? '').includes('application/json')) return fail('invalid_request', 415);
   const raw = await request.text();
   if (raw.length > 1000) return fail('invalid_request', 413);
 
-  let body: { town?: unknown; code?: unknown };
+  let body: { town?: unknown; token?: unknown };
   try {
     body = JSON.parse(raw);
   } catch {
     return fail('invalid_request', 400);
   }
 
-  // Rate limit before checking the code, so the code can't be brute-forced.
+  // Rate limit first (cheap), then the Turnstile check that keeps bots out.
   const key = request.headers.get('cf-connecting-ip') ?? 'unknown'; // used in memory only, never stored
   const { success } = await env.SUBMIT_LIMITER.limit({ key });
   if (!success) return fail('rate_limited', 429);
 
-  if (typeof body.code !== 'string' || !safeEqual(body.code.trim().toUpperCase(), env.GUEST_CODE.trim().toUpperCase()))
-    return fail('invalid_code', 403);
+  if (typeof body.token !== 'string' || !(await verifyTurnstile(body.token, env.TURNSTILE_SECRET)))
+    return fail('verification_failed', 403);
   const town = cleanTown(body.town);
   if (!town) return fail('invalid_town', 400);
 
@@ -118,4 +118,16 @@ async function waitForNominatim(env: Env): Promise<void> {
   const next = now + Math.max(0, wait);
   await env.DB.prepare("INSERT OR REPLACE INTO meta (key, value) VALUES ('nominatim_last', ?)").bind(String(next)).run();
   if (wait > 0) await new Promise((resolve) => setTimeout(resolve, Math.min(wait, NOMINATIM_GAP_MS)));
+}
+
+/** Ask Cloudflare whether the Turnstile token from the form is genuine. Tokens are single-use. */
+async function verifyTurnstile(token: string, secret: string): Promise<boolean> {
+  if (!token || token.length > 2048) return false;
+  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    body: new URLSearchParams({ secret, response: token }),
+  });
+  if (!res.ok) return false;
+  const outcome = (await res.json()) as { success?: boolean };
+  return outcome.success === true;
 }
