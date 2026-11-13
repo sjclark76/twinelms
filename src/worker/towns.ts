@@ -77,13 +77,3 @@ export function toPlace(result: NominatimResult | undefined): Place | null {
     lng: Math.round(lng * 1000) / 1000,
   };
 }
-
-/** Compare two strings in constant time, so the guest code can't be guessed by timing. */
-export function safeEqual(a: string, b: string): boolean {
-  const enc = new TextEncoder();
-  const x = enc.encode(a);
-  const y = enc.encode(b);
-  let diff = x.length ^ y.length;
-  for (let i = 0; i < Math.max(x.length, y.length); i++) diff |= (x[i] ?? 0) ^ (y[i] ?? 0);
-  return diff === 0;
-}

@@ -209,13 +209,11 @@ export const de: PartialStrings = {
     townLabel: 'Ihr Heimatort',
     townPlaceholder: 'München, Deutschland',
     townHelp: 'Geben Sie auch das Land an, damit wir den richtigen Ort finden.',
-    codeLabel: 'Gästecode',
-    codeHelp: 'Sie finden ihn in Ihrer Buchungsnachricht.',
     submit: 'Heimatort eintragen',
     submitting: 'Wird eingetragen…',
     success: 'Vielen Dank! {town} ist jetzt auf der Karte.',
     errors: {
-      invalid_code: 'Dieser Gästecode scheint nicht zu stimmen. Bitte prüfen Sie Ihre Buchungsnachricht.',
+      verification_failed: 'Wir konnten nicht bestätigen, dass Sie kein Roboter sind. Bitte versuchen Sie es noch einmal.',
       invalid_town: 'Bitte geben Sie den Namen eines Ortes ein.',
       not_found: 'Wir konnten diesen Ort nicht finden. Geben Sie auch das Land an, zum Beispiel „München, Deutschland“.',
       rate_limited: 'Das waren viele Orte auf einmal! Bitte warten Sie eine Minute und versuchen Sie es dann noch einmal.',
@@ -227,7 +225,7 @@ export const de: PartialStrings = {
     how: [
       { title: 'Nur Ihr Ort wird angezeigt', body: 'Wir zeigen nie Ihren Namen und speichern sonst nichts über Sie.' },
       { title: 'Eine Nadel pro Ort', body: 'Wenn mehrere Gäste aus demselben Ort kommen, zeigt die Nadel die Zahl der Besuche.' },
-      { title: 'Ordentlich gehalten', body: 'Zum Eintragen brauchen Sie den Gästecode aus Ihrer Buchungsnachricht, so bleibt die Karte frei von Spam.' },
+      { title: 'Ordentlich gehalten', body: 'Eine kurze automatische Prüfung von Cloudflare hält Roboter fern, so bleibt die Karte frei von Spam.' },
     ],
   },
   notFound: {

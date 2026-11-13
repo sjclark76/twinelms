@@ -209,13 +209,11 @@ export const ja: PartialStrings = {
     townLabel: '出身地',
     townPlaceholder: 'Osaka, Japan',
     townHelp: '正しい場所が見つかるよう、国名も入力してください。英語でも日本語でも構いません。',
-    codeLabel: 'ゲストコード',
-    codeHelp: '予約メッセージに記載されています。',
     submit: '出身地を追加する',
     submitting: '追加しています…',
     success: 'ありがとうございます！{town} をマップに追加しました。',
     errors: {
-      invalid_code: 'ゲストコードが正しくないようです。予約メッセージをご確認ください。',
+      verification_failed: 'ロボットではないことを確認できませんでした。もう一度お試しください。',
       invalid_town: '町の名前を入力してください。',
       not_found: 'その町が見つかりませんでした。「Osaka, Japan」のように国名も入れてお試しください。',
       rate_limited: '一度にたくさんの町が追加されました。1 分ほど待ってからもう一度お試しください。',
@@ -227,7 +225,7 @@ export const ja: PartialStrings = {
     how: [
       { title: '表示されるのは町だけ', body: 'お名前は表示しません。そのほかの情報も一切保存しません。' },
       { title: '町ごとにピンは 1 本', body: '同じ町のゲストが何人かいる場合は、ピンに訪問回数が表示されます。' },
-      { title: 'きれいなマップのために', body: '町の追加には予約メッセージのゲストコードが必要です。スパムを防ぐためです。' },
+      { title: 'きれいなマップのために', body: 'Cloudflare の簡単な自動チェックでロボットを防ぎ、マップをスパムから守っています。' },
     ],
   },
   notFound: {

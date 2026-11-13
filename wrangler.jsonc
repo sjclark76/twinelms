@@ -30,5 +30,5 @@
       "simple": { "limit": 5, "period": 60 }
     }
   ]
-  // GUEST_CODE is a secret: set it with `npx wrangler secret put GUEST_CODE` (and in .dev.vars for local dev).
+  // TURNSTILE_SECRET is a secret: set it with `npx wrangler secret put TURNSTILE_SECRET` (and in .dev.vars for local dev).
 }

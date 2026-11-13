@@ -14,15 +14,16 @@ npm test         # unit tests
 ### Visitor map API (local)
 
 ```sh
-echo "GUEST_CODE=ANYTESTCODE" > .dev.vars                          # local-only secret, gitignored
+echo "TURNSTILE_SECRET=1x0000000000000000000000000000000AA" > .dev.vars  # Cloudflare's always-pass test secret, gitignored
 npx wrangler d1 migrations apply twinelms-visitors --local         # create the local database
 npm run build && npx wrangler dev                                  # site + API on http://localhost:8787
 ```
 
 - `GET /api/towns` returns every town with its visit count.
-- `POST /api/towns` with `{"town": "Berlin", "code": "<guest code>"}` adds a visit. Errors come back as `{"error": "<code>"}` (`invalid_code`, `invalid_town`, `not_found`, `rate_limited`, `geocoder_unavailable`, `not_configured`).
+- `POST /api/towns` with `{"town": "Berlin", "token": "<Turnstile token>"}` adds a visit. Errors come back as `{"error": "<code>"}` (`verification_failed`, `invalid_town`, `not_found`, `rate_limited`, `geocoder_unavailable`, `not_configured`).
+- Spam protection is Cloudflare Turnstile (an automatic "not a robot" check) plus 5 submissions per minute per visitor.
 - Only the geocoded town, country, rounded coordinates and visit count are stored. Never names, emails or IP addresses.
-- The production guest code is a secret: set or change it with `npx wrangler secret put GUEST_CODE`.
+- Production needs a Turnstile widget: put its site key in `src/data/turnstile.ts` and set its secret with `npx wrangler secret put TURNSTILE_SECRET`.
 
 ## Hosting
 

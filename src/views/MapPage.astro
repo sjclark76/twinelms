@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { useStrings } from '../i18n/ui';
 import { LOCALES, type Locale } from '../i18n/config';
 import { nestLocation } from '../data/home';
+import { TURNSTILE_SITE_KEY, turnstileLanguage } from '../data/turnstile';
 
 interface Props {
   locale: Locale;
@@ -13,6 +14,7 @@ const t = useStrings(locale).map;
 const config = {
   locale: LOCALES[locale].htmlLang,
   home: nestLocation,
+  turnstile: { siteKey: TURNSTILE_SITE_KEY, language: turnstileLanguage[locale] ?? 'auto' },
   strings: {
     stat: t.stat, statEmpty: t.statEmpty, towns: t.towns, countries: t.countries, visits: t.visits,
     loadError: t.loadError, submit: t.submit, submitting: t.submitting, success: t.success, errors: t.errors,
@@ -53,12 +55,7 @@ const config = {
             placeholder={t.townPlaceholder} aria-describedby="town-help" />
           <span class="nest-help" id="town-help">{t.townHelp}</span>
         </div>
-        <div class="nest-field">
-          <label for="code">{t.codeLabel}</label>
-          <input class="nest-input" id="code" name="code" type="text" required maxlength="40" autocomplete="off"
-            autocapitalize="characters" spellcheck="false" aria-describedby="code-help" />
-          <span class="nest-help" id="code-help">{t.codeHelp}</span>
-        </div>
+        <div class="turnstile" data-turnstile></div>
         <div><button type="submit" class="nest-btn nest-btn-warm" data-submit>{t.submit}</button></div>
         <p class="message" data-message role="status" aria-live="polite"></p>
       </form>
@@ -72,6 +69,7 @@ const config = {
     </section>
   </main>
   <script type="application/json" id="map-config" set:html={JSON.stringify(config)} />
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 </BaseLayout>
 
 <style>
@@ -183,6 +181,9 @@ const config = {
   .form :global(.nest-input[aria-invalid='true']) {
     border-color: var(--clay);
   }
+  .turnstile:empty {
+    display: none;
+  }
   .message {
     margin: 0;
     font-weight: 600;
@@ -274,6 +275,7 @@ const config = {
   interface Config {
     locale: string;
     home: { lat: number; lng: number };
+    turnstile: { siteKey: string; language: string };
     strings: {
       stat: string; statEmpty: string; towns: Plural; countries: Plural; visits: Plural; loadError: string;
       submit: string; submitting: string; success: string; errors: Record<string, string>;
@@ -380,7 +382,38 @@ const config = {
   const button = form.querySelector<HTMLButtonElement>('[data-submit]')!;
   const message = form.querySelector<HTMLElement>('[data-message]')!;
   const townInput = form.querySelector<HTMLInputElement>('#town')!;
-  const codeInput = form.querySelector<HTMLInputElement>('#code')!;
+
+  // Cloudflare Turnstile: an automatic "not a robot" check. It only shows a box if it needs the guest to tick it.
+  interface TurnstileApi {
+    render(el: HTMLElement, options: Record<string, unknown>): string;
+    getResponse(id: string): string | undefined;
+    reset(id: string): void;
+  }
+  const turnstileEl = form.querySelector<HTMLElement>('[data-turnstile]')!;
+  let widgetId: string | undefined;
+  const turnstile = () => (window as unknown as { turnstile?: TurnstileApi }).turnstile;
+  const whenReady = new Promise<TurnstileApi>((resolve) => {
+    const check = () => (turnstile() ? resolve(turnstile()!) : setTimeout(check, 100));
+    check();
+  });
+  whenReady.then((api) => {
+    widgetId = api.render(turnstileEl, {
+      sitekey: config.turnstile.siteKey,
+      language: config.turnstile.language,
+      appearance: 'interaction-only',
+      theme: 'light',
+    });
+  });
+  /** Wait (up to 8 s) for Turnstile to produce a token. */
+  async function getToken(): Promise<string | undefined> {
+    const api = await Promise.race([whenReady, new Promise<undefined>((r) => setTimeout(() => r(undefined), 8000))]);
+    for (let i = 0; api && widgetId && i < 80; i++) {
+      const token = api.getResponse(widgetId);
+      if (token) return token;
+      await new Promise((r) => setTimeout(r, 100));
+    }
+    return undefined;
+  }
 
   function say(kind: 'error' | 'success', text: string) {
     message.dataset.kind = kind;
@@ -390,27 +423,22 @@ const config = {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     townInput.removeAttribute('aria-invalid');
-    codeInput.removeAttribute('aria-invalid');
     const town = townInput.value.trim();
-    const code = codeInput.value.trim();
     if (!town) {
       townInput.setAttribute('aria-invalid', 'true');
       townInput.focus();
       return say('error', s.errors.invalid_town);
     }
-    if (!code) {
-      codeInput.setAttribute('aria-invalid', 'true');
-      codeInput.focus();
-      return say('error', s.errors.invalid_code);
-    }
     button.disabled = true;
     button.textContent = s.submitting;
     message.textContent = '';
     try {
+      const token = await getToken();
+      if (!token) return say('error', s.errors.verification_failed);
       const res = await fetch('/api/towns', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ town, code }),
+        body: JSON.stringify({ town, token }),
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.town) {
@@ -422,13 +450,14 @@ const config = {
         say('success', s.success.replace('{town}', label(data.town as Town)));
       } else {
         const error: string = data.error ?? 'generic';
-        if (error === 'invalid_code') codeInput.setAttribute('aria-invalid', 'true');
         if (error === 'invalid_town' || error === 'not_found') townInput.setAttribute('aria-invalid', 'true');
         say('error', s.errors[error] ?? s.errors.generic);
       }
     } catch {
       say('error', s.errors.generic);
     } finally {
+      // Each Turnstile token works once, so get a fresh one for the next try.
+      if (widgetId) turnstile()?.reset(widgetId);
       button.disabled = false;
       button.textContent = s.submit;
     }

@@ -209,13 +209,11 @@ export const zh: PartialStrings = {
     townLabel: '您的家乡',
     townPlaceholder: 'Shanghai, China',
     townHelp: '请一并填写国家，方便我们找到正确的地点。用英文或中文填写均可。',
-    codeLabel: '住客代码',
-    codeHelp: '您可以在预订消息中找到它。',
     submit: '添加我的家乡',
     submitting: '正在添加…',
     success: '谢谢！{town} 已加到地图上。',
     errors: {
-      invalid_code: '这个住客代码好像不对，请查看您的预订消息。',
+      verification_failed: '我们无法确认您不是机器人，请再试一次。',
       invalid_town: '请输入城镇名称。',
       not_found: '没有找到这个城镇。请试着加上国家，例如 “Shanghai, China”。',
       rate_limited: '一次添加的城镇太多了！请等一分钟再试。',
@@ -227,7 +225,7 @@ export const zh: PartialStrings = {
     how: [
       { title: '只显示您的城镇', body: '我们从不显示您的名字，也不保存关于您的任何其他信息。' },
       { title: '每个城镇一枚图钉', body: '如果几位客人来自同一个城镇，图钉会显示到访次数。' },
-      { title: '保持整洁', body: '添加城镇需要预订消息中的住客代码，这样地图就不会有垃圾信息。' },
+      { title: '保持整洁', body: 'Cloudflare 的快速自动检查会挡住机器人，让地图不受垃圾信息干扰。' },
     ],
   },
   notFound: {
