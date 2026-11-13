@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { cleanTown, isPlaceId, normaliseQuery, photonLanguage, pickPlace, toPlace, toSuggestions } from './towns';
+import { cleanTown, isPlaceId, normaliseQuery, pickPlace, toPlace } from './towns';
+import { bucketFor, findTowns, foldName, startFor, topTowns, type SearchFile } from '../data/places-search';
 
 describe('cleanTown', () => {
   it('accepts towns in any script and tidies spaces', () => {
@@ -67,37 +68,57 @@ describe('pickPlace', () => {
   });
 });
 
-describe('toSuggestions', () => {
-  const f = (p: Record<string, string | number>) => ({ properties: p });
-  it('keeps towns and cities, drops airports, farms and shops', () => {
-    const out = toSuggestions([
-      f({ osm_key: 'place', osm_value: 'city', type: 'city', osm_type: 'R', osm_id: 4246124, name: 'Melbourne', state: 'Victoria', country: 'Australia' }),
-      f({ osm_key: 'aeroway', osm_value: 'aerodrome', type: 'house', osm_type: 'W', osm_id: 1, name: 'Melbourne Airport', country: 'Australia' }),
-      f({ osm_key: 'place', osm_value: 'farm', type: 'locality', osm_type: 'N', osm_id: 2, name: 'Lake Hāwea Station', country: 'New Zealand' }),
-      f({ osm_key: 'place', osm_value: 'town', type: 'city', osm_type: 'N', osm_id: 3, name: 'Lake Hāwea', state: 'Otago', country: 'New Zealand' }),
-    ]);
-    expect(out).toEqual([
-      { id: 'R4246124', name: 'Melbourne', detail: 'Victoria, Australia' },
-      { id: 'N3', name: 'Lake Hāwea', detail: 'Otago, New Zealand' },
-    ]);
-  });
-  it('accepts a city mapped as a province (Tokyo) but not a plain state', () => {
-    const tokyo = f({ osm_key: 'place', osm_value: 'province', type: 'city', osm_type: 'R', osm_id: 5, name: 'Tokyo', country: 'Japan' });
-    const bavaria = f({ osm_key: 'place', osm_value: 'state', type: 'state', osm_type: 'R', osm_id: 6, name: 'Bavaria', country: 'Germany' });
-    expect(toSuggestions([tokyo, bavaria]).map((s) => s.name)).toEqual(['Tokyo']);
+describe('isPlaceId', () => {
+  it('accepts only GeoNames ids', () => {
+    expect(isPlaceId('G2158177')).toBe(true);
+    expect(isPlaceId('R62422')).toBe(false);
+    expect(isPlaceId('G1; DROP TABLE')).toBe(false);
+    expect(isPlaceId(2158177)).toBe(false);
   });
 });
 
-describe('isPlaceId and photonLanguage', () => {
-  it('accepts only OpenStreetMap ids', () => {
-    expect(isPlaceId('R62422')).toBe(true);
-    expect(isPlaceId('N1')).toBe(true);
-    expect(isPlaceId('X1')).toBe(false);
-    expect(isPlaceId('R1; DROP TABLE')).toBe(false);
-    expect(isPlaceId(62422)).toBe(false);
+describe('town search (must match scripts/build-places.py)', () => {
+  it('folds names the same way as the build script', () => {
+    expect(foldName('Lake Hāwea')).toBe('lake hawea');
+    expect(foldName('  München ')).toBe('munchen');
+    expect(foldName('Łódź')).toBe('lodz');
+    expect(foldName('Straße')).toBe('strasse');
   });
-  it('uses Photon languages where available', () => {
-    expect(photonLanguage('de')).toBe('de');
-    expect(photonLanguage('ja')).toBe('default');
+  it('puts starts in the same files as Python zlib.crc32 % 1024', () => {
+    expect(bucketFor('me')).toBe(706);
+    expect(bucketFor('東')).toBe(589);
+    expect(bucketFor('san')).toBe(418);
+    expect(bucketFor('서')).toBe(758);
+  });
+  it('waits for two letters, one CJK character, and longer starts when a start is split', () => {
+    const split = new Set(['sa', 'san']);
+    expect(startFor('m', split)).toBeNull();
+    expect(startFor('me', split)).toBe('me');
+    expect(startFor('東', split)).toBe('東');
+    expect(startFor('sa', split)).toBeNull();
+    expect(startFor('sant', split)).toBe('sant');
+  });
+  it('finds towns by prefix, biggest first, once each', () => {
+    const file: SearchFile = {
+      k: [['melba', 1], ['melbourne', 0], ['melbourne', 2], ['merida', 3]],
+      p: [[1, 'Melbourne', 'Victoria', 'Australia', 5000000], [2, 'Melba', 'Idaho', 'United States', 500],
+        [3, 'Melbourne', 'Florida', 'United States', 80000], [4, 'Mérida', 'Yucatán', 'Mexico', 900000]],
+    };
+    expect(findTowns(file, 'melb').map((t) => `${t.name}, ${t.detail}`)).toEqual([
+      'Melbourne, Victoria, Australia', 'Melba, Idaho, United States', 'Melbourne, Florida, United States',
+    ]);
+    expect(findTowns(file, 'melb')[0].id).toBe('G1');
+  });
+  it('ranks towns whose own name matches ahead of bigger towns matched by another name', () => {
+    const file: SearchFile = {
+      k: [['santa fe de bogota', 0, 1], ['santiago', 1]],
+      p: [[1, 'Bogotá', 'Bogota D.C.', 'Colombia', 7600000], [2, 'Santiago', 'Santiago Metropolitan', 'Chile', 4800000]],
+    };
+    expect(findTowns(file, 'sant').map((t) => t.name)).toEqual(['Santiago', 'Bogotá']);
+  });
+  it('shows the biggest towns for a common start', () => {
+    const split = { sa: [[3448439, 'São Paulo', 'São Paulo', 'Brazil', 10021295]] as [number, string, string, string, number][] };
+    expect(topTowns(split, 'sa')).toEqual([{ id: 'G3448439', name: 'São Paulo', detail: 'Brazil' }]);
+    expect(topTowns(split, 'me')).toEqual([]);
   });
 });

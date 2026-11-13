@@ -216,6 +216,7 @@ export const en = {
     townHelp: 'Start typing, then pick your town from the list.',
     noSuggestions: 'No towns found. Keep typing, or add the country.',
     suggestionsCount: { one: '{n} town found', other: '{n} towns found' },
+    searchCredit: 'Town search uses data from {geonames}.',
     submit: 'Add your home town',
     submitting: 'Adding…',
     success: 'Thank you! {town} is on the map.',

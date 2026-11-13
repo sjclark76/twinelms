@@ -1,14 +1,11 @@
 // Visitor map API. Static pages are served by the assets binding; only /api/* reaches this code.
-import {
-  cleanTown, isPlaceId, normaliseQuery, photonLanguage, pickPlace, toSuggestions,
-  type NominatimResult, type PhotonFeature, type Place,
-} from './towns';
+import { cleanTown, isPlaceId, normaliseQuery, pickPlace, type NominatimResult, type Place } from './towns';
+import { foldName, ID_FILES } from '../data/places-search';
 
 interface Env {
   ASSETS: Fetcher;
   DB: D1Database;
   SUBMIT_LIMITER: RateLimit;
-  SEARCH_LIMITER: RateLimit;
   TURNSTILE_SECRET?: string;
 }
 
@@ -34,7 +31,6 @@ export default {
       if (request.method === 'POST') return addTown(request, env);
       return new Response(null, { status: 405, headers: { allow: 'GET, POST' } });
     }
-    if (url.pathname === '/api/places' && request.method === 'GET') return searchPlaces(request, url, env);
     if (url.pathname.startsWith('/api/')) return fail('not_found_route', 404);
     return env.ASSETS.fetch(request);
   },
@@ -73,7 +69,7 @@ async function addTown(request: Request, env: Env): Promise<Response> {
   try {
     if (body.place !== undefined) {
       if (!isPlaceId(body.place)) return fail('invalid_town', 400);
-      place = await lookupById(body.place, env);
+      place = await lookupById(body.place, request, env);
     } else {
       const town = cleanTown(body.town);
       if (!town) return fail('invalid_town', 400);
@@ -90,81 +86,40 @@ async function addTown(request: Request, env: Env): Promise<Response> {
 const TOWN_COLUMNS = 'name, country, country_code AS countryCode, lat, lng, visits';
 
 /**
- * Add a visit. The same town can reach us as different OpenStreetMap objects (a city's point or its boundary),
- * so a town with the same name and country within about 25 km counts as the same pin.
+ * Add a visit. The same town can reach us from different sources (a picked suggestion or typed text),
+ * so a town in the same country with the same name (ignoring accents) within about 25 km counts as the same pin.
  */
 async function saveVisit(place: Place, env: Env) {
-  const near = await env.DB.prepare(
-    `UPDATE towns SET visits = visits + 1, updated_at = datetime('now')
-     WHERE id = (SELECT id FROM towns WHERE place_key = ?1
-                 OR (country_code = ?2 AND lower(name) = lower(?3) AND abs(lat - ?4) < 0.25 AND abs(lng - ?5) < 0.35)
-                 ORDER BY place_key = ?1 DESC, visits DESC LIMIT 1)
-     RETURNING ${TOWN_COLUMNS}`,
+  const { results } = await env.DB.prepare(
+    `SELECT id, name, place_key FROM towns
+     WHERE place_key = ?1 OR (country_code = ?2 AND abs(lat - ?3) < 0.25 AND abs(lng - ?4) < 0.35)
+     ORDER BY visits DESC`,
   )
-    .bind(place.placeKey, place.countryCode, place.name, place.lat, place.lng)
-    .first();
-  if (near) return near;
+    .bind(place.placeKey, place.countryCode, place.lat, place.lng)
+    .all<{ id: number; name: string; place_key: string }>();
+  const same =
+    results.find((t) => t.place_key === place.placeKey) ?? results.find((t) => foldName(t.name) === foldName(place.name));
+  if (same) {
+    return env.DB.prepare(`UPDATE towns SET visits = visits + 1, updated_at = datetime('now') WHERE id = ? RETURNING ${TOWN_COLUMNS}`)
+      .bind(same.id)
+      .first();
+  }
   return env.DB.prepare(
-    `INSERT INTO towns (place_key, name, country, country_code, lat, lng) VALUES (?, ?, ?, ?, ?, ?)
-     ON CONFLICT(place_key) DO UPDATE SET visits = visits + 1, updated_at = datetime('now')
-     RETURNING ${TOWN_COLUMNS}`,
+    `INSERT INTO towns (place_key, name, country, country_code, lat, lng) VALUES (?, ?, ?, ?, ?, ?) RETURNING ${TOWN_COLUMNS}`,
   )
     .bind(place.placeKey, place.name, place.country, place.countryCode, place.lat, place.lng)
     .first();
 }
 
-/**
- * Town suggestions as the guest types, from Photon (an OpenStreetMap search built for type-ahead).
- * Requests go through us, so guests' IP addresses never reach a third party, and answers are cached for a day.
- */
-async function searchPlaces(request: Request, url: URL, env: Env): Promise<Response> {
-  const q = (url.searchParams.get('q') ?? '').normalize('NFC').replace(/\s+/g, ' ').trim();
-  if (q.length < 2 || q.length > 80) return json({ suggestions: [] });
-  const lang = photonLanguage(url.searchParams.get('lang') ?? 'en');
-
-  const key = request.headers.get('cf-connecting-ip') ?? 'unknown'; // in memory only, never stored
-  if (!(await env.SEARCH_LIMITER.limit({ key })).success) return fail('rate_limited', 429);
-
-  const cacheKey = new Request(`https://cache.twinelms/places?lang=${lang}&q=${encodeURIComponent(q.toLowerCase())}`);
-  const cache = caches.default;
-  const hit = await cache.match(cacheKey);
-  if (hit) return hit;
-
-  const photon = new URL('https://photon.komoot.io/api/');
-  photon.searchParams.set('q', q);
-  photon.searchParams.set('limit', '12');
-  photon.searchParams.set('lang', lang);
-  for (const layer of ['city', 'district', 'locality']) photon.searchParams.append('layer', layer);
-  const res = await fetch(photon, { headers: { 'user-agent': USER_AGENT } });
-  if (!res.ok) return fail('geocoder_unavailable', 502);
-  const data = (await res.json()) as { features?: PhotonFeature[] };
-  const response = json({ suggestions: toSuggestions(data.features ?? []) }, 200, { 'cache-control': 'public, max-age=86400' });
-  await cache.put(cacheKey, response.clone());
-  return response;
-}
-
-/** Look up a town the guest picked from the suggestions, and check it really is a town. */
-async function lookupById(id: string, env: Env): Promise<Place | null> {
-  const query = `id:${id}`;
-  const cached = await env.DB.prepare(
-    "SELECT result FROM geocode_cache WHERE query = ? AND (result IS NOT NULL OR created_at > datetime('now', '-1 day'))",
-  )
-    .bind(query)
-    .first<{ result: string | null }>();
-  if (cached) return cached.result ? (JSON.parse(cached.result) as Place) : null;
-
-  await waitForNominatim(env);
-  const url = new URL('https://nominatim.openstreetmap.org/lookup');
-  url.search = new URLSearchParams({
-    osm_ids: id, format: 'jsonv2', addressdetails: '1', extratags: '1', 'accept-language': 'en',
-  }).toString();
-  const res = await fetch(url, { headers: { 'user-agent': USER_AGENT, referer: 'https://twinelms.sjclark76.workers.dev/' } });
-  if (!res.ok) throw new Error(`Nominatim ${res.status}`);
-  const place = pickPlace((await res.json()) as NominatimResult[]);
-  await env.DB.prepare("INSERT OR REPLACE INTO geocode_cache (query, result, created_at) VALUES (?, ?, datetime('now'))")
-    .bind(query, place ? JSON.stringify(place) : null)
-    .run();
-  return place;
+/** A town the guest picked from the suggestions, read from our own GeoNames files (never from the browser). */
+async function lookupById(id: string, request: Request, env: Env): Promise<Place | null> {
+  const gid = Number(id.slice(1));
+  const res = await env.ASSETS.fetch(new URL(`/places/id/${gid % ID_FILES}.json`, request.url));
+  if (!res.ok) throw new Error(`places file ${res.status}`);
+  const entry = ((await res.json()) as Record<string, [string, string, string, string, number, number]>)[String(gid)];
+  if (!entry) return null;
+  const [name, , country, countryCode, lat, lng] = entry;
+  return { placeKey: `geonames:${gid}`, name, country, countryCode, lat, lng };
 }
 
 /** Look a town up, using the cache first and calling Nominatim at most once per second. */
