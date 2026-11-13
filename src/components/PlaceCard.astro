@@ -1,0 +1,26 @@
+---
+import { tagVariant, type TagKey } from '../data/places';
+
+interface Props {
+  name: string;
+  tags: { key: TagKey; label: string }[];
+  body?: string;
+  meta?: string[];
+}
+const { name, tags, body, meta = [] } = Astro.props;
+---
+
+<article class="nest-card nest-place">
+  <div class="nest-row">
+    {tags.map((t) => <span class={`nest-tag nest-tag-${tagVariant[t.key]}`}>{t.label}</span>)}
+  </div>
+  <h3>{name}</h3>
+  {body && <p>{body}</p>}
+  {meta.length > 0 && <div class="nest-meta">{meta.map((m) => <span>{m}</span>)}</div>}
+</article>
+
+<style>
+  .nest-place {
+    max-width: none;
+  }
+</style>

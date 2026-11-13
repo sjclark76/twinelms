@@ -1,0 +1,259 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GuideSection from '../components/GuideSection.astro';
+import PlaceCard from '../components/PlaceCard.astro';
+import Icon from '../components/Icon.astro';
+import { useStrings } from '../i18n/ui';
+import { localePath, type Locale } from '../i18n/config';
+import { wifi } from '../data/wifi';
+import { hosts, medicalCentre } from '../data/contact';
+import {
+  highlights, eateriesHawea, eateriesWanaka, hikesHawea, hikesWanaka, bikeCrossCountry, bikeEnduro, skiFields,
+  type Place, type TagKey,
+} from '../data/places';
+
+const locale: Locale = 'en';
+const t = useStrings(locale).guide;
+const jump = Object.entries(t.jump);
+const tagList = (keys: TagKey[]) => keys.map((key) => ({ key, label: t.tags[key] }));
+
+type PlaceText = { body?: string; meta?: string[] };
+const textFor = (group: Record<string, PlaceText>, p: Place) => group[p.id] ?? {};
+const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []), ...(text.meta ?? [])];
+---
+
+<BaseLayout title={t.title} description={t.description} locale={locale}>
+  <main id="main">
+    <section class="nest-container intro">
+      <h1 class="display">{t.heading}</h1>
+      <p class="lead">{t.intro}</p>
+      <nav aria-label={t.jumpLabel}>
+        <ul class="jump">
+          {jump.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}
+        </ul>
+      </nav>
+    </section>
+
+    <GuideSection id="house" eyebrow={t.house.eyebrow} heading={t.house.heading}>
+      <div class="two-col">
+        <div class="nest-card">
+          <ul class="nest-info">
+            <li><Icon name="clock" /><div><b>{t.house.checkIn}</b><span>{t.house.checkInSub}</span></div></li>
+            <li>
+              <Icon name="wifi" />
+              <div>
+                <b>{t.house.wifi.replace('{ssid}', wifi.ssid)}</b>
+                <span>{t.house.wifiSub.replace('{password}', wifi.password)} <a href={`${localePath(locale, '/')}#wifi`}>{t.house.wifiLink}</a></span>
+              </div>
+            </li>
+            <li><Icon name="smoke" /><div><b>{t.house.smoking}</b></div></li>
+            <li><Icon name="bin" /><div><b>{t.house.bins}</b><span>{t.house.binsSub}</span></div></li>
+          </ul>
+        </div>
+        <div class="nest-card leave">
+          <h3 class="heading-3">{t.house.leaveHeading}</h3>
+          <p class="muted">{t.house.leaveIntro}</p>
+          <ul>{t.house.leave.map((item) => <li>{item}</li>)}</ul>
+        </div>
+      </div>
+    </GuideSection>
+
+    <GuideSection id="highlights" eyebrow={t.highlights.eyebrow} heading={t.highlights.heading}>
+      <div class="grid">
+        {highlights.map((p) => {
+          const text = textFor(t.highlights.places, p);
+          return <PlaceCard name={p.name} tags={tagList(p.tags)} body={text.body} meta={metaFor(p, text)} />;
+        })}
+      </div>
+    </GuideSection>
+
+    <GuideSection id="eat" eyebrow={t.eat.eyebrow} heading={t.eat.heading}>
+      <h3 class="heading-2 group">{t.eat.hawea}</h3>
+      <div class="grid">
+        {eateriesHawea.map((p) => {
+          const text = textFor(t.eat.places, p);
+          return <PlaceCard name={p.name} tags={tagList(p.tags)} body={text.body} meta={metaFor(p, text)} />;
+        })}
+      </div>
+      <h3 class="heading-2 group">{t.eat.wanaka}</h3>
+      <div class="grid">
+        {eateriesWanaka.map((p) => {
+          const text = textFor(t.eat.places, p);
+          return <PlaceCard name={p.name} tags={tagList(p.tags)} body={text.body} meta={metaFor(p, text)} />;
+        })}
+      </div>
+    </GuideSection>
+
+    <GuideSection id="shops" eyebrow={t.shops.eyebrow} heading={t.shops.heading}>
+      <div class="nest-card">
+        <ul class="nest-info">
+          <li><Icon name="basket" /><div><b>{t.shops.supermarkets}</b><span>{t.shops.supermarketsSub}</span></div></li>
+          <li><Icon name="pill" /><div><b>{t.shops.pharmacies}</b><span>{t.shops.pharmaciesSub}</span></div></li>
+          <li><Icon name="cash" /><div><b>{t.shops.atms}</b><span>{t.shops.atmsSub}</span></div></li>
+        </ul>
+      </div>
+    </GuideSection>
+
+    <GuideSection id="hikes" eyebrow={t.hikes.eyebrow} heading={t.hikes.heading}>
+      <h3 class="heading-2 group">{t.hikes.hawea}</h3>
+      <ul class="trails">{hikesHawea.map((n) => <li class="nest-card"><span class="nest-tag nest-tag-hike">{t.tags.hike}</span><p>{n}</p></li>)}</ul>
+      <h3 class="heading-2 group">{t.hikes.wanaka}</h3>
+      <ul class="trails">{hikesWanaka.map((n) => <li class="nest-card"><span class="nest-tag nest-tag-hike">{t.tags.hike}</span><p>{n}</p></li>)}</ul>
+    </GuideSection>
+
+    <GuideSection id="biking" eyebrow={t.biking.eyebrow} heading={t.biking.heading}>
+      <h3 class="heading-2 group">{t.biking.crossCountry}</h3>
+      <ul class="trails">{bikeCrossCountry.map((n) => <li class="nest-card"><span class="nest-tag nest-tag-bike">{t.tags.crossCountry}</span><p>{n}</p></li>)}</ul>
+      <h3 class="heading-2 group">{t.biking.enduro}</h3>
+      <ul class="trails">{bikeEnduro.map((n) => <li class="nest-card"><span class="nest-tag nest-tag-bike">{t.tags.enduro}</span><p>{n}</p></li>)}</ul>
+    </GuideSection>
+
+    <GuideSection id="skiing" eyebrow={t.skiing.eyebrow} heading={t.skiing.heading}>
+      <ul class="trails">{skiFields.map((n) => <li class="nest-card"><span class="nest-tag nest-tag-lake">{t.tags.skiing}</span><p>{n}</p></li>)}</ul>
+    </GuideSection>
+
+    <GuideSection id="emergency" eyebrow={t.emergency.eyebrow} heading={t.emergency.heading}>
+      <div class="emergency">
+        <div><p class="muted">{t.emergency.services}</p><p class="big">{t.emergency.dial}</p></div>
+        <div>
+          <p class="strong">{medicalCentre.name}</p>
+          <p><a href={`tel:${medicalCentre.tel}`}>{medicalCentre.display}</a></p>
+          <p class="muted">{t.emergency.medicalNote}</p>
+        </div>
+        <div>
+          <p class="strong">{t.emergency.hosts}</p>
+          <p>{hosts.map((h, i) => (<>{i > 0 && <br />}{h.name} <a href={`tel:${h.tel}`}>{h.display}</a></>))}</p>
+        </div>
+      </div>
+    </GuideSection>
+  </main>
+</BaseLayout>
+
+<style>
+  .intro {
+    padding-top: calc(var(--space-10) + var(--space-2));
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  h1 {
+    margin: 0;
+  }
+  .lead {
+    margin: 0;
+    max-width: 640px;
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: var(--space-2) 0 0;
+    list-style: none;
+  }
+  .jump a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 14px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line);
+    background: var(--white);
+    color: var(--ink);
+    font: 600 14px/20px var(--font-sans);
+    text-decoration: none;
+  }
+  .jump a:hover {
+    background: var(--mist);
+  }
+  .jump a:focus-visible {
+    outline: 3px solid var(--lake);
+    outline-offset: 2px;
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-4);
+    align-items: start;
+  }
+  .nest-info :global(a) {
+    color: var(--lake);
+    font-weight: 600;
+    text-underline-offset: 3px;
+  }
+  .leave {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .leave h3,
+  .leave p {
+    margin: 0;
+  }
+  .leave ul {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .muted {
+    color: var(--slate);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+  .group {
+    margin: var(--space-2) 0 0;
+  }
+  .trails {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-4);
+  }
+  .trails li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+  .trails p {
+    margin: 0;
+    font-weight: 600;
+  }
+  .emergency {
+    background: var(--mist);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .emergency > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .emergency p {
+    margin: 0;
+  }
+  .emergency a {
+    color: var(--lake);
+    font-weight: 600;
+    text-underline-offset: 3px;
+  }
+  .big {
+    font: 600 28px/34px var(--font-display);
+  }
+  .strong {
+    font-weight: 600;
+  }
+</style>
