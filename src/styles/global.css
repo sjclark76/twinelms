@@ -11,3 +11,9 @@ body {
   margin: 0;
   background: var(--cream);
 }
+
+/* Safety net: images never overflow their container. Component styles override this where they need to. */
+img {
+  max-width: 100%;
+  height: auto;
+}
