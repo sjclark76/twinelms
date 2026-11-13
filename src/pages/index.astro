@@ -131,7 +131,7 @@ const t = useStrings(locale).home;
   .stay {
     padding-top: var(--space-10);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
     gap: var(--space-4);
   }
   .stay-card {
@@ -212,7 +212,7 @@ const t = useStrings(locale).home;
   }
   .animals-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: var(--space-4);
   }
   .invite {

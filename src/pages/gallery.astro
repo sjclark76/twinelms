@@ -133,7 +133,7 @@ const filters = Object.entries(t.filters);
     margin: 0;
     padding: 0;
     list-style: none;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
     gap: var(--space-4);
   }
   .tile[hidden] {
@@ -142,13 +142,20 @@ const filters = Object.entries(t.filters);
   .tile.wide {
     grid-column: span 2;
   }
+  /* The wide tile fills the row height set by its neighbours (never wider than its cell). */
+  .tile.wide .nest-tile {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 200px;
+  }
   @media (max-width: 599px) {
     .tile.wide {
       grid-column: span 1;
     }
-  }
-  .tile .nest-tile {
-    height: 100%;
+    .tile.wide .nest-tile {
+      aspect-ratio: 4 / 3;
+      height: auto;
+    }
   }
   .tile-btn {
     position: absolute;

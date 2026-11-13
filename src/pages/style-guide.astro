@@ -20,7 +20,7 @@ const components = Object.entries(raw).map(([path, html]) => ({
     <p class="body">Design tokens and components from <code>design-system/</code>. Internal reference, not linked from the site.</p>
 
     <h2 class="heading-1" style="margin: var(--space-10) 0 var(--space-4)">Colour</h2>
-    <ul style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-4)">
+    <ul style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); gap: var(--space-4)">
       {tokens.color.tokens.map((t) => (
         <li class="nest-card" style="padding: var(--space-4)">
           <div style={`height: 56px; border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--${t.name})`}></div>
