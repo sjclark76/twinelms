@@ -202,6 +202,7 @@ export const ko: PartialStrings = {
     visits: { one: '{n}번 방문', other: '{n}번 방문' },
     legendGuests: '손님의 고향',
     legendHome: 'The Nest, Lake Hawea',
+    legendVisits: '핀이 클수록 방문 횟수가 많아요',
     listToggle: '도시 목록 보기',
     loadError: '지금은 지도에 도시를 불러올 수 없어요. 잠시 후 다시 시도해 주세요.',
     noscript: '핀을 보여 주고 고향을 추가하려면 JavaScript가 필요해요.',

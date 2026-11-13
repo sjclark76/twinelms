@@ -40,6 +40,7 @@ const config = {
       <div class="legend">
         <span><span class="dot dot-guest" aria-hidden="true"></span>{t.legendGuests}</span>
         <span><span class="dot dot-home" aria-hidden="true"></span>{t.legendHome}</span>
+        <span><span class="dot dot-guest dot-small" aria-hidden="true"></span><span class="dot dot-guest dot-big" aria-hidden="true"></span>{t.legendVisits}</span>
       </div>
       <details class="town-list" data-town-list hidden>
         <summary>{t.listToggle}</summary>
@@ -142,6 +143,15 @@ const config = {
   .dot-guest {
     background: var(--tussock);
     border: 2px solid var(--ink);
+  }
+  .dot-small {
+    width: 8px;
+    height: 8px;
+    margin-right: -4px;
+  }
+  .dot-big {
+    width: 16px;
+    height: 16px;
   }
   .dot-home {
     background: var(--clay);
@@ -291,6 +301,10 @@ const config = {
   .map :global(.pin-icon .nest-pin) {
     display: block;
   }
+  .map :global(.pin-icon .nest-pin-count) {
+    display: grid;
+    place-items: center;
+  }
   .map :global(.leaflet-marker-icon:focus-visible) {
     outline: 3px solid var(--lake);
     outline-offset: 4px;
@@ -377,14 +391,21 @@ const config = {
   const updateMinZoom = () => map.setMinZoom(worldZoom());
   map.on('resize', updateMinZoom);
 
-  const icon = (home: boolean) =>
-    L.divIcon({
+  /** Pin size grows gently with visits: 1 visit is the normal pin, 10 or more is 1.6 times bigger. */
+  const pinSize = (visits: number) => Math.round(18 * (1 + 0.6 * Math.min(1, Math.log(Math.max(visits, 1)) / Math.log(10))));
+  const icon = (home: boolean, visits = 1) => {
+    const size = home ? 22 : pinSize(visits);
+    // Towns with 2 or more visits show the count on the pin (the pin is rotated, so the number is turned back upright).
+    const label = !home && visits > 1 ? `<b>${visits > 99 ? '99+' : visits}</b>` : '';
+    return L.divIcon({
       className: 'pin-icon',
-      html: `<span class="nest-pin${home ? ' nest-pin-home' : ''}"></span>`,
-      iconSize: home ? [22, 22] : [18, 18],
-      iconAnchor: home ? [11, 26] : [9, 22],
-      popupAnchor: [0, -22],
+      html: `<span class="nest-pin${home ? ' nest-pin-home' : ''}${label ? ' nest-pin-count' : ''}" style="width:${size}px;height:${size}px">${label}</span>`,
+      iconSize: [size, size],
+      // The pin's point sits about 1.2 sizes below its top-left corner once rotated.
+      iconAnchor: [size / 2, Math.round(size * 1.21)],
+      popupAnchor: [0, -Math.round(size * 1.2)],
     });
+  };
 
   const homeLatLng = L.latLng(config.home.lat, config.home.lng);
   L.marker(homeLatLng, { icon: icon(true), title: 'The Nest, Lake Hawea', alt: 'The Nest, Lake Hawea', zIndexOffset: 1000 })
@@ -401,11 +422,16 @@ const config = {
     const title = `${label(town)}: ${count(s.visits, town.visits)}`;
     if (existing) {
       existing.town = town;
+      existing.marker.setIcon(icon(false, town.visits));
+      existing.marker.setZIndexOffset(-town.visits);
       existing.marker.setPopupContent(text);
       existing.marker.getElement()?.setAttribute('title', title);
       return existing.marker;
     }
-    const marker = L.marker([town.lat, town.lng], { icon: icon(false), title, alt: title }).bindPopup(text).addTo(map);
+    // Busier (bigger) pins sit underneath, so small pins nearby stay visible and tappable.
+    const marker = L.marker([town.lat, town.lng], { icon: icon(false, town.visits), title, alt: title, zIndexOffset: -town.visits })
+      .bindPopup(text)
+      .addTo(map);
     towns.set(keyOf(town), { town, marker });
     return marker;
   }

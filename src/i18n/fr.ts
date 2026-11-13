@@ -202,6 +202,7 @@ export const fr: PartialStrings = {
     visits: { one: '{n} visite', other: '{n} visites' },
     legendGuests: 'La ville d’un hôte',
     legendHome: 'The Nest, Lake Hawea',
+    legendVisits: 'Plus l’épingle est grande, plus il y a de visites',
     listToggle: 'Voir la liste des villes',
     loadError: 'La carte n’a pas pu charger les villes pour le moment. Veuillez réessayer plus tard.',
     noscript: 'La carte a besoin de JavaScript pour afficher les épingles et ajouter votre ville.',

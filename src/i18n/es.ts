@@ -202,6 +202,7 @@ export const es: PartialStrings = {
     visits: { one: '{n} visita', other: '{n} visitas' },
     legendGuests: 'La ciudad de un huésped',
     legendHome: 'The Nest, Lake Hawea',
+    legendVisits: 'Cuanto más grande la chincheta, más visitas',
     listToggle: 'Ver la lista de ciudades',
     loadError: 'El mapa no ha podido cargar las ciudades en este momento. Inténtelo de nuevo más tarde.',
     noscript: 'El mapa necesita JavaScript para mostrar las chinchetas y añadir su ciudad.',

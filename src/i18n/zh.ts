@@ -202,6 +202,7 @@ export const zh: PartialStrings = {
     visits: { one: '到访 {n} 次', other: '到访 {n} 次' },
     legendGuests: '客人的家乡',
     legendHome: 'The Nest, Lake Hawea',
+    legendVisits: '图钉越大，到访次数越多',
     listToggle: '查看城镇列表',
     loadError: '地图暂时无法加载城镇，请稍后再试。',
     noscript: '地图需要 JavaScript 才能显示图钉和添加您的家乡。',

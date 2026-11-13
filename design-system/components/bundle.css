@@ -93,6 +93,8 @@
 /* Map pin and visitor map */
 .nest-pin{display:inline-block;width:18px;height:18px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--tussock);border:2px solid var(--ink)}
 .nest-pin-home{background:var(--clay);border-color:var(--white);width:22px;height:22px}
+.nest-pin-count{display:grid;place-items:center}
+.nest-pin-count b{display:block;transform:rotate(45deg);font:600 11px/1 var(--font-sans);color:var(--ink)}
 .nest-pin-label{display:inline-block;background:var(--white);border:1px solid var(--line);border-radius:var(--radius-sm);padding:4px 10px;font-size:13px;line-height:18px}
 .nest-pin-label b{display:block}
 .nest-map{position:relative;border-radius:var(--radius-md);overflow:hidden;background:var(--lake-mist)}
