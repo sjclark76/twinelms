@@ -15,7 +15,7 @@ The guest website for The Nest at Twin Elms, Jo and Stuart's family-run Airbnb a
 
 - **Astro**, static output, TypeScript. Keep client-side JavaScript to small islands (copy button, language memory, gallery lightbox, map).
 - **Cloudflare (Workers static assets)** hosts the site; every push to `main` deploys, and pull requests get preview URLs (public but unlisted).
-- **Visitor map backend:** a small Worker (`src/worker/`) that handles only `/api/*` (everything else is served straight from the static site), plus the `twinelms-visitors` D1 database. Schema changes go in `migrations/` and are applied with `npx wrangler d1 migrations apply twinelms-visitors --remote`.
+- **Visitor map backend:** a small Worker (`src/worker/`) that handles only `/api/*` (everything else is served straight from the static site), plus the `twinelms-visitors` D1 database. Schema changes go in `migrations/` and are applied with `npx wrangler d1 migrations apply twinelms-visitors --remote`. PR previews use a separate `twinelms-visitors-preview` database (see `previews` in `wrangler.jsonc`), which `migrations apply` can't see: apply each new migration to it with `npx wrangler d1 execute twinelms-visitors-preview --remote --file migrations/<file>.sql`. Test towns in either database have a `place_key` starting `test:`.
 - **Map:** Leaflet with OpenStreetMap tiles; geocoding with OpenStreetMap Nominatim (server-side, cached, at most 1 request per second, with a proper User-Agent, per its usage policy). Show the "© OpenStreetMap contributors" attribution.
 - No paid services, no translation APIs, no analytics or trackers without asking.
 
