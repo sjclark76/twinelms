@@ -4,8 +4,7 @@ import GuideSection from '../components/GuideSection.astro';
 import PlaceCard from '../components/PlaceCard.astro';
 import Icon from '../components/Icon.astro';
 import { useStrings } from '../i18n/ui';
-import { localePath, type Locale } from '../i18n/config';
-import { wifi } from '../data/wifi';
+import type { Locale } from '../i18n/config';
 import { hosts, medicalCentre } from '../data/contact';
 import {
   highlights, eateriesHawea, eateriesWanaka, hikesHawea, hikesWanaka, bikeCrossCountry, bikeEnduro, skiFields,
@@ -45,8 +44,8 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
             <li>
               <Icon name="wifi" />
               <div>
-                <b>{t.house.wifi.replace('{ssid}', wifi.ssid)}</b>
-                <span>{t.house.wifiSub.replace('{password}', wifi.password)} <a href={`${localePath(locale, '/')}#wifi`}>{t.house.wifiLink}</a></span>
+                <b>{t.house.wifi}</b>
+                <span>{t.house.wifiSub}</span>
               </div>
             </li>
             <li><Icon name="smoke" /><div><b>{t.house.smoking}</b></div></li>

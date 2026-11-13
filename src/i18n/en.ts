@@ -16,25 +16,15 @@ export const en = {
     walkIn: '(walk-in and after hours)',
     note: 'Please no smoking inside. Loved your stay? We’d be so grateful for a review on Airbnb.',
   },
-  wifi: {
-    title: 'Wi-Fi',
-    network: 'Network',
-    password: 'Password',
-    qrLabel: 'QR code to join The Quack House Guest Wi-Fi',
-    hint: 'Point your phone camera at the code to join. Already on your phone? Copy the password instead.',
-    copy: 'Copy password',
-    copied: 'Password copied',
-  },
   home: {
     title: 'The Nest at Twin Elms, Lake Hawea',
     description:
-      'Welcome to The Nest at Twin Elms. Join the Wi-Fi, read the guest guide, meet the animals and see where our guests come from.',
+      'Welcome to The Nest at Twin Elms. Read the guest guide, meet the animals and see where our guests come from.',
     hero: {
       eyebrow: 'Lake Hawea, New Zealand',
       heading: 'Welcome to The Nest',
       intro:
         'We are delighted you’ve chosen to stay with us in beautiful Lake Hawea. This guide will help you make the most of your stay, and if there’s anything else you’d like to know, just ask us.',
-      joinWifi: 'Join the Wi-Fi',
       openGuide: 'Open the guest guide',
       photoAlt: 'Driftwood letters spelling HAWEA on the stony shore of Lake Hawea, with snow-capped mountains across the water.',
     },
@@ -94,9 +84,8 @@ export const en = {
       heading: 'House essentials',
       checkIn: 'Check-in after 3:00pm',
       checkInSub: 'Check-out by 11:00am. Let us know if you’d like some flexibility, we’ll do our best to help.',
-      wifi: 'Wi-Fi: {ssid}',
-      wifiSub: 'Password: {password}.',
-      wifiLink: 'Scan the QR code',
+      wifi: 'Wi-Fi',
+      wifiSub: 'The network name and password are on the card in the room.',
       smoking: 'Please no smoking inside',
       bins: 'Rubbish and recycling',
       binsSub: 'Red: general waste. Yellow: recycling. Blue: glass.',

@@ -12,25 +12,15 @@ export const zh: PartialStrings = {
     walkIn: '（无需预约，也提供非工作时间服务）',
     note: '请勿在室内吸烟。如果您住得愉快，我们将非常感谢您在 Airbnb 上留下评价。',
   },
-  wifi: {
-    title: 'Wi-Fi',
-    network: '网络',
-    password: '密码',
-    qrLabel: '加入 The Quack House Guest Wi-Fi 的二维码',
-    hint: '用手机相机对准二维码即可连接。已经在手机上阅读？请直接复制密码。',
-    copy: '复制密码',
-    copied: '密码已复制',
-  },
   home: {
     title: 'The Nest at Twin Elms, Lake Hawea',
     description:
-      '欢迎来到 The Nest at Twin Elms。连接 Wi-Fi、阅读住客指南、认识我们的小动物，看看我们的客人来自哪里。',
+      '欢迎来到 The Nest at Twin Elms。阅读住客指南，认识我们的小动物，看看客人们来自哪里。',
     hero: {
       eyebrow: 'Lake Hawea, New Zealand',
       heading: '欢迎来到 The Nest',
       intro:
         '很高兴您选择来到美丽的 Lake Hawea，入住我们家。这份指南能帮您更好地享受这次旅程；如果还有什么想了解的，请随时问我们。',
-      joinWifi: '连接 Wi-Fi',
       openGuide: '打开住客指南',
       photoAlt: 'Lake Hawea多石的湖岸上，用浮木拼出的“HAWEA”字样，湖对岸是白雪覆盖的群山。',
     },
@@ -90,9 +80,8 @@ export const zh: PartialStrings = {
       heading: '房屋须知',
       checkIn: '下午 3:00 后入住',
       checkInSub: '上午 11:00 前退房。如果需要更灵活的时间，请告诉我们，我们会尽力帮忙。',
-      wifi: 'Wi-Fi：{ssid}',
-      wifiSub: '密码：{password}。',
-      wifiLink: '扫描二维码',
+      wifi: 'Wi-Fi',
+      wifiSub: '网络名称和密码在房间里的卡片上。',
       smoking: '请勿在室内吸烟',
       bins: '垃圾与回收',
       binsSub: '红色：普通垃圾。黄色：可回收物。蓝色：玻璃。',

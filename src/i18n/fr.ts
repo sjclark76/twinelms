@@ -12,25 +12,15 @@ export const fr: PartialStrings = {
     walkIn: '(sans rendez-vous et en dehors des heures d’ouverture)',
     note: 'Merci de ne pas fumer à l’intérieur. Votre séjour vous a plu ? Nous vous serions très reconnaissants de laisser un avis sur Airbnb.',
   },
-  wifi: {
-    title: 'Wi-Fi',
-    network: 'Réseau',
-    password: 'Mot de passe',
-    qrLabel: 'QR code pour rejoindre le Wi-Fi The Quack House Guest',
-    hint: 'Pointez l’appareil photo de votre téléphone vers le code pour vous connecter. Vous lisez déjà sur votre téléphone ? Copiez plutôt le mot de passe.',
-    copy: 'Copier le mot de passe',
-    copied: 'Mot de passe copié',
-  },
   home: {
     title: 'The Nest at Twin Elms, Lake Hawea',
     description:
-      'Bienvenue au Nest at Twin Elms. Connectez-vous au Wi-Fi, lisez le guide du séjour, faites connaissance avec les animaux et découvrez d’où viennent nos hôtes.',
+      'Bienvenue au The Nest at Twin Elms. Lisez le guide des visiteurs, rencontrez les animaux et découvrez d’où viennent nos hôtes.',
     hero: {
       eyebrow: 'Lake Hawea, New Zealand',
       heading: 'Bienvenue au Nest',
       intro:
         'Nous sommes ravis que vous ayez choisi de séjourner chez nous, à Lake Hawea, un coin magnifique. Ce guide vous aidera à profiter pleinement de votre séjour, et si vous avez la moindre question, n’hésitez pas à nous la poser.',
-      joinWifi: 'Se connecter au Wi-Fi',
       openGuide: 'Ouvrir le guide du séjour',
       photoAlt: 'Des lettres en bois flotté formant le mot HAWEA sur la rive caillouteuse du lac Hawea, avec des montagnes enneigées de l’autre côté de l’eau.',
     },
@@ -90,9 +80,8 @@ export const fr: PartialStrings = {
       heading: 'L’essentiel pour la maison',
       checkIn: 'Arrivée à partir de 15 h',
       checkInSub: 'Départ avant 11 h. Dites-nous si vous avez besoin d’un peu de souplesse, nous ferons de notre mieux.',
-      wifi: 'Wi-Fi : {ssid}',
-      wifiSub: 'Mot de passe : {password}.',
-      wifiLink: 'Scanner le QR code',
+      wifi: 'Wi-Fi',
+      wifiSub: 'Le nom du réseau et le mot de passe figurent sur la carte dans la chambre.',
       smoking: 'Merci de ne pas fumer à l’intérieur',
       bins: 'Déchets et recyclage',
       binsSub: 'Rouge : déchets ordinaires. Jaune : recyclage. Bleu : verre.',

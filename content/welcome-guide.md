@@ -45,7 +45,7 @@ Let us know if you would like some flexibility – we’ll do our best to help.
 **Wi-Fi**
 
 **Network**: The Quack House Guest
-**Password**: Quackers
+**Password**: [kept off the website: it is on the printed card in the room]
 
 **Please no smoking inside **
 

@@ -12,25 +12,15 @@ export const ja: PartialStrings = {
     walkIn: '（予約なし・時間外も受付）',
     note: '室内は禁煙です。ご滞在を気に入っていただけたら、Airbnb にレビューを書いていただけるととても嬉しいです。',
   },
-  wifi: {
-    title: 'Wi-Fi',
-    network: 'ネットワーク',
-    password: 'パスワード',
-    qrLabel: 'Wi-Fi「The Quack House Guest」に接続するための QR コード',
-    hint: 'スマートフォンのカメラをコードに向けると接続できます。すでにスマートフォンでご覧の場合は、パスワードをコピーしてください。',
-    copy: 'パスワードをコピー',
-    copied: 'コピーしました',
-  },
   home: {
     title: 'The Nest at Twin Elms, Lake Hawea',
     description:
-      'The Nest at Twin Elms へようこそ。Wi-Fi への接続、ゲストガイド、動物たちの紹介、ゲストの出身地マップをご覧いただけます。',
+      'The Nest at Twin Elms へようこそ。ゲストガイドを読んだり、動物たちに会ったり、ゲストの皆さんの出身地を見たりできます。',
     hero: {
       eyebrow: 'Lake Hawea, New Zealand',
       heading: 'The Nest へようこそ',
       intro:
         '美しい Lake Hawea の私たちの家にお泊まりいただき、ありがとうございます。このガイドが、ご滞在を楽しんでいただく助けになれば幸いです。ほかにも知りたいことがあれば、お気軽にお尋ねください。',
-      joinWifi: 'Wi-Fi に接続',
       openGuide: 'ゲストガイドを開く',
       photoAlt: 'Lake Haweaの石の多い岸辺に、流木の文字で「HAWEA」と並べた様子。湖の向こうには雪をかぶった山々が見えます。',
     },
@@ -90,9 +80,8 @@ export const ja: PartialStrings = {
       heading: '家の基本情報',
       checkIn: 'チェックインは 15:00 以降',
       checkInSub: 'チェックアウトは 11:00 まで。時間を調整したい場合はお知らせください。できる限り対応します。',
-      wifi: 'Wi-Fi：{ssid}',
-      wifiSub: 'パスワード：{password}。',
-      wifiLink: 'QR コードを読み取る',
+      wifi: 'Wi-Fi',
+      wifiSub: 'ネットワーク名とパスワードは、お部屋のカードに書いてあります。',
       smoking: '室内は禁煙です',
       bins: 'ごみとリサイクル',
       binsSub: '赤：一般ごみ。黄：リサイクル。青：ガラス。',
