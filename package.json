@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "tokens": "node scripts/build-tokens.mjs",
     "i18n:check": "tsx scripts/i18n-check.ts",
+    "test": "vitest run",
     "astro": "astro"
   },
   "dependencies": {
@@ -28,6 +29,8 @@
   "devDependencies": {
     "@types/qrcode": "^1.5.6",
     "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0",
     "wrangler": "^4.161.0"
   }
 }
