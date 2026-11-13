@@ -6,4 +6,4 @@ Put the content in `nest-header-inner` so it lines up with the page's 1120px col
 
 On phones the switcher collapses to the select form of LanguageSwitcher (wrap both in `nest-lang-switch` and this happens automatically below 640px) so the header stays compact.
 
-Below 640px the wordmark and language select share the top row and the four links sit underneath as equal-width pills.
+Below 640px the wordmark and language select share the top row and the four links sit underneath evenly spaced.
