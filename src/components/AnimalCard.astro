@@ -1,0 +1,26 @@
+---
+// Photos arrive with issue #7; until then the tussock circle shows an initial.
+interface Props {
+  name: string;
+  kind: string;
+  body: string;
+  initial: string;
+}
+const { name, kind, body, initial } = Astro.props;
+---
+
+<article class="nest-card nest-animal">
+  <div class="nest-animal-face" aria-hidden="true">{initial}</div>
+  <div>
+    <h3>{name}</h3>
+    <p class="nest-kind">{kind}</p>
+    <p>{body}</p>
+  </div>
+</article>
+
+<style>
+  .nest-animal {
+    max-width: none;
+    padding: 20px;
+  }
+</style>

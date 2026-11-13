@@ -1,0 +1,85 @@
+---
+import QRCode from 'qrcode';
+import { wifi, wifiQrText } from '../data/wifi';
+import { useStrings } from '../i18n/ui';
+import type { Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+const t = useStrings(Astro.props.locale).wifi;
+
+// Draw the QR at build time as an SVG path in the ink colour (no runtime service).
+const { modules } = QRCode.create(wifiQrText, { errorCorrectionLevel: 'M' });
+const size = modules.size;
+let path = '';
+for (let y = 0; y < size; y++) {
+  for (let x = 0; x < size; x++) {
+    if (modules.get(x, y)) path += `M${x} ${y}h1v1h-1z`;
+  }
+}
+---
+
+<div class="nest-card nest-wifi" id="wifi">
+  <div class="nest-wifi-qr">
+    <svg viewBox={`-1 -1 ${size + 2} ${size + 2}`} shape-rendering="crispEdges" role="img" aria-label={t.qrLabel}>
+      <path fill="var(--ink)" d={path}></path>
+    </svg>
+  </div>
+  <div class="wifi-details">
+    <h2 class="nest-wifi-title">{t.title}</h2>
+    <dl>
+      <dt>{t.network}</dt>
+      <dd>{wifi.ssid}</dd>
+      <dt>{t.password}</dt>
+      <dd>{wifi.password}</dd>
+    </dl>
+    <p class="nest-hint">{t.hint}</p>
+    <button
+      type="button"
+      class="nest-btn nest-btn-quiet nest-btn-sm"
+      data-copy={wifi.password}
+      data-copied={t.copied}
+      data-label={t.copy}>{t.copy}</button
+    >
+    <span class="visually-hidden" role="status" aria-live="polite" data-copy-status></span>
+  </div>
+</div>
+
+<style>
+  .wifi-details {
+    flex: 1 1 220px;
+    min-width: 0;
+  }
+  .nest-wifi-title {
+    margin: 0 0 var(--space-2);
+    font: 600 22px/28px var(--font-display);
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((button) => {
+    const status = button.parentElement?.querySelector<HTMLElement>('[data-copy-status]');
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy ?? '');
+      } catch {
+        return;
+      }
+      button.textContent = button.dataset.copied ?? '';
+      if (status) status.textContent = button.dataset.copied ?? '';
+      setTimeout(() => {
+        button.textContent = button.dataset.label ?? '';
+        if (status) status.textContent = '';
+      }, 2000);
+    });
+  });
+</script>
