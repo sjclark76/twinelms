@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cleanTown, normaliseQuery, safeEqual, toPlace } from './towns';
+import { cleanTown, normaliseQuery, pickPlace, safeEqual, toPlace } from './towns';
 
 describe('cleanTown', () => {
   it('accepts towns in any script and tidies spaces', () => {
@@ -47,5 +47,27 @@ describe('safeEqual and normaliseQuery', () => {
   });
   it('normalises case for the cache', () => {
     expect(normaliseQuery('BERLIN')).toBe(normaliseQuery('berlin'));
+  });
+});
+
+describe('pickPlace', () => {
+  const base = { osm_type: 'relation', lat: '35.68', lon: '139.76' };
+  it('accepts a city mapped as a province when it is linked to a city (Tokyo)', () => {
+    const tokyo = { ...base, osm_id: 1543125, addresstype: 'province', name: 'Tokyo', extratags: { linked_place: 'city' },
+      address: { province: 'Tokyo', country: 'Japan', country_code: 'jp' } };
+    expect(pickPlace([tokyo])?.name).toBe('Tokyo');
+  });
+  it('skips a state entry and takes the city entry after it (Shanghai)', () => {
+    const state = { ...base, osm_id: 1, addresstype: 'state', name: 'Shanghai', extratags: { linked_place: 'state' },
+      address: { state: 'Shanghai', country: 'China', country_code: 'cn' } };
+    const city = { ...base, osm_type: 'node', osm_id: 2, addresstype: 'city', name: 'Shanghai',
+      address: { city: 'Shanghai', country: 'China', country_code: 'cn' } };
+    expect(pickPlace([state, city])?.placeKey).toBe('node:2');
+  });
+  it('rejects a real state (California)', () => {
+    const california = { ...base, osm_id: 3, addresstype: 'state', name: 'California', extratags: { linked_place: 'state' },
+      address: { state: 'California', country: 'United States', country_code: 'us' } };
+    expect(pickPlace([california])).toBeNull();
+    expect(pickPlace([])).toBeNull();
   });
 });

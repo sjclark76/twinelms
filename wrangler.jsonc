@@ -9,6 +9,8 @@
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
+    // Missing pages get the nearest 404.html, so /de/... shows the German one.
+    "not_found_handling": "404-page",
     // Only the API runs the Worker; every other request is served straight from the static site.
     "run_worker_first": ["/api/*"]
   },

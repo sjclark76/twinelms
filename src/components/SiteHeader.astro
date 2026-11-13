@@ -6,8 +6,10 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
 interface Props {
   locale: Locale;
   pathname: string;
+  /** Don't mark any page as current (used on not-found pages). */
+  noCurrent?: boolean;
 }
-const { locale, pathname } = Astro.props;
+const { locale, pathname, noCurrent = false } = Astro.props;
 const t = useStrings(locale);
 const current = stripLocale(pathname);
 const links = [
@@ -28,7 +30,7 @@ const links = [
         {
           links.map((l) => (
             <li>
-              <a href={localePath(locale, l.href)} aria-current={current === l.href ? 'page' : undefined}>
+              <a href={localePath(locale, l.href)} aria-current={!noCurrent && current === l.href ? 'page' : undefined}>
                 {l.label}
               </a>
             </li>

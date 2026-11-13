@@ -1,0 +1,436 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { useStrings } from '../i18n/ui';
+import { LOCALES, type Locale } from '../i18n/config';
+import { nestLocation } from '../data/home';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useStrings(locale).map;
+// Everything the map script needs, passed as JSON so the script itself has no text in it.
+const config = {
+  locale: LOCALES[locale].htmlLang,
+  home: nestLocation,
+  strings: {
+    stat: t.stat, statEmpty: t.statEmpty, towns: t.towns, countries: t.countries, visits: t.visits,
+    loadError: t.loadError, submit: t.submit, submitting: t.submitting, success: t.success, errors: t.errors,
+  },
+};
+---
+
+<BaseLayout title={t.title} description={t.description} locale={locale}>
+  <main id="main">
+    <section class="nest-container intro">
+      <h1 class="display">{t.heading}</h1>
+      <p class="lead">{t.intro}</p>
+    </section>
+
+    <section class="nest-container map-section">
+      <div class="map-frame">
+        <div class="nest-map map" id="visitor-map" role="region" aria-label={t.mapLabel}></div>
+        <span class="nest-map-stat stat" data-stat aria-live="polite"></span>
+      </div>
+      <noscript><p class="notice">{t.noscript}</p></noscript>
+      <p class="notice" data-load-error hidden>{t.loadError}</p>
+      <div class="legend">
+        <span><span class="dot dot-guest" aria-hidden="true"></span>{t.legendGuests}</span>
+        <span><span class="dot dot-home" aria-hidden="true"></span>{t.legendHome}</span>
+      </div>
+      <details class="town-list" data-town-list hidden>
+        <summary>{t.listToggle}</summary>
+        <ul data-towns></ul>
+      </details>
+    </section>
+
+    <section class="nest-container lower">
+      <form class="nest-card form" data-town-form novalidate>
+        <h2 class="heading-1">{t.formHeading}</h2>
+        <div class="nest-field">
+          <label for="town">{t.townLabel}</label>
+          <input class="nest-input" id="town" name="town" type="text" required maxlength="80" autocomplete="address-level2"
+            placeholder={t.townPlaceholder} aria-describedby="town-help" />
+          <span class="nest-help" id="town-help">{t.townHelp}</span>
+        </div>
+        <div class="nest-field">
+          <label for="code">{t.codeLabel}</label>
+          <input class="nest-input" id="code" name="code" type="text" required maxlength="40" autocomplete="off"
+            autocapitalize="characters" spellcheck="false" aria-describedby="code-help" />
+          <span class="nest-help" id="code-help">{t.codeHelp}</span>
+        </div>
+        <div><button type="submit" class="nest-btn nest-btn-warm" data-submit>{t.submit}</button></div>
+        <p class="message" data-message role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="how">
+        <h2 class="heading-1">{t.howHeading}</h2>
+        <ul>
+          {t.how.map((item) => <li><b>{item.title}</b><span>{item.body}</span></li>)}
+        </ul>
+      </div>
+    </section>
+  </main>
+  <script type="application/json" id="map-config" set:html={JSON.stringify(config)} />
+</BaseLayout>
+
+<style>
+  .intro {
+    padding-top: calc(var(--space-10) + var(--space-2));
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  h1,
+  h2 {
+    margin: 0;
+  }
+  .lead {
+    margin: 0;
+    max-width: 640px;
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .map-section {
+    padding-top: var(--space-6);
+  }
+  .map-frame {
+    position: relative;
+  }
+  .map {
+    /* Full width always; 2:1 on wide screens, never shorter than 300px on phones. */
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    min-height: 300px;
+    z-index: 0;
+  }
+  .stat {
+    z-index: 500;
+    pointer-events: none;
+    max-width: calc(100% - 24px);
+  }
+  .stat:empty {
+    display: none;
+  }
+  .notice {
+    margin: var(--space-2) 0 0;
+    color: var(--slate);
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 12px;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--slate);
+  }
+  .legend > span {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .dot-guest {
+    background: var(--tussock);
+    border: 2px solid var(--ink);
+  }
+  .dot-home {
+    background: var(--clay);
+  }
+  .town-list {
+    margin-top: var(--space-4);
+  }
+  .town-list summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--lake);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .town-list ul {
+    margin: var(--space-2) 0 0;
+    padding: 0;
+    list-style: none;
+    columns: 2 220px;
+    font-size: 15px;
+  }
+  .town-list :global(li) {
+    padding: 4px 0;
+    break-inside: avoid;
+  }
+  .town-list :global(li span) {
+    color: var(--slate);
+  }
+  .lower {
+    padding-top: var(--space-10);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+    gap: var(--space-6);
+    align-items: start;
+  }
+  .form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .form :global(.nest-input[aria-invalid='true']) {
+    border-color: var(--clay);
+  }
+  .message {
+    margin: 0;
+    font-weight: 600;
+  }
+  .message:empty {
+    display: none;
+  }
+  .message[data-kind='error'] {
+    color: var(--clay);
+  }
+  .message[data-kind='success'] {
+    color: var(--beech);
+  }
+  .how {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .how ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .how li {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+  }
+  .how li span {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--slate);
+  }
+
+  /* Leaflet, styled toward the Misty lake palette */
+  .map :global(.leaflet-tile-pane) {
+    filter: saturate(0.55) sepia(0.12) brightness(1.04);
+  }
+  .map :global(.leaflet-container),
+  .map:global(.leaflet-container) {
+    font: inherit;
+    background: var(--lake-mist);
+  }
+  .map :global(.pin-icon) {
+    background: none;
+    border: 0;
+  }
+  .map :global(.pin-icon .nest-pin) {
+    display: block;
+  }
+  .map :global(.leaflet-marker-icon:focus-visible) {
+    outline: 3px solid var(--lake);
+    outline-offset: 4px;
+    border-radius: 50%;
+  }
+  .map :global(.leaflet-popup-content-wrapper) {
+    border-radius: var(--radius-sm);
+    box-shadow: none;
+    border: 1px solid var(--line);
+  }
+  .map :global(.leaflet-popup-content) {
+    margin: 8px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--ink);
+  }
+  .map :global(.leaflet-popup-content b) {
+    display: block;
+  }
+  .map :global(.leaflet-control-attribution) {
+    font-size: 12px;
+    background: var(--white);
+    border-radius: var(--radius-pill) 0 0 0;
+    padding: 2px 10px;
+  }
+  .map :global(.leaflet-control-attribution a) {
+    color: var(--lake);
+  }
+</style>
+
+<script>
+  import L from 'leaflet';
+  import 'leaflet/dist/leaflet.css';
+
+  interface Town { name: string; country: string; countryCode: string; lat: number; lng: number; visits: number }
+  interface Plural { one: string; other: string }
+  interface Config {
+    locale: string;
+    home: { lat: number; lng: number };
+    strings: {
+      stat: string; statEmpty: string; towns: Plural; countries: Plural; visits: Plural; loadError: string;
+      submit: string; submitting: string; success: string; errors: Record<string, string>;
+    };
+  }
+
+  const config: Config = JSON.parse(document.getElementById('map-config')!.textContent!);
+  const s = config.strings;
+  const plural = new Intl.PluralRules(config.locale);
+  const number = new Intl.NumberFormat(config.locale);
+  const count = (forms: Plural, n: number) =>
+    (plural.select(n) === 'one' ? forms.one : forms.other).replace('{n}', number.format(n));
+  const esc = (text: string) => text.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+
+  const statEl = document.querySelector<HTMLElement>('[data-stat]')!;
+  const listWrap = document.querySelector<HTMLDetailsElement>('[data-town-list]')!;
+  const listEl = document.querySelector<HTMLUListElement>('[data-towns]')!;
+
+  const map = L.map('visitor-map', { scrollWheelZoom: false, worldCopyJump: true, minZoom: 1, maxZoom: 10, zoomControl: false });
+  // Zoom buttons on the right, clear of the stat pill.
+  L.control.zoom({ position: 'topright' }).addTo(map);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 10,
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+  map.attributionControl.setPrefix(false);
+
+  const icon = (home: boolean) =>
+    L.divIcon({
+      className: 'pin-icon',
+      html: `<span class="nest-pin${home ? ' nest-pin-home' : ''}"></span>`,
+      iconSize: home ? [22, 22] : [18, 18],
+      iconAnchor: home ? [11, 26] : [9, 22],
+      popupAnchor: [0, -22],
+    });
+
+  const homeLatLng = L.latLng(config.home.lat, config.home.lng);
+  L.marker(homeLatLng, { icon: icon(true), title: 'The Nest, Lake Hawea', alt: 'The Nest, Lake Hawea', zIndexOffset: 1000 })
+    .bindPopup('<b>The Nest at Twin Elms</b>Lake Hawea, New Zealand')
+    .addTo(map);
+
+  const towns = new Map<string, { town: Town; marker: L.Marker }>();
+  const keyOf = (t: Town) => `${t.lat},${t.lng}`;
+  const label = (t: Town) => `${t.name}, ${t.country}`;
+
+  function upsert(town: Town) {
+    const existing = towns.get(keyOf(town));
+    const text = `<b>${esc(label(town))}</b>${esc(count(s.visits, town.visits))}`;
+    const title = `${label(town)}: ${count(s.visits, town.visits)}`;
+    if (existing) {
+      existing.town = town;
+      existing.marker.setPopupContent(text);
+      existing.marker.getElement()?.setAttribute('title', title);
+      return existing.marker;
+    }
+    const marker = L.marker([town.lat, town.lng], { icon: icon(false), title, alt: title }).bindPopup(text).addTo(map);
+    towns.set(keyOf(town), { town, marker });
+    return marker;
+  }
+
+  function render() {
+    const all = [...towns.values()].map((v) => v.town);
+    const countries = new Set(all.map((t) => t.countryCode)).size;
+    statEl.textContent = all.length
+      ? s.stat.replace('{towns}', count(s.towns, all.length)).replace('{countries}', count(s.countries, countries))
+      : s.statEmpty;
+    listWrap.hidden = all.length === 0;
+    listEl.replaceChildren(
+      ...all
+        .sort((a, b) => b.visits - a.visits || a.name.localeCompare(b.name))
+        .map((t) => {
+          const li = document.createElement('li');
+          li.append(`${label(t)} `);
+          const span = document.createElement('span');
+          span.textContent = `(${count(s.visits, t.visits)})`;
+          li.append(span);
+          return li;
+        }),
+    );
+  }
+
+  function fit() {
+    const points = [homeLatLng, ...[...towns.values()].map((v) => L.latLng(v.town.lat, v.town.lng))];
+    if (points.length > 1) map.fitBounds(L.latLngBounds(points), { padding: [40, 40], maxZoom: 4 });
+    else map.setView([10, 60], 1);
+  }
+
+  async function load() {
+    try {
+      const res = await fetch('/api/towns');
+      if (!res.ok) throw new Error(String(res.status));
+      const data: { towns: Town[] } = await res.json();
+      data.towns.forEach(upsert);
+    } catch {
+      document.querySelector<HTMLElement>('[data-load-error]')!.hidden = false;
+    }
+    render();
+    fit();
+  }
+  load();
+
+  // The form
+  const form = document.querySelector<HTMLFormElement>('[data-town-form]')!;
+  const button = form.querySelector<HTMLButtonElement>('[data-submit]')!;
+  const message = form.querySelector<HTMLElement>('[data-message]')!;
+  const townInput = form.querySelector<HTMLInputElement>('#town')!;
+  const codeInput = form.querySelector<HTMLInputElement>('#code')!;
+
+  function say(kind: 'error' | 'success', text: string) {
+    message.dataset.kind = kind;
+    message.textContent = text;
+  }
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    townInput.removeAttribute('aria-invalid');
+    codeInput.removeAttribute('aria-invalid');
+    const town = townInput.value.trim();
+    const code = codeInput.value.trim();
+    if (!town) {
+      townInput.setAttribute('aria-invalid', 'true');
+      townInput.focus();
+      return say('error', s.errors.invalid_town);
+    }
+    if (!code) {
+      codeInput.setAttribute('aria-invalid', 'true');
+      codeInput.focus();
+      return say('error', s.errors.invalid_code);
+    }
+    button.disabled = true;
+    button.textContent = s.submitting;
+    message.textContent = '';
+    try {
+      const res = await fetch('/api/towns', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ town, code }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.town) {
+        const marker = upsert(data.town as Town);
+        render();
+        map.flyTo(marker.getLatLng(), Math.max(map.getZoom(), 4), { duration: 0.8 });
+        marker.openPopup();
+        townInput.value = '';
+        say('success', s.success.replace('{town}', label(data.town as Town)));
+      } else {
+        const error: string = data.error ?? 'generic';
+        if (error === 'invalid_code') codeInput.setAttribute('aria-invalid', 'true');
+        if (error === 'invalid_town' || error === 'not_found') townInput.setAttribute('aria-invalid', 'true');
+        say('error', s.errors[error] ?? s.errors.generic);
+      }
+    } catch {
+      say('error', s.errors.generic);
+    } finally {
+      button.disabled = false;
+      button.textContent = s.submit;
+    }
+  });
+</script>

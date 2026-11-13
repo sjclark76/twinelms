@@ -15,12 +15,15 @@ interface Props {
   description?: string;
   noindex?: boolean;
   locale?: Locale;
+  /** A not-found page: no language redirect, no hreflang, and the switcher links to each language's home page. */
+  notFound?: boolean;
 }
 const {
   title,
   description = 'The Nest at Twin Elms, Lake Hawea',
   noindex = false,
   locale = DEFAULT_LOCALE,
+  notFound = false,
 } = Astro.props;
 const t = useStrings(locale);
 
@@ -30,7 +33,7 @@ const hidden = noindex || !ENABLED_LOCALES.includes(locale);
 const cjkFonts = { zh: zhFonts, ja: jaFonts, ko: koFonts }[locale as 'zh' | 'ja' | 'ko'];
 const rest = stripLocale(Astro.url.pathname);
 const prefixes = Object.fromEntries(ALL_LOCALES.map((code) => [code, LOCALES[code].prefix]));
-const alternates = ENABLED_LOCALES.length > 1 && Astro.site
+const alternates = !notFound && ENABLED_LOCALES.length > 1 && Astro.site
   ? ENABLED_LOCALES.map((code) => ({ code, href: new URL(localePath(code, rest), Astro.site).href }))
   : [];
 ---
@@ -46,7 +49,7 @@ const alternates = ENABLED_LOCALES.length > 1 && Astro.site
     {alternates.map((a) => <link rel="alternate" hreflang={LOCALES[a.code].htmlLang} href={a.href} />)}
     {alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={alternates[0].href} />}
     {
-      ENABLED_LOCALES.length > 1 && locale === DEFAULT_LOCALE && (
+      !notFound && ENABLED_LOCALES.length > 1 && locale === DEFAULT_LOCALE && (
         <script is:inline define:vars={{ enabled: ENABLED_LOCALES, prefixes, current: locale }}>
           // On an English page, send guests to their saved language, or failing that their browser's language.
           (function () {
@@ -73,7 +76,7 @@ const alternates = ENABLED_LOCALES.length > 1 && Astro.site
   <body>
     <div class="nest">
       <a class="nest-skip" href="#main">{t.skipToContent}</a>
-      <SiteHeader locale={locale} pathname={Astro.url.pathname} />
+      <SiteHeader locale={locale} pathname={notFound ? localePath(locale, '/') : Astro.url.pathname} noCurrent={notFound} />
       <slot />
       <SiteFooter locale={locale} />
     </div>

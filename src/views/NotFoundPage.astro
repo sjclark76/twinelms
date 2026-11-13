@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { useStrings } from '../i18n/ui';
+import { localePath, type Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useStrings(locale).notFound;
+---
+
+<BaseLayout title={t.title} locale={locale} noindex notFound>
+  <main id="main" class="nest-container wrap">
+    <h1 class="display">{t.heading}</h1>
+    <p class="lead">{t.body}</p>
+    <div class="actions">
+      <a class="nest-btn nest-btn-primary" href={localePath(locale, '/')}>{t.home}</a>
+      <a class="nest-btn nest-btn-quiet" href={localePath(locale, '/guide/')}>{t.guide}</a>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .wrap {
+    padding-top: calc(var(--space-10) * 2);
+    padding-bottom: var(--space-10);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  h1 {
+    margin: 0;
+  }
+  .lead {
+    margin: 0;
+    font-size: 18px;
+    line-height: 28px;
+    max-width: 560px;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+</style>

@@ -1,5 +1,5 @@
 // Visitor map API. Static pages are served by the assets binding; only /api/* reaches this code.
-import { cleanTown, normaliseQuery, safeEqual, toPlace, type NominatimResult, type Place } from './towns';
+import { cleanTown, normaliseQuery, pickPlace, safeEqual, type NominatimResult, type Place } from './towns';
 
 interface Env {
   ASSETS: Fetcher;
@@ -87,17 +87,24 @@ async function addTown(request: Request, env: Env): Promise<Response> {
 /** Look a town up, using the cache first and calling Nominatim at most once per second. */
 async function geocode(town: string, env: Env): Promise<Place | null> {
   const query = normaliseQuery(town);
-  const cached = await env.DB.prepare('SELECT result FROM geocode_cache WHERE query = ?').bind(query).first<{ result: string | null }>();
+  // Found places are cached for good; "not found" answers expire after a day so they can be retried.
+  const cached = await env.DB.prepare(
+    "SELECT result FROM geocode_cache WHERE query = ? AND (result IS NOT NULL OR created_at > datetime('now', '-1 day'))",
+  )
+    .bind(query)
+    .first<{ result: string | null }>();
   if (cached) return cached.result ? (JSON.parse(cached.result) as Place) : null;
 
   await waitForNominatim(env);
   const url = new URL('https://nominatim.openstreetmap.org/search');
-  url.search = new URLSearchParams({ q: town, format: 'jsonv2', addressdetails: '1', limit: '1', 'accept-language': 'en' }).toString();
+  url.search = new URLSearchParams({
+    q: town, format: 'jsonv2', addressdetails: '1', extratags: '1', limit: '5', featureType: 'settlement', 'accept-language': 'en',
+  }).toString();
   const res = await fetch(url, { headers: { 'user-agent': USER_AGENT, referer: 'https://twinelms.sjclark76.workers.dev/' } });
   if (!res.ok) throw new Error(`Nominatim ${res.status}`);
-  const place = toPlace(((await res.json()) as NominatimResult[])[0]);
+  const place = pickPlace((await res.json()) as NominatimResult[]);
 
-  await env.DB.prepare('INSERT OR REPLACE INTO geocode_cache (query, result) VALUES (?, ?)')
+  await env.DB.prepare("INSERT OR REPLACE INTO geocode_cache (query, result, created_at) VALUES (?, ?, datetime('now'))")
     .bind(query, place ? JSON.stringify(place) : null)
     .run();
   return place;

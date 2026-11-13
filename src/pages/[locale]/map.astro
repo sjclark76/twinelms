@@ -1,0 +1,12 @@
+---
+import { PREFIXED_LOCALES, LOCALES, type Locale } from '../../i18n/config';
+import MapPage from '../../views/MapPage.astro';
+
+export function getStaticPaths() {
+  return PREFIXED_LOCALES.map((locale) => ({ params: { locale: LOCALES[locale].prefix }, props: { locale } }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+---
+
+<MapPage locale={locale} />
