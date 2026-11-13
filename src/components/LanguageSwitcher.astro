@@ -23,7 +23,7 @@ const items = ENABLED_LOCALES.map((code) => ({
       <ul class="nest-lang" aria-label={t.language}>
         {items.map((l) => (
           <li>
-            <a href={l.href} lang={l.htmlLang} aria-current={l.current ? 'true' : undefined}>
+            <a href={l.href} lang={l.htmlLang} data-locale={l.code} aria-current={l.current ? 'true' : undefined}>
               {l.chip}
             </a>
           </li>
@@ -31,7 +31,7 @@ const items = ENABLED_LOCALES.map((code) => ({
       </ul>
       <select class="nest-lang-select" aria-label={t.language} data-lang-select>
         {items.map((l) => (
-          <option value={l.href} lang={l.htmlLang} selected={l.current}>
+          <option value={l.href} lang={l.htmlLang} data-locale={l.code} selected={l.current}>
             {l.name}
           </option>
         ))}
@@ -41,8 +41,20 @@ const items = ENABLED_LOCALES.map((code) => ({
 }
 
 <script>
+  // Remember the guest's choice so English-page visits can send them back to it (see BaseLayout).
+  const remember = (code?: string) => {
+    try {
+      if (code) localStorage.setItem('nest-lang', code);
+    } catch {
+      // Storage can be blocked; the switcher still works.
+    }
+  };
+  document.querySelectorAll<HTMLAnchorElement>('.nest-lang a[data-locale]').forEach((a) =>
+    a.addEventListener('click', () => remember(a.dataset.locale)),
+  );
   document.querySelectorAll<HTMLSelectElement>('[data-lang-select]').forEach((select) => {
     select.addEventListener('change', () => {
+      remember(select.selectedOptions[0]?.dataset.locale);
       window.location.href = select.value;
     });
   });

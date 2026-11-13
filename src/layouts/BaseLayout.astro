@@ -1,6 +1,11 @@
 ---
 import '../styles/global.css';
-import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/config';
+import {
+  ALL_LOCALES, DEFAULT_LOCALE, ENABLED_LOCALES, LOCALES, localePath, stripLocale, type Locale,
+} from '../i18n/config';
+import zhFonts from '../styles/fonts-zh.css?url';
+import jaFonts from '../styles/fonts-ja.css?url';
+import koFonts from '../styles/fonts-ko.css?url';
 import { useStrings } from '../i18n/ui';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -18,6 +23,16 @@ const {
   locale = DEFAULT_LOCALE,
 } = Astro.props;
 const t = useStrings(locale);
+
+// A language that isn't public yet stays out of search engines.
+const hidden = noindex || !ENABLED_LOCALES.includes(locale);
+// Chinese, Japanese and Korean pages also load their Noto fonts (the browser fetches only the glyph slices it needs).
+const cjkFonts = { zh: zhFonts, ja: jaFonts, ko: koFonts }[locale as 'zh' | 'ja' | 'ko'];
+const rest = stripLocale(Astro.url.pathname);
+const prefixes = Object.fromEntries(ALL_LOCALES.map((code) => [code, LOCALES[code].prefix]));
+const alternates = ENABLED_LOCALES.length > 1 && Astro.site
+  ? ENABLED_LOCALES.map((code) => ({ code, href: new URL(localePath(code, rest), Astro.site).href }))
+  : [];
 ---
 
 <!doctype html>
@@ -26,7 +41,32 @@ const t = useStrings(locale);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex" />}
+    {hidden && <meta name="robots" content="noindex" />}
+    {cjkFonts && <link rel="stylesheet" href={cjkFonts} />}
+    {alternates.map((a) => <link rel="alternate" hreflang={LOCALES[a.code].htmlLang} href={a.href} />)}
+    {alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={alternates[0].href} />}
+    {
+      ENABLED_LOCALES.length > 1 && locale === DEFAULT_LOCALE && (
+        <script is:inline define:vars={{ enabled: ENABLED_LOCALES, prefixes, current: locale }}>
+          // On an English page, send guests to their saved language, or failing that their browser's language.
+          (function () {
+            try {
+              var saved = localStorage.getItem('nest-lang');
+              var target = saved && enabled.indexOf(saved) > -1 ? saved : null;
+              if (!saved) {
+                var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language];
+                for (var i = 0; i < langs.length && !target; i++) {
+                  var l = String(langs[i]).toLowerCase();
+                  var code = l.indexOf('zh') === 0 ? 'zh' : l.slice(0, 2);
+                  if (enabled.indexOf(code) > -1) target = code;
+                }
+              }
+              if (target && target !== current) location.replace('/' + prefixes[target] + location.pathname);
+            } catch (e) {}
+          })();
+        </script>
+      )
+    }
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
