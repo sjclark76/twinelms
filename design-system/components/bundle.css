@@ -58,15 +58,14 @@
 .nest-nav a[aria-current="page"]{background:var(--white)}
 .nest-nav a:focus-visible,.nest-lang a:focus-visible,.nest-lang-select:focus-visible,.nest-wordmark:focus-visible{outline:3px solid var(--lake);outline-offset:2px}
 
-/* Phones: wordmark and language select share the top row; the four links sit below as equal-width pills */
+/* Phones: wordmark and language select share the top row; the four links sit below, evenly spaced */
 @media (max-width:639px){
 .nest-header-inner{display:grid;grid-template-columns:1fr auto;align-items:start;padding:var(--space-4)}
 .nest-header-inner nav{grid-column:1/-1;grid-row:2}
 .nest-wordmark{font-size:22px;line-height:26px;text-wrap:balance}
-.nest-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px}
-.nest-nav li{display:flex}
-.nest-nav a{flex:1;justify-content:center;padding:0 4px;font-size:14px;text-align:center}
-.nest-lang-select{padding:0 32px 0 12px;font-size:14px}
+.nest-nav{flex-wrap:nowrap;justify-content:space-between;gap:0}
+.nest-nav a{padding:0 clamp(4px,2.5vw,12px);font-size:14px;white-space:nowrap}
+.nest-lang-select{padding:0 38px 0 16px;font-size:14px}
 }
 
 /* Language switcher */
@@ -74,7 +73,7 @@
 .nest-lang a{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border-radius:var(--radius-pill);font:600 14px/18px var(--font-sans);color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--white)}
 .nest-lang a:hover{background:var(--mist)}
 .nest-lang a[aria-current="true"]{background:var(--lake);border-color:var(--lake);color:var(--white)}
-.nest-lang-select{min-height:44px;padding:0 40px 0 14px;border-radius:var(--radius-pill);border:1px solid var(--slate);background:var(--white);font:600 15px/20px var(--font-sans);color:var(--ink)}
+.nest-lang-select{min-height:44px;padding:0 40px 0 14px;border-radius:var(--radius-pill);border:1px solid var(--slate);background:var(--white);font:600 15px/20px var(--font-sans);color:var(--ink);appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat}
 
 /* Info list */
 .nest-info{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
