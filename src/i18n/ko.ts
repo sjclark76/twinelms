@@ -212,6 +212,7 @@ export const ko: PartialStrings = {
     townHelp: '입력을 시작한 뒤 목록에서 도시를 선택하세요.',
     noSuggestions: '도시를 찾지 못했어요. 계속 입력하거나 나라 이름을 추가해 보세요.',
     suggestionsCount: { one: '도시 {n}곳을 찾았어요', other: '도시 {n}곳을 찾았어요' },
+    searchCredit: '도시 검색에는 {geonames} 데이터를 사용해요.',
     submit: '내 고향 추가하기',
     submitting: '추가하는 중…',
     success: '감사합니다! {town}이(가) 지도에 추가되었어요.',

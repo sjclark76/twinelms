@@ -212,6 +212,7 @@ export const fr: PartialStrings = {
     townHelp: 'Commencez à taper, puis choisissez votre ville dans la liste.',
     noSuggestions: 'Aucune ville trouvée. Continuez à taper ou ajoutez le pays.',
     suggestionsCount: { one: '{n} ville trouvée', other: '{n} villes trouvées' },
+    searchCredit: 'La recherche de villes utilise les données de {geonames}.',
     submit: 'Ajouter ma ville',
     submitting: 'Ajout en cours…',
     success: 'Merci ! {town} est sur la carte.',

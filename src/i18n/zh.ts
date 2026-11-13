@@ -212,6 +212,7 @@ export const zh: PartialStrings = {
     townHelp: '开始输入，然后从列表中选择您的城镇。',
     noSuggestions: '没有找到城镇。请继续输入，或加上国家。',
     suggestionsCount: { one: '找到 {n} 个城镇', other: '找到 {n} 个城镇' },
+    searchCredit: '城镇搜索使用 {geonames} 的数据。',
     submit: '添加我的家乡',
     submitting: '正在添加…',
     success: '谢谢！{town} 已加到地图上。',

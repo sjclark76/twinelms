@@ -11,6 +11,14 @@ npm run i18n:check  # list translations that are missing or out of date
 npm test         # unit tests
 ```
 
+### Town search data
+
+Suggestions in the "Where's home?" box come from GeoNames (every place over 1,000 people, CC BY 4.0), built into static files in `public/places/` so guests' browsers only ever talk to our site. To refresh the data (once a year is plenty), download `cities1000.zip`, `countryInfo.txt` and `admin1CodesASCII.txt` from https://download.geonames.org/export/dump/, unzip, and run:
+
+```sh
+python3 -I scripts/build-places.py <folder with those files>
+```
+
 ### Visitor map API (local)
 
 ```sh
@@ -20,8 +28,7 @@ npm run build && npx wrangler dev                                  # site + API 
 ```
 
 - `GET /api/towns` returns every town with its visit count.
-- `GET /api/places?q=Melb&lang=de` returns town suggestions as the guest types, from Photon (OpenStreetMap search built for type-ahead), cached for a day and rate-limited. Guests' browsers only ever talk to our site.
-- `POST /api/towns` with `{"place": "R62422", "token": "<Turnstile token>"}` (a picked suggestion) or `{"town": "Berlin", "token": ...}` (typed text) adds a visit. A town with the same name and country within about 25 km counts as the same pin. Errors come back as `{"error": "<code>"}` (`verification_failed`, `invalid_town`, `not_found`, `rate_limited`, `geocoder_unavailable`, `not_configured`).
+- `POST /api/towns` with `{"place": "G2158177", "token": "<Turnstile token>"}` (a picked suggestion, by GeoNames id) or `{"town": "Berlin", "token": ...}` (typed text) adds a visit. A town with the same name and country within about 25 km counts as the same pin. Errors come back as `{"error": "<code>"}` (`verification_failed`, `invalid_town`, `not_found`, `rate_limited`, `geocoder_unavailable`, `not_configured`).
 - Spam protection is Cloudflare Turnstile (an automatic "not a robot" check) plus 5 submissions per minute per visitor.
 - Only the geocoded town, country, rounded coordinates and visit count are stored. Never names, emails or IP addresses.
 - Production needs a Turnstile widget: put its site key in `src/data/turnstile.ts` and set its secret with `npx wrangler secret put TURNSTILE_SECRET`.

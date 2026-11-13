@@ -212,6 +212,7 @@ export const ja: PartialStrings = {
     townHelp: '入力を始めて、一覧から町を選んでください。',
     noSuggestions: '町が見つかりません。続けて入力するか、国名を加えてください。',
     suggestionsCount: { one: '{n} 件見つかりました', other: '{n} 件見つかりました' },
+    searchCredit: '町の検索には {geonames} のデータを使用しています。',
     submit: '出身地を追加する',
     submitting: '追加しています…',
     success: 'ありがとうございます！{town} をマップに追加しました。',

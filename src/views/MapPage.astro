@@ -13,7 +13,6 @@ const t = useStrings(locale).map;
 // Everything the map script needs, passed as JSON so the script itself has no text in it.
 const config = {
   locale: LOCALES[locale].htmlLang,
-  lang: locale,
   home: nestLocation,
   turnstile: { siteKey: TURNSTILE_SITE_KEY, language: turnstileLanguage[locale] ?? 'auto' },
   strings: {
@@ -60,6 +59,9 @@ const config = {
             <ul class="combo-list" id="town-options" role="listbox" aria-labelledby="town-label" hidden></ul>
           </div>
           <span class="nest-help" id="town-help">{t.townHelp}</span>
+          <span class="nest-help credit">
+            {t.searchCredit.split('{geonames}')[0]}<a href="https://www.geonames.org/">GeoNames</a>{t.searchCredit.split('{geonames}')[1]}
+          </span>
           <span class="visually-hidden" role="status" aria-live="polite" data-combo-status></span>
         </div>
         <div class="turnstile" data-turnstile></div>
@@ -200,6 +202,13 @@ const config = {
   .combo {
     position: relative;
   }
+  .credit {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .credit a {
+    color: var(--slate);
+  }
   .combo-list {
     position: absolute;
     z-index: 600;
@@ -338,12 +347,12 @@ const config = {
 <script>
   import L from 'leaflet';
   import 'leaflet/dist/leaflet.css';
+  import { bucketFor, findTowns, foldName, minLength, startFor, topTowns, type SearchFile, type SplitIndex } from '../data/places-search';
 
   interface Town { name: string; country: string; countryCode: string; lat: number; lng: number; visits: number }
   interface Plural { one: string; other: string }
   interface Config {
     locale: string;
-    lang: string;
     home: { lat: number; lng: number };
     turnstile: { siteKey: string; language: string };
     strings: {
@@ -486,13 +495,31 @@ const config = {
 
   // Town search: suggestions as the guest types (ARIA combobox pattern). Typing and submitting still works too.
   interface Suggestion { id: string; name: string; detail: string }
+  // The town list is static files on our own site: a tiny index of split starts, then one small file per start.
+  let splitIndex: Promise<{ index: SplitIndex; starts: Set<string> }> | undefined;
+  const searchFiles = new Map<number, Promise<SearchFile>>();
+  const getSplit = () =>
+    (splitIndex ??= fetch('/places/split.json')
+      .then((r) => r.json())
+      .then((index: SplitIndex) => ({ index, starts: new Set(Object.keys(index)) })));
+  function getFile(bucket: number) {
+    let file = searchFiles.get(bucket);
+    if (!file) {
+      file = fetch(`/places/s/${bucket}.json`).then((r) => {
+        if (!r.ok) throw new Error(String(r.status));
+        return r.json() as Promise<SearchFile>;
+      });
+      file.catch(() => searchFiles.delete(bucket));
+      searchFiles.set(bucket, file);
+    }
+    return file;
+  }
   const list = form.querySelector<HTMLUListElement>('#town-options')!;
   const comboStatus = form.querySelector<HTMLElement>('[data-combo-status]')!;
   let suggestions: Suggestion[] = [];
   let active = -1;
   let chosen: { id: string; label: string } | null = null;
   let debounce: ReturnType<typeof setTimeout> | undefined;
-  let pending: AbortController | undefined;
   const fullLabel = (sg: Suggestion) => (sg.detail ? `${sg.name}, ${sg.detail}` : sg.name);
 
   function closeList() {
@@ -550,26 +577,23 @@ const config = {
     active = -1;
   }
   async function search(q: string) {
-    pending?.abort();
-    pending = new AbortController();
     try {
-      const res = await fetch(`/api/places?lang=${encodeURIComponent(config.lang)}&q=${encodeURIComponent(q)}`, { signal: pending.signal });
-      if (!res.ok) return closeList();
-      suggestions = ((await res.json()) as { suggestions: Suggestion[] }).suggestions ?? [];
+      const folded = foldName(q);
+      const { index, starts } = await getSplit();
+      const start = startFor(folded, starts);
+      // A very common start ("sa") has no file of its own: show its biggest towns until another letter is typed.
+      suggestions = start ? findTowns(await getFile(bucketFor(start)), folded) : topTowns(index, folded);
       if (document.activeElement === townInput && townInput.value.trim() === q) showList();
     } catch {
-      // Aborted by a newer search, or offline: free typing still works.
+      closeList(); // offline or a file failed to load: free typing still works
     }
   }
   townInput.addEventListener('input', () => {
     chosen = null;
     clearTimeout(debounce);
     const q = townInput.value.trim();
-    if (q.length < 2) {
-      pending?.abort();
-      return closeList();
-    }
-    debounce = setTimeout(() => search(q), 250);
+    if (foldName(q).length < minLength(foldName(q))) return closeList();
+    debounce = setTimeout(() => search(q), 120);
   });
   townInput.addEventListener('keydown', (e) => {
     const open = !list.hidden && suggestions.length > 0;

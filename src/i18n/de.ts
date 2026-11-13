@@ -212,6 +212,7 @@ export const de: PartialStrings = {
     townHelp: 'Beginnen Sie zu tippen und wählen Sie dann Ihren Ort aus der Liste.',
     noSuggestions: 'Keine Orte gefunden. Tippen Sie weiter oder geben Sie das Land an.',
     suggestionsCount: { one: '{n} Ort gefunden', other: '{n} Orte gefunden' },
+    searchCredit: 'Die Ortssuche nutzt Daten von {geonames}.',
     submit: 'Heimatort eintragen',
     submitting: 'Wird eingetragen…',
     success: 'Vielen Dank! {town} ist jetzt auf der Karte.',
