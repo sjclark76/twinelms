@@ -32,7 +32,7 @@ export const zh: PartialStrings = {
         '很高兴您选择来到美丽的 Lake Hawea，入住我们家。这份指南能帮您更好地享受这次旅程；如果还有什么想了解的，请随时问我们。',
       joinWifi: '连接 Wi-Fi',
       openGuide: '打开住客指南',
-      photoLabel: '照片：从 The Nest 看到的湖景',
+      photoAlt: 'Lake Hawea多石的湖岸上，用浮木拼出的“HAWEA”字样，湖对岸是白雪覆盖的群山。',
     },
     stay: {
       label: '您的住宿',

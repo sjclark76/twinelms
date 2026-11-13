@@ -32,7 +32,7 @@ export const es: PartialStrings = {
         'Estamos encantados de que haya elegido alojarse con nosotros en Lake Hawea, un lugar precioso. Esta guía le ayudará a aprovechar al máximo su estancia, y si quiere saber algo más, pregúntenos sin dudarlo.',
       joinWifi: 'Conectarse al Wi-Fi',
       openGuide: 'Abrir la guía del huésped',
-      photoLabel: 'Foto: el lago desde The Nest',
+      photoAlt: 'Letras de madera de deriva que forman HAWEA en la orilla pedregosa del lago Hawea, con montañas nevadas al otro lado del agua.',
     },
     stay: {
       label: 'Su estancia',

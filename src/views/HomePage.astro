@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import heroPhoto from '../assets/hero-hawea.jpg';
 import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
 import WifiCard from '../components/WifiCard.astro';
 import AnimalCard from '../components/AnimalCard.astro';
@@ -26,7 +28,9 @@ const t = useStrings(locale).home;
           <a class="nest-btn nest-btn-quiet" href={localePath(locale, '/guide/')}>{t.hero.openGuide}</a>
         </div>
       </div>
-      <div class="hero-photo"><PhotoPlaceholder label={t.hero.photoLabel} /></div>
+      <div class="hero-photo">
+        <Image src={heroPhoto} alt={t.hero.photoAlt} widths={[400, 800, 1200]} sizes="(min-width: 900px) 520px, 100vw" loading="eager" />
+      </div>
     </section>
 
     <section class="nest-container section stay" aria-label={t.stay.label}>
@@ -110,6 +114,14 @@ const t = useStrings(locale).home;
   .hero-photo {
     flex: 1 1 420px;
     min-width: 0;
+  }
+  .hero-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-md);
   }
   .eyebrow {
     margin: 0;

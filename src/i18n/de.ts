@@ -32,7 +32,7 @@ export const de: PartialStrings = {
         'Wir freuen uns sehr, dass Sie sich für einen Aufenthalt bei uns im schönen Lake Hawea entschieden haben. Dieser Führer hilft Ihnen, Ihren Aufenthalt zu genießen. Wenn Sie noch etwas wissen möchten, fragen Sie uns einfach.',
       joinWifi: 'Mit dem WLAN verbinden',
       openGuide: 'Gästeführer öffnen',
-      photoLabel: 'Foto: der See vom The Nest aus',
+      photoAlt: 'Treibholz-Buchstaben, die HAWEA am steinigen Ufer des Lake Hawea formen, mit schneebedeckten Bergen auf der anderen Seeseite.',
     },
     stay: {
       label: 'Ihr Aufenthalt',
