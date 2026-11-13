@@ -9,7 +9,7 @@ import { wifi } from '../data/wifi';
 import { hosts, medicalCentre } from '../data/contact';
 import {
   highlights, eateriesHawea, eateriesWanaka, hikesHawea, hikesWanaka, bikeCrossCountry, bikeEnduro, skiFields,
-  type Place, type TagKey,
+  directionsUrl, type Place, type TagKey,
 } from '../data/places';
 
 interface Props {
@@ -20,8 +20,17 @@ const t = useStrings(locale).guide;
 const jump = Object.entries(t.jump);
 const tagList = (keys: TagKey[]) => keys.map((key) => ({ key, label: t.tags[key] }));
 
-type PlaceText = { body?: string; meta?: string[] };
-const textFor = (group: Record<string, PlaceText>, p: Place) => group[p.id] ?? {};
+type PlaceText = { body?: string; meta?: string[]; alt?: string };
+const textFor = (group: Record<string, PlaceText> | undefined, p: Place) => group?.[p.id] ?? {};
+// Optional photos: src/assets/places/<id>.jpg, shown only when the place also has alt text.
+const photoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/places/*.{jpg,jpeg,png,webp}', { eager: true });
+const photoFor = (p: Place) =>
+  Object.entries(photoFiles).find(([path]) => path.split('/').pop()?.replace(/\.[^.]+$/, '') === p.id)?.[1].default;
+const linksFor = (p: Place) => [
+  ...(p.menu ? [{ label: t.links.menu, href: p.menu }] : []),
+  ...(p.website ? [{ label: t.links.website, href: p.website }] : []),
+  { label: t.links.directions, href: directionsUrl(p) },
+];
 const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []), ...(text.meta ?? [])];
 ---
 
@@ -65,7 +74,7 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
       <div class="grid">
         {highlights.map((p) => {
           const text = textFor(t.highlights.places, p);
-          return <PlaceCard name={p.name} tags={tagList(p.tags)} body={text.body} meta={metaFor(p, text)} />;
+          return <PlaceCard name={p.name} tags={tagList(p.tags)} body={text.body} meta={metaFor(p, text)} image={photoFor(p)} imageAlt={text.alt} links={linksFor(p)} newTab={t.links.newTab} />;
         })}
       </div>
     </GuideSection>
@@ -75,14 +84,14 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
       <div class="grid">
         {eateriesHawea.map((p) => {
           const text = textFor(t.eat.places, p);
-          return <PlaceCard name={p.name} tags={tagList(p.tags)} body={text.body} meta={metaFor(p, text)} />;
+          return <PlaceCard name={p.name} tags={tagList(p.tags)} body={text.body} meta={metaFor(p, text)} image={photoFor(p)} imageAlt={text.alt} links={linksFor(p)} newTab={t.links.newTab} />;
         })}
       </div>
       <h3 class="heading-2 group">{t.eat.wanaka}</h3>
       <div class="grid">
         {eateriesWanaka.map((p) => {
           const text = textFor(t.eat.places, p);
-          return <PlaceCard name={p.name} tags={tagList(p.tags)} body={text.body} meta={metaFor(p, text)} />;
+          return <PlaceCard name={p.name} tags={tagList(p.tags)} body={text.body} meta={metaFor(p, text)} image={photoFor(p)} imageAlt={text.alt} links={linksFor(p)} newTab={t.links.newTab} />;
         })}
       </div>
     </GuideSection>
@@ -112,7 +121,12 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
     </GuideSection>
 
     <GuideSection id="skiing" eyebrow={t.skiing.eyebrow} heading={t.skiing.heading}>
-      <ul class="trails">{skiFields.map((n) => <li class="nest-card"><span class="nest-tag nest-tag-lake">{t.tags.skiing}</span><p>{n}</p></li>)}</ul>
+      <div class="grid">
+        {skiFields.map((p) => {
+          const text = textFor(t.skiing.places, p);
+          return <PlaceCard name={p.name} tags={tagList(p.tags)} body={text.body} meta={metaFor(p, text)} image={photoFor(p)} imageAlt={text.alt} links={linksFor(p)} newTab={t.links.newTab} />;
+        })}
+      </div>
     </GuideSection>
 
     <GuideSection id="emergency" eyebrow={t.emergency.eyebrow} heading={t.emergency.heading}>
