@@ -1,0 +1,39 @@
+---
+interface Props {
+  id: string;
+  eyebrow: string;
+  heading: string;
+}
+const { id, eyebrow, heading } = Astro.props;
+---
+
+<section id={id} class="nest-container guide-section" aria-labelledby={`${id}-heading`}>
+  <div class="guide-head">
+    <p class="label guide-eyebrow">{eyebrow}</p>
+    <h2 class="heading-1" id={`${id}-heading`}>{heading}</h2>
+  </div>
+  <slot />
+</section>
+
+<style>
+  .guide-section {
+    padding-top: calc(var(--space-10) + var(--space-4));
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    scroll-margin-top: var(--space-4);
+  }
+  .guide-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .guide-eyebrow {
+    margin: 0;
+    color: var(--slate);
+    text-transform: uppercase;
+  }
+  h2 {
+    margin: 0;
+  }
+</style>
