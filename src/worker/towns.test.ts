@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cleanTown, normaliseQuery, pickPlace, toPlace } from './towns';
+import { cleanTown, isPlaceId, normaliseQuery, photonLanguage, pickPlace, toPlace, toSuggestions } from './towns';
 
 describe('cleanTown', () => {
   it('accepts towns in any script and tidies spaces', () => {
@@ -64,5 +64,40 @@ describe('pickPlace', () => {
       address: { state: 'California', country: 'United States', country_code: 'us' } };
     expect(pickPlace([california])).toBeNull();
     expect(pickPlace([])).toBeNull();
+  });
+});
+
+describe('toSuggestions', () => {
+  const f = (p: Record<string, string | number>) => ({ properties: p });
+  it('keeps towns and cities, drops airports, farms and shops', () => {
+    const out = toSuggestions([
+      f({ osm_key: 'place', osm_value: 'city', type: 'city', osm_type: 'R', osm_id: 4246124, name: 'Melbourne', state: 'Victoria', country: 'Australia' }),
+      f({ osm_key: 'aeroway', osm_value: 'aerodrome', type: 'house', osm_type: 'W', osm_id: 1, name: 'Melbourne Airport', country: 'Australia' }),
+      f({ osm_key: 'place', osm_value: 'farm', type: 'locality', osm_type: 'N', osm_id: 2, name: 'Lake Hāwea Station', country: 'New Zealand' }),
+      f({ osm_key: 'place', osm_value: 'town', type: 'city', osm_type: 'N', osm_id: 3, name: 'Lake Hāwea', state: 'Otago', country: 'New Zealand' }),
+    ]);
+    expect(out).toEqual([
+      { id: 'R4246124', name: 'Melbourne', detail: 'Victoria, Australia' },
+      { id: 'N3', name: 'Lake Hāwea', detail: 'Otago, New Zealand' },
+    ]);
+  });
+  it('accepts a city mapped as a province (Tokyo) but not a plain state', () => {
+    const tokyo = f({ osm_key: 'place', osm_value: 'province', type: 'city', osm_type: 'R', osm_id: 5, name: 'Tokyo', country: 'Japan' });
+    const bavaria = f({ osm_key: 'place', osm_value: 'state', type: 'state', osm_type: 'R', osm_id: 6, name: 'Bavaria', country: 'Germany' });
+    expect(toSuggestions([tokyo, bavaria]).map((s) => s.name)).toEqual(['Tokyo']);
+  });
+});
+
+describe('isPlaceId and photonLanguage', () => {
+  it('accepts only OpenStreetMap ids', () => {
+    expect(isPlaceId('R62422')).toBe(true);
+    expect(isPlaceId('N1')).toBe(true);
+    expect(isPlaceId('X1')).toBe(false);
+    expect(isPlaceId('R1; DROP TABLE')).toBe(false);
+    expect(isPlaceId(62422)).toBe(false);
+  });
+  it('uses Photon languages where available', () => {
+    expect(photonLanguage('de')).toBe('de');
+    expect(photonLanguage('ja')).toBe('default');
   });
 });

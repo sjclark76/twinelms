@@ -13,11 +13,12 @@ const t = useStrings(locale).map;
 // Everything the map script needs, passed as JSON so the script itself has no text in it.
 const config = {
   locale: LOCALES[locale].htmlLang,
+  lang: locale,
   home: nestLocation,
   turnstile: { siteKey: TURNSTILE_SITE_KEY, language: turnstileLanguage[locale] ?? 'auto' },
   strings: {
     stat: t.stat, statEmpty: t.statEmpty, towns: t.towns, countries: t.countries, visits: t.visits,
-    loadError: t.loadError, submit: t.submit, submitting: t.submitting, success: t.success, errors: t.errors,
+    loadError: t.loadError, noSuggestions: t.noSuggestions, suggestionsCount: t.suggestionsCount, submit: t.submit, submitting: t.submitting, success: t.success, errors: t.errors,
   },
 };
 ---
@@ -50,10 +51,15 @@ const config = {
       <form class="nest-card form" data-town-form novalidate>
         <h2 class="heading-1">{t.formHeading}</h2>
         <div class="nest-field">
-          <label for="town">{t.townLabel}</label>
-          <input class="nest-input" id="town" name="town" type="text" required maxlength="80" autocomplete="address-level2"
-            placeholder={t.townPlaceholder} aria-describedby="town-help" />
+          <label for="town" id="town-label">{t.townLabel}</label>
+          <div class="combo">
+            <input class="nest-input" id="town" name="town" type="text" required maxlength="80" autocomplete="off"
+              role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="town-options"
+              aria-describedby="town-help" placeholder={t.townPlaceholder} />
+            <ul class="combo-list" id="town-options" role="listbox" aria-labelledby="town-label" hidden></ul>
+          </div>
           <span class="nest-help" id="town-help">{t.townHelp}</span>
+          <span class="visually-hidden" role="status" aria-live="polite" data-combo-status></span>
         </div>
         <div class="turnstile" data-turnstile></div>
         <div><button type="submit" class="nest-btn nest-btn-warm" data-submit>{t.submit}</button></div>
@@ -181,6 +187,55 @@ const config = {
   .form :global(.nest-input[aria-invalid='true']) {
     border-color: var(--clay);
   }
+  .combo {
+    position: relative;
+  }
+  .combo-list {
+    position: absolute;
+    z-index: 600;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 4px 0;
+    list-style: none;
+    max-height: 320px;
+    overflow-y: auto;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+  }
+  .combo-list :global(li) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 44px;
+    padding: 6px 14px;
+    cursor: pointer;
+  }
+  .combo-list :global(li[aria-selected='true']) {
+    background: var(--lake-tint);
+  }
+  .combo-list :global(li b) {
+    font-weight: 600;
+  }
+  .combo-list :global(li span) {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--slate);
+  }
+  .combo-list :global(li.empty) {
+    cursor: default;
+    color: var(--slate);
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
   .turnstile:empty {
     display: none;
   }
@@ -274,10 +329,12 @@ const config = {
   interface Plural { one: string; other: string }
   interface Config {
     locale: string;
+    lang: string;
     home: { lat: number; lng: number };
     turnstile: { siteKey: string; language: string };
     strings: {
       stat: string; statEmpty: string; towns: Plural; countries: Plural; visits: Plural; loadError: string;
+      noSuggestions: string; suggestionsCount: Plural;
       submit: string; submitting: string; success: string; errors: Record<string, string>;
     };
   }
@@ -383,6 +440,111 @@ const config = {
   const message = form.querySelector<HTMLElement>('[data-message]')!;
   const townInput = form.querySelector<HTMLInputElement>('#town')!;
 
+  // Town search: suggestions as the guest types (ARIA combobox pattern). Typing and submitting still works too.
+  interface Suggestion { id: string; name: string; detail: string }
+  const list = form.querySelector<HTMLUListElement>('#town-options')!;
+  const comboStatus = form.querySelector<HTMLElement>('[data-combo-status]')!;
+  let suggestions: Suggestion[] = [];
+  let active = -1;
+  let chosen: { id: string; label: string } | null = null;
+  let debounce: ReturnType<typeof setTimeout> | undefined;
+  let pending: AbortController | undefined;
+  const fullLabel = (sg: Suggestion) => (sg.detail ? `${sg.name}, ${sg.detail}` : sg.name);
+
+  function closeList() {
+    list.hidden = true;
+    townInput.setAttribute('aria-expanded', 'false');
+    townInput.removeAttribute('aria-activedescendant');
+    active = -1;
+  }
+  function highlight(index: number) {
+    active = index;
+    [...list.querySelectorAll('[role="option"]')].forEach((li, i) => li.setAttribute('aria-selected', String(i === index)));
+    if (index >= 0) {
+      townInput.setAttribute('aria-activedescendant', `town-opt-${index}`);
+      list.querySelector(`#town-opt-${index}`)?.scrollIntoView({ block: 'nearest' });
+    } else townInput.removeAttribute('aria-activedescendant');
+  }
+  function choose(index: number) {
+    const sg = suggestions[index];
+    if (!sg) return;
+    chosen = { id: sg.id, label: fullLabel(sg) };
+    townInput.value = chosen.label;
+    townInput.removeAttribute('aria-invalid');
+    closeList();
+  }
+  function showList() {
+    list.replaceChildren();
+    if (!suggestions.length) {
+      const li = document.createElement('li');
+      li.className = 'empty';
+      li.textContent = s.noSuggestions;
+      list.append(li);
+      comboStatus.textContent = s.noSuggestions;
+    } else {
+      suggestions.forEach((sg, i) => {
+        const li = document.createElement('li');
+        li.id = `town-opt-${i}`;
+        li.setAttribute('role', 'option');
+        li.setAttribute('aria-selected', 'false');
+        const b = document.createElement('b');
+        b.textContent = sg.name;
+        li.append(b);
+        if (sg.detail) {
+          const span = document.createElement('span');
+          span.textContent = sg.detail;
+          li.append(span);
+        }
+        li.addEventListener('mousedown', (e) => e.preventDefault()); // keep focus in the input
+        li.addEventListener('click', () => choose(i));
+        list.append(li);
+      });
+      comboStatus.textContent = count(s.suggestionsCount, suggestions.length);
+    }
+    list.hidden = false;
+    townInput.setAttribute('aria-expanded', 'true');
+    active = -1;
+  }
+  async function search(q: string) {
+    pending?.abort();
+    pending = new AbortController();
+    try {
+      const res = await fetch(`/api/places?lang=${encodeURIComponent(config.lang)}&q=${encodeURIComponent(q)}`, { signal: pending.signal });
+      if (!res.ok) return closeList();
+      suggestions = ((await res.json()) as { suggestions: Suggestion[] }).suggestions ?? [];
+      if (document.activeElement === townInput && townInput.value.trim() === q) showList();
+    } catch {
+      // Aborted by a newer search, or offline: free typing still works.
+    }
+  }
+  townInput.addEventListener('input', () => {
+    chosen = null;
+    clearTimeout(debounce);
+    const q = townInput.value.trim();
+    if (q.length < 2) {
+      pending?.abort();
+      return closeList();
+    }
+    debounce = setTimeout(() => search(q), 250);
+  });
+  townInput.addEventListener('keydown', (e) => {
+    const open = !list.hidden && suggestions.length > 0;
+    if (e.key === 'ArrowDown' && open) {
+      e.preventDefault();
+      highlight((active + 1) % suggestions.length);
+    } else if (e.key === 'ArrowUp' && open) {
+      e.preventDefault();
+      highlight(active <= 0 ? suggestions.length - 1 : active - 1);
+    } else if (e.key === 'Enter' && open && active >= 0) {
+      e.preventDefault(); // pick the suggestion instead of submitting
+      choose(active);
+    } else if (e.key === 'Escape' && !list.hidden) {
+      e.preventDefault();
+      closeList();
+    }
+  });
+  townInput.addEventListener('blur', () => setTimeout(closeList, 150));
+
   // Cloudflare Turnstile: an automatic "not a robot" check. It only shows a box if it needs the guest to tick it.
   interface TurnstileApi {
     render(el: HTMLElement, options: Record<string, unknown>): string;
@@ -424,6 +586,7 @@ const config = {
     event.preventDefault();
     townInput.removeAttribute('aria-invalid');
     const town = townInput.value.trim();
+    closeList();
     if (!town) {
       townInput.setAttribute('aria-invalid', 'true');
       townInput.focus();
@@ -438,7 +601,7 @@ const config = {
       const res = await fetch('/api/towns', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ town, token }),
+        body: JSON.stringify(chosen && chosen.label === town ? { place: chosen.id, token } : { town, token }),
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.town) {
@@ -447,6 +610,7 @@ const config = {
         map.flyTo(marker.getLatLng(), Math.max(map.getZoom(), 4), { duration: 0.8 });
         marker.openPopup();
         townInput.value = '';
+        chosen = null;
         say('success', s.success.replace('{town}', label(data.town as Town)));
       } else {
         const error: string = data.error ?? 'generic';
