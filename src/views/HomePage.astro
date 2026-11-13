@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import heroPhoto from '../assets/hero-hawea.jpg';
 import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
-import WifiCard from '../components/WifiCard.astro';
 import AnimalCard from '../components/AnimalCard.astro';
 import { useStrings } from '../i18n/ui';
 import { address, hosts } from '../data/contact';
@@ -24,8 +23,7 @@ const t = useStrings(locale).home;
         <h1 class="display">{t.hero.heading}</h1>
         <p class="lead">{t.hero.intro}</p>
         <div class="actions">
-          <a class="nest-btn nest-btn-primary" href="#wifi">{t.hero.joinWifi}</a>
-          <a class="nest-btn nest-btn-quiet" href={localePath(locale, '/guide/')}>{t.hero.openGuide}</a>
+          <a class="nest-btn nest-btn-primary" href={localePath(locale, '/guide/')}>{t.hero.openGuide}</a>
         </div>
       </div>
       <div class="hero-photo">
@@ -53,9 +51,6 @@ const t = useStrings(locale).home;
       </div>
     </section>
 
-    <section class="nest-container section wifi">
-      <WifiCard locale={locale} />
-    </section>
 
     <section class="nest-container section about">
       <div class="about-photo"><PhotoPlaceholder label={t.about.photoLabel} ratio="3 / 2" tone="fern" /></div>
@@ -197,9 +192,6 @@ const t = useStrings(locale).home;
     color: var(--ink);
     font-weight: 600;
     text-align: right;
-  }
-  .wifi {
-    padding-top: var(--space-10);
   }
   .about-photo {
     flex: 1 1 360px;

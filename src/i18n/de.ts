@@ -12,25 +12,15 @@ export const de: PartialStrings = {
     walkIn: '(ohne Termin, auch außerhalb der Sprechzeiten)',
     note: 'Bitte nicht im Haus rauchen. Hat Ihnen Ihr Aufenthalt gefallen? Wir würden uns sehr über eine Bewertung auf Airbnb freuen.',
   },
-  wifi: {
-    title: 'WLAN',
-    network: 'Netzwerk',
-    password: 'Passwort',
-    qrLabel: 'QR-Code für das WLAN „The Quack House Guest“',
-    hint: 'Richten Sie die Kamera Ihres Handys auf den Code, um sich zu verbinden. Sie lesen schon auf dem Handy? Kopieren Sie stattdessen das Passwort.',
-    copy: 'Passwort kopieren',
-    copied: 'Passwort kopiert',
-  },
   home: {
     title: 'The Nest at Twin Elms, Lake Hawea',
     description:
-      'Willkommen im The Nest at Twin Elms. Verbinden Sie sich mit dem WLAN, lesen Sie den Gästeführer, lernen Sie die Tiere kennen und sehen Sie, woher unsere Gäste kommen.',
+      'Willkommen im The Nest at Twin Elms. Lesen Sie den Gästeführer, lernen Sie die Tiere kennen und sehen Sie, woher unsere Gäste kommen.',
     hero: {
       eyebrow: 'Lake Hawea, New Zealand',
       heading: 'Willkommen im The Nest',
       intro:
         'Wir freuen uns sehr, dass Sie sich für einen Aufenthalt bei uns im schönen Lake Hawea entschieden haben. Dieser Führer hilft Ihnen, Ihren Aufenthalt zu genießen. Wenn Sie noch etwas wissen möchten, fragen Sie uns einfach.',
-      joinWifi: 'Mit dem WLAN verbinden',
       openGuide: 'Gästeführer öffnen',
       photoAlt: 'Treibholz-Buchstaben, die HAWEA am steinigen Ufer des Lake Hawea formen, mit schneebedeckten Bergen auf der anderen Seeseite.',
     },
@@ -90,9 +80,8 @@ export const de: PartialStrings = {
       heading: 'Das Wichtigste im Haus',
       checkIn: 'Check-in ab 15:00 Uhr',
       checkInSub: 'Check-out bis 11:00 Uhr. Sagen Sie uns gern Bescheid, wenn Sie mehr Spielraum brauchen, wir tun unser Bestes.',
-      wifi: 'WLAN: {ssid}',
-      wifiSub: 'Passwort: {password}.',
-      wifiLink: 'QR-Code scannen',
+      wifi: 'WLAN',
+      wifiSub: 'Netzwerkname und Passwort stehen auf der Karte im Zimmer.',
       smoking: 'Bitte nicht im Haus rauchen',
       bins: 'Müll und Recycling',
       binsSub: 'Rot: Restmüll. Gelb: Recycling. Blau: Glas.',

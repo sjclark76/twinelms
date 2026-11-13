@@ -26,3 +26,7 @@ pnpm-debug.log*
 # local Worker secrets
 .dev.vars
 .wrangler/
+
+# local-only Wi-Fi details and the printed card built from them
+.wifi.local.json
+out/

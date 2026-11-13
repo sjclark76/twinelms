@@ -12,25 +12,15 @@ export const es: PartialStrings = {
     walkIn: '(sin cita previa y fuera de horario)',
     note: 'Por favor, no fume dentro de la casa. ¿Le gustó su estancia? Le agradeceremos mucho una reseña en Airbnb.',
   },
-  wifi: {
-    title: 'Wi-Fi',
-    network: 'Red',
-    password: 'Contraseña',
-    qrLabel: 'Código QR para conectarse al Wi-Fi The Quack House Guest',
-    hint: 'Apunte la cámara del teléfono al código para conectarse. ¿Ya está leyendo en el teléfono? Copie la contraseña en su lugar.',
-    copy: 'Copiar contraseña',
-    copied: 'Contraseña copiada',
-  },
   home: {
     title: 'The Nest at Twin Elms, Lake Hawea',
     description:
-      'Le damos la bienvenida a The Nest at Twin Elms. Conéctese al Wi-Fi, lea la guía del huésped, conozca a los animales y vea de dónde vienen nuestros huéspedes.',
+      'Te damos la bienvenida a The Nest at Twin Elms. Lee la guía para huéspedes, conoce a los animales y descubre de dónde vienen nuestros huéspedes.',
     hero: {
       eyebrow: 'Lake Hawea, New Zealand',
       heading: 'Bienvenidos a The Nest',
       intro:
         'Estamos encantados de que haya elegido alojarse con nosotros en Lake Hawea, un lugar precioso. Esta guía le ayudará a aprovechar al máximo su estancia, y si quiere saber algo más, pregúntenos sin dudarlo.',
-      joinWifi: 'Conectarse al Wi-Fi',
       openGuide: 'Abrir la guía del huésped',
       photoAlt: 'Letras de madera de deriva que forman HAWEA en la orilla pedregosa del lago Hawea, con montañas nevadas al otro lado del agua.',
     },
@@ -90,9 +80,8 @@ export const es: PartialStrings = {
       heading: 'Lo esencial de la casa',
       checkIn: 'Entrada a partir de las 15:00',
       checkInSub: 'Salida antes de las 11:00. Díganos si necesita algo de flexibilidad, haremos lo posible por ayudarle.',
-      wifi: 'Wi-Fi: {ssid}',
-      wifiSub: 'Contraseña: {password}.',
-      wifiLink: 'Escanear el código QR',
+      wifi: 'Wi-Fi',
+      wifiSub: 'El nombre de la red y la contraseña están en la tarjeta de la habitación.',
       smoking: 'Por favor, no fume dentro de la casa',
       bins: 'Basura y reciclaje',
       binsSub: 'Rojo: residuos generales. Amarillo: reciclaje. Azul: vidrio.',
