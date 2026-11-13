@@ -77,3 +77,48 @@ export function toPlace(result: NominatimResult | undefined): Place | null {
     lng: Math.round(lng * 1000) / 1000,
   };
 }
+
+/** One suggestion for the town search box. */
+export interface Suggestion {
+  /** OpenStreetMap id, e.g. "N240109189" or "R62422". */
+  id: string;
+  name: string;
+  /** Region and country, in the guest's language. */
+  detail: string;
+}
+
+export interface PhotonFeature {
+  properties?: Record<string, string | number | undefined>;
+}
+
+const PHOTON_SETTLEMENTS = new Set(['city', 'town', 'village', 'hamlet', 'suburb', 'borough', 'municipality']);
+
+/** Keep only towns and cities from Photon's results (it also returns airports, farms, shops...). */
+export function toSuggestions(features: PhotonFeature[], max = 6): Suggestion[] {
+  const out: Suggestion[] = [];
+  const seen = new Set<string>();
+  for (const f of features) {
+    const p = f.properties ?? {};
+    const value = String(p.osm_value ?? '');
+    const isTownLike =
+      p.osm_key === 'place' && (PHOTON_SETTLEMENTS.has(value) || (p.type === 'city' && (value === 'province' || value === 'state')));
+    const type = String(p.osm_type ?? '');
+    if (!isTownLike || !p.name || !p.country || !/^[NWR]$/.test(type) || !p.osm_id) continue;
+    const id = `${type}${p.osm_id}`;
+    const detail = [p.state, p.country].filter((x) => x && x !== p.name).join(', ');
+    const key = `${p.name}|${detail}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push({ id, name: String(p.name), detail });
+    if (out.length === max) break;
+  }
+  return out;
+}
+
+/** Is a suggestion id well formed ("N123", "W123" or "R123")? */
+export const isPlaceId = (id: unknown): id is string => typeof id === 'string' && /^[NWR]\d{1,12}$/.test(id);
+
+/** Photon only translates into a few languages; others get local names. */
+export function photonLanguage(locale: string): string {
+  return ['en', 'de', 'fr'].includes(locale) ? locale : 'default';
+}
