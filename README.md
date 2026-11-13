@@ -7,6 +7,7 @@ npm install
 npm run dev      # local dev server
 npm run build    # static build into dist/
 npm run tokens   # regenerate design-system/tokens.css from tokens.json
+npm run i18n:check  # list translations that are missing or out of date
 ```
 
 ## Hosting

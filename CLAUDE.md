@@ -49,6 +49,7 @@ Every page shares the site header (wordmark, navigation, language switcher) and 
 - All UI strings and page copy live in per-language files in `src/i18n/` (`en.ts` is the full set; `zh.ts`, `de.ts` and the rest hold only what's translated, and anything missing falls back to English). No strings hard-coded in components. Place names, addresses and phone numbers live in `src/data/`.
 - Page bodies are in `src/views/`; `src/pages/` has the English route and `src/pages/[locale]/` generates the other six, so every page exists under every language path.
 - A language is hidden (not in the switcher, not in hreflang, `noindex`) until it's added to `ENABLED_LOCALES` in `src/i18n/config.ts`. Add it there once its translation is finished.
+- **When English text changes:** edit `en.ts`, run `npm run i18n:check` to list every string that is now missing or outdated in each language, translate just those, then run `npm run i18n:check -- --update <lang>` to record that language as current. `src/i18n/status.json` holds those records and whether a native speaker has reviewed each language (`reviewed`).
 - Guests on an English page are sent to their saved language, or their browser's language, once more than one language is enabled.
 - Translations are done once and committed. Place names, addresses and phone numbers are never translated.
 - The language switcher shows each language in its own script ("Deutsch", "日本語"), never flags, links to the same page in that language, and remembers the guest's choice.
