@@ -1,10 +1,220 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import WifiCard from '../components/WifiCard.astro';
+import AnimalCard from '../components/AnimalCard.astro';
+import { useStrings } from '../i18n/ui';
+import { address, hosts } from '../data/contact';
+import { localePath, type Locale } from '../i18n/config';
+
+const locale: Locale = 'en';
+const t = useStrings(locale).home;
 ---
 
-<BaseLayout title="The Nest at Twin Elms">
-  <main id="main" style="padding: var(--space-10) var(--space-4)">
-    <h1 class="display" style="margin: 0">The Nest at Twin Elms</h1>
-    <p>Lake Hawea, New Zealand. Our guest site is coming soon.</p>
+<BaseLayout title={t.title} description={t.description} locale={locale}>
+  <main id="main">
+    <section class="nest-container section hero">
+      <div class="hero-text">
+        <p class="label eyebrow">{t.hero.eyebrow}</p>
+        <h1 class="display">{t.hero.heading}</h1>
+        <p class="lead">{t.hero.intro}</p>
+        <div class="actions">
+          <a class="nest-btn nest-btn-primary" href="#wifi">{t.hero.joinWifi}</a>
+          <a class="nest-btn nest-btn-quiet" href={localePath(locale, '/guide/')}>{t.hero.openGuide}</a>
+        </div>
+      </div>
+      <div class="hero-photo"><PhotoPlaceholder label={t.hero.photoLabel} /></div>
+    </section>
+
+    <section class="nest-container section stay" aria-label={t.stay.label}>
+      <div class="nest-card stay-card">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+        <div><p class="stay-title">{t.stay.checkIn}</p><p class="stay-sub">{t.stay.checkOut}</p></div>
+      </div>
+      <div class="nest-card stay-card">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+        <div><p class="stay-title">{address[0]}</p><p class="stay-sub">{address[1]}</p></div>
+      </div>
+      <div class="nest-card stay-card">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"></path></svg>
+        <div>
+          <p class="stay-title">{t.stay.questions}</p>
+          <p class="stay-sub">
+            {hosts.map((h, i) => (<>{i > 0 && <br />}{h.name} <a href={`tel:${h.tel}`}>{h.display}</a></>))}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="nest-container section wifi">
+      <WifiCard locale={locale} />
+    </section>
+
+    <section class="nest-container section about">
+      <div class="about-photo"><PhotoPlaceholder label={t.about.photoLabel} ratio="3 / 2" tone="fern" /></div>
+      <div class="about-text">
+        <p class="label eyebrow">{t.about.eyebrow}</p>
+        <h2 class="heading-1">{t.about.heading}</h2>
+        <p>{t.about.body}</p>
+      </div>
+    </section>
+
+    <section class="nest-container section animals">
+      <div class="animals-head">
+        <p class="label eyebrow">{t.animals.eyebrow}</p>
+        <h2 class="heading-1">{t.animals.heading}</h2>
+      </div>
+      <div class="animals-grid">
+        <AnimalCard {...t.animals.dexter} initial="D" />
+        <AnimalCard {...t.animals.chickens} initial="C" />
+        <AnimalCard {...t.animals.ducks} initial="D" />
+      </div>
+    </section>
+
+    <section class="nest-container section">
+      <div class="invite">
+        <div class="invite-text">
+          <h2 class="heading-1">{t.mapInvite.heading}</h2>
+          <p>{t.mapInvite.body}</p>
+        </div>
+        <a class="nest-btn nest-btn-warm" href={localePath(locale, '/map/')}>{t.mapInvite.cta}</a>
+      </div>
+    </section>
   </main>
 </BaseLayout>
+
+<style>
+  .section {
+    padding-top: calc(var(--space-10) + var(--space-6));
+  }
+  .hero,
+  .about {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-10);
+    align-items: center;
+  }
+  .hero {
+    padding-top: calc(var(--space-10) + var(--space-2));
+  }
+  .hero-text {
+    flex: 1 1 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+  }
+  .hero-photo {
+    flex: 1 1 420px;
+    min-width: 0;
+  }
+  .eyebrow {
+    margin: 0;
+    color: var(--slate);
+    text-transform: uppercase;
+  }
+  h1,
+  h2 {
+    margin: 0;
+  }
+  .lead {
+    margin: 0;
+    max-width: 520px;
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .stay {
+    padding-top: var(--space-10);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-4);
+  }
+  .stay-card {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  .stay-card svg {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: var(--lake);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .stay-card p {
+    margin: 0;
+  }
+  .stay-title {
+    font-weight: 600;
+  }
+  .stay-sub {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--slate);
+  }
+  .stay-sub a {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .wifi {
+    padding-top: var(--space-10);
+  }
+  .about-photo {
+    flex: 1 1 360px;
+    min-width: 0;
+  }
+  .about-text {
+    flex: 1 1 380px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-width: 0;
+  }
+  .about-text p:last-child {
+    margin: 0;
+  }
+  .animals {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .animals-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .animals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-4);
+  }
+  .invite {
+    background: var(--lake-tint);
+    border-radius: var(--radius-md);
+    padding: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    align-items: center;
+    justify-content: space-between;
+  }
+  .invite-text {
+    flex: 1 1 360px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+  .invite-text p {
+    margin: 0;
+  }
+</style>

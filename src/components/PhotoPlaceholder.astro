@@ -1,0 +1,39 @@
+---
+// Stands in for a real photo until issue #7 adds them. Replace with <img> and alt text.
+interface Props {
+  label: string;
+  ratio?: string;
+  tone?: 'lake' | 'fern';
+}
+const { label, ratio = '4 / 3', tone = 'lake' } = Astro.props;
+---
+
+<div class={`photo photo-${tone}`} style={`aspect-ratio: ${ratio}`} role="img" aria-label={label}>
+  <span>{label}</span>
+</div>
+
+<style>
+  .photo {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .photo-lake {
+    background: var(--lake-mist);
+  }
+  .photo-fern {
+    background: var(--fern);
+  }
+  span {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    background: var(--white);
+    color: var(--ink);
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+  }
+</style>
