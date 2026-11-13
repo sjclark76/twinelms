@@ -15,6 +15,12 @@
   "dependencies": {
     "@fontsource/figtree": "^5.3.0",
     "@fontsource/fraunces": "^5.3.0",
+    "@fontsource/noto-sans-jp": "^5.3.1",
+    "@fontsource/noto-sans-kr": "^5.3.1",
+    "@fontsource/noto-sans-sc": "^5.3.1",
+    "@fontsource/noto-serif-jp": "^5.3.1",
+    "@fontsource/noto-serif-kr": "^5.3.1",
+    "@fontsource/noto-serif-sc": "^5.3.1",
     "astro": "^7.4.11",
     "qrcode": "^1.5.4"
   },

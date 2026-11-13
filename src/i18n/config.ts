@@ -23,7 +23,17 @@ export const LOCALES: Record<Locale, LocaleInfo> = {
 
 export const DEFAULT_LOCALE: Locale = 'en';
 
-/** Locales that have translated pages. Add each one here as its translation lands (issues #8 and #9). */
+/** Every locale that gets routes, in switcher order. */
+export const ALL_LOCALES = Object.keys(LOCALES) as Locale[];
+
+/** Locales other than the default, which are served under a URL prefix. */
+export const PREFIXED_LOCALES = ALL_LOCALES.filter((l) => l !== DEFAULT_LOCALE);
+
+/**
+ * Locales that are public: shown in the language switcher, listed in hreflang and indexed by search engines.
+ * Every locale has routes, but one that isn't listed here is hidden and marked noindex.
+ * Add each language here once its translation is done (issue #9).
+ */
 export const ENABLED_LOCALES: Locale[] = ['en'];
 
 /** Remove a locale prefix from a pathname: "/de/guide/" -> "/guide/". */
@@ -40,4 +50,9 @@ export function stripLocale(pathname: string): string {
 export function localePath(locale: Locale, path: string): string {
   const { prefix } = LOCALES[locale];
   return prefix ? `/${prefix}${path === '/' ? '/' : path}` : path;
+}
+
+/** Locale for a URL prefix such as "de" (the prefix of the default locale is ""). */
+export function localeFromPrefix(prefix: string): Locale | undefined {
+  return ALL_LOCALES.find((l) => LOCALES[l].prefix === prefix);
 }
