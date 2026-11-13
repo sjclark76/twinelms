@@ -1,6 +1,6 @@
 # The Nest at Twin Elms: guest website
 
-The guest website for The Nest at Twin Elms, Jo and Stuart's family-run Airbnb at 180 Capell Avenue, Lake Hawea 9382, New Zealand. Guests use it during their stay (mostly on phones) to join the Wi-Fi, read the house guide, find places to eat and explore, add their home town to a visitor map, and browse photos.
+The guest website for The Nest at Twin Elms, Jo and Stuart's family-run Airbnb at 180 Capell Avenue, Lake Hawea 9382, New Zealand. Guests use it during their stay (mostly on phones) to read the house guide, find places to eat and explore, add their home town to a visitor map, and browse photos.
 
 ## Sources of truth
 
@@ -31,7 +31,7 @@ The guest website for The Nest at Twin Elms, Jo and Stuart's family-run Airbnb a
 
 ## Pages
 
-1. **Home** (`/`): welcome hero with photo, quick-info cards (check-in after 3:00pm, check-out by 11:00am, address, hosts' phone numbers), Wi-Fi card, About us, Meet the family (Dexter, the chickens, Daphne and Elliot), "Where's home for you?" invitation to the map, footer.
+1. **Home** (`/`): welcome hero with photo, quick-info cards (check-in after 3:00pm, check-out by 11:00am, address, hosts' phone numbers), About us, Meet the family (Dexter, the chickens, Daphne and Elliot), "Where's home for you?" invitation to the map, footer.
 2. **Guest guide** (`/guide/`): jump links, house essentials and "Before you leave", local highlights, where to eat (Hawea, Wanaka), shops and essentials, hikes, mountain biking, ski fields, emergency info.
 3. **Visitor map** (`/map/`): world map with guest pins, a stat line, the "Where's home?" form and a short privacy explanation.
 4. **Gallery** (`/gallery/`): filter chips and a photo grid with captions; tap to open a lightbox.
@@ -40,9 +40,8 @@ Every page shares the site header (wordmark, navigation, language switcher) and 
 
 ## Wi-Fi
 
-- Network `The Quack House Guest`, password `Quackers`.
-- Show a QR code in the standard format `WIFI:T:WPA;S:The Quack House Guest;P:Quackers;;`, drawn in `ink` on white with a quiet zone. Generate it at build time (no runtime service).
-- Also show the network name, the password and a "Copy password" button, for guests already reading on their phone.
+- The site deliberately shows **no Wi-Fi details**: no network name, password or QR code. The website is public, and so is this repo, so the password must never be committed or put on a page.
+- Guests get the details from the printed A6 card in the room. Make it with `npm run wifi-card`, which reads the gitignored `.wifi.local.json` (copy `.wifi.local.example.json`) and writes `out/wifi-card.html` to print. The guide only says the details are on the card.
 
 ## Languages
 
