@@ -37,11 +37,11 @@ const t = useStrings(locale).home;
       </div>
       <div class="nest-card stay-card">
         <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"></path></svg>
-        <div>
+        <div class="stay-body">
           <p class="stay-title">{t.stay.questions}</p>
-          <p class="stay-sub">
-            {hosts.map((h, i) => (<>{i > 0 && <br />}{h.name} <a href={`tel:${h.tel}`}>{h.display}</a></>))}
-          </p>
+          <ul class="hosts">
+            {hosts.map((h) => (<li><span>{h.name}</span><a href={`tel:${h.tel}`}>{h.display}</a></li>))}
+          </ul>
         </div>
       </div>
     </section>
@@ -161,9 +161,27 @@ const t = useStrings(locale).home;
     line-height: 20px;
     color: var(--slate);
   }
-  .stay-sub a {
+  .stay-body {
+    flex: 1;
+    min-width: 0;
+  }
+  .hosts {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--slate);
+  }
+  .hosts li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .hosts a {
     color: var(--ink);
     font-weight: 600;
+    text-align: right;
   }
   .wifi {
     padding-top: var(--space-10);
