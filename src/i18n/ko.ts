@@ -39,6 +39,7 @@ export const ko: PartialStrings = {
     animals: {
       eyebrow: '저희 동물들',
       heading: '가족을 소개합니다',
+      artAlt: '손으로 그린 간판으로, The Nest at Twin Elms라는 글자 아래 강아지 덱스터가 풀밭에 앉아 닭들과 오리 두 마리에 둘러싸여 있습니다.',
       dexter: {
         name: 'Dexter',
         kind: '뉴질랜드 헌터웨이',

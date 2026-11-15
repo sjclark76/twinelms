@@ -39,6 +39,7 @@ export const es: PartialStrings = {
     animals: {
       eyebrow: 'Nuestros animales',
       heading: 'Conozca a la familia',
+      artAlt: 'Un cartel pintado a mano que dice The Nest at Twin Elms, con el perro Dexter sentado en la hierba entre las gallinas y dos patos.',
       dexter: {
         name: 'Dexter',
         kind: 'Huntaway neozelandés',
