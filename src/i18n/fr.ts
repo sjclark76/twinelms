@@ -2,7 +2,7 @@ import type { PartialStrings } from './ui';
 
 export const fr: PartialStrings = {
   skipToContent: 'Aller au contenu',
-  wordmarkSub: 'Lake Hawea, New Zealand',
+  wordmarkSub: 'Lake Hāwea, New Zealand',
   mainNav: 'Navigation principale',
   nav: { home: 'Accueil', guide: 'Guide du séjour', map: 'Carte des visiteurs', gallery: 'Galerie', menu: 'Menu' },
   language: 'Langue',
@@ -13,16 +13,16 @@ export const fr: PartialStrings = {
     note: 'Merci de ne pas fumer à l’intérieur. Votre séjour vous a plu ? Nous vous serions très reconnaissants de laisser un avis sur Airbnb.',
   },
   home: {
-    title: 'The Nest at Twin Elms, Lake Hawea',
+    title: 'The Nest at Twin Elms, Lake Hāwea',
     description:
       'Bienvenue au The Nest at Twin Elms. Lisez le guide des visiteurs, rencontrez les animaux et découvrez d’où viennent nos hôtes.',
     hero: {
-      eyebrow: 'Lake Hawea, New Zealand',
+      eyebrow: 'Lake Hāwea, New Zealand',
       heading: 'Bienvenue au Nest',
       intro:
-        'Nous sommes ravis que vous ayez choisi de séjourner chez nous, à Lake Hawea, un coin magnifique. Ce guide vous aidera à profiter pleinement de votre séjour, et si vous avez la moindre question, n’hésitez pas à nous la poser.',
+        'Nous sommes ravis que vous ayez choisi de séjourner chez nous, à Lake Hāwea, un coin magnifique. Ce guide vous aidera à profiter pleinement de votre séjour, et si vous avez la moindre question, n’hésitez pas à nous la poser.',
       openGuide: 'Ouvrir le guide du séjour',
-      photoAlt: 'Des lettres en bois flotté formant le mot HAWEA sur la rive caillouteuse du lac Hawea, avec des montagnes enneigées de l’autre côté de l’eau.',
+      photoAlt: 'Des lettres en bois flotté formant le mot HAWEA sur la rive caillouteuse du lac Hāwea, avec des montagnes enneigées de l’autre côté de l’eau.',
     },
     stay: {
       label: 'Votre séjour',
@@ -33,7 +33,7 @@ export const fr: PartialStrings = {
     about: {
       eyebrow: 'À propos de nous',
       heading: 'Nous sommes Jo et Stuart',
-      body: 'Nous nous sommes installés à Lake Hawea en 2021 avec nos enfants Jessiah et Zoe. Nous aimons la nature et le plein air : course à pied, ski, VTT, randonnée et équitation. Nous aimons partager notre petit coin de paradis avec nos hôtes et nous espérons qu’il vous plaira aussi.',
+      body: 'Nous nous sommes installés à Lake Hāwea en 2021 avec nos enfants Jessiah et Zoe. Nous aimons la nature et le plein air : course à pied, ski, VTT, randonnée et équitation. Nous aimons partager notre petit coin de paradis avec nos hôtes et nous espérons qu’il vous plaira aussi.',
       photoAlt: 'Jo et Stuart sourient sur un selfie devant un lac, avec lunettes de soleil et chapeaux, des montagnes en arrière-plan.',
     },
     animals: {
@@ -43,7 +43,7 @@ export const fr: PartialStrings = {
       dexter: {
         name: 'Dexter',
         kind: 'Huntaway néo-zélandais',
-        photoAlt: 'Dexter, un chien brun et noir, sur la rive du Lake Hawea.',
+        photoAlt: 'Dexter, un chien brun et noir, sur la rive du Lake Hāwea.',
         body: 'Dexter adore rencontrer du monde et peut jouer toute la journée. Quand il est excité, il devient bavard. Si vous préférez ne pas croiser de chien, dites-le-nous et nous le garderons à l’écart.',
       },
       chickens: {
@@ -67,10 +67,10 @@ export const fr: PartialStrings = {
   guide: {
     title: 'Guide du séjour | The Nest at Twin Elms',
     description:
-      'Tout ce qu’il vous faut pour votre séjour au Nest, ainsi que nos adresses préférées pour manger, explorer, randonner et faire du vélo autour de Hawea et de Wanaka.',
+      'Tout ce qu’il vous faut pour votre séjour au Nest, ainsi que nos adresses préférées pour manger, explorer, randonner et faire du vélo autour de Hāwea et de Wānaka.',
     heading: 'Guide du séjour',
     intro:
-      'Tout ce qu’il vous faut pour votre séjour, ainsi que nos adresses préférées pour manger, explorer, randonner et faire du vélo autour de Hawea et de Wanaka.',
+      'Tout ce qu’il vous faut pour votre séjour, ainsi que nos adresses préférées pour manger, explorer, randonner et faire du vélo autour de Hāwea et de Wānaka.',
     jumpLabel: 'Sur cette page',
     jump: { house: 'La maison', highlights: 'À voir', eat: 'Manger', shops: 'Courses', hikes: 'Randonnées', biking: 'VTT', skiing: 'Ski', emergency: 'Urgences' },
     links: { website: 'Site web', menu: 'Menu', directions: 'Itinéraire', doc: 'Détails du sentier (DOC)', newTab: '(s’ouvre dans un nouvel onglet)' },
@@ -110,7 +110,7 @@ export const fr: PartialStrings = {
       eyebrow: 'À faire',
       heading: 'À voir dans la région',
       places: {
-        sauna: { body: 'Sauna tonneau au feu de bois, suivi d’une baignade froide dans les eaux limpides du Lake Hawea.' },
+        sauna: { body: 'Sauna tonneau au feu de bois, suivi d’une baignade froide dans les eaux limpides du Lake Hāwea.' },
         lavender: { body: '20 acres (environ 8 hectares) de magnifiques champs de lavande, d’animaux de la ferme et de jardins d’exposition.' },
         museum: { body: 'L’une des plus grandes collections privées d’avions, de véhicules et de jouets au monde.' },
         puzzling: { body: 'Labyrinthes, salles d’illusions et casse-tête pour tous les âges.' },
@@ -120,8 +120,8 @@ export const fr: PartialStrings = {
     eat: {
       eyebrow: 'Boire et manger',
       heading: 'Où manger',
-      hawea: 'À Hawea',
-      wanaka: 'À Wanaka',
+      hawea: 'À Hāwea',
+      wanaka: 'À Wānaka',
       places: {
         hotel: { body: 'Carte de saison.', meta: ['Dîner tous les jours', 'Déjeuner du vendredi au dimanche'] },
         store: {
@@ -147,7 +147,7 @@ export const fr: PartialStrings = {
       atms: 'Distributeurs de billets',
       atmsSub: 'New World Three Parks, Helwick Street, Ardmore Street',
     },
-    hikes: { eyebrow: 'À pied', heading: 'Randonnées dans la région', hawea: 'Hawea', wanaka: 'Wanaka' },
+    hikes: { eyebrow: 'À pied', heading: 'Randonnées dans la région', hawea: 'Hāwea', wanaka: 'Wānaka' },
     biking: {
       eyebrow: 'À vélo',
       heading: 'VTT',
@@ -166,7 +166,7 @@ export const fr: PartialStrings = {
   },
   gallery: {
     title: 'Galerie | The Nest at Twin Elms',
-    description: 'Photos de The Nest at Twin Elms, Lake Hawea, et de la famille.',
+    description: 'Photos de The Nest at Twin Elms, Lake Hāwea, et de la famille.',
     heading: 'Galerie',
     intro: 'Un aperçu de The Nest, du lac et de la famille. Touchez une photo pour l’afficher en grand.',
     filterLabel: 'Filtrer les photos',
@@ -183,7 +183,7 @@ export const fr: PartialStrings = {
       'main-bedroom': 'La chambre principale',
       chickens: 'Les poules',
       kitchen: 'La cuisine',
-      'lake-winter': 'Lake Hawea en hiver',
+      'lake-winter': 'Lake Hāwea en hiver',
       'breast-hill': 'Corner Peak et Breast Hill, vus depuis Isthmus Peak',
       'aurora-green': 'Aurore australe vue de la maison',
     },
@@ -193,14 +193,14 @@ export const fr: PartialStrings = {
     description: 'Découvrez d’où viennent les hôtes de The Nest at Twin Elms et ajoutez votre ville à la carte.',
     heading: 'D’où viennent nos hôtes',
     intro: 'Chaque épingle dorée est la ville d’un de nos hôtes. Ajoutez la vôtre et aidez-nous à remplir la carte.',
-    mapLabel: 'Carte du monde avec des épingles sur les villes de nos hôtes et une épingle terre cuite sur The Nest, à Lake Hawea',
+    mapLabel: 'Carte du monde avec des épingles sur les villes de nos hôtes et une épingle terre cuite sur The Nest, à Lake Hāwea',
     stat: 'Des hôtes venus de {towns} dans {countries}',
     statEmpty: 'Soyez le premier à ajouter votre ville !',
     towns: { one: '{n} ville', other: '{n} villes' },
     countries: { one: '{n} pays', other: '{n} pays' },
     visits: { one: '{n} visite', other: '{n} visites' },
     legendGuests: 'La ville d’un hôte',
-    legendHome: 'The Nest, Lake Hawea',
+    legendHome: 'The Nest, Lake Hāwea',
     legendVisits: 'Plus l’épingle est grande, plus il y a de visites',
     listToggle: 'Voir la liste des villes',
     loadError: 'La carte n’a pas pu charger les villes pour le moment. Veuillez réessayer plus tard.',

@@ -2,7 +2,7 @@ import type { PartialStrings } from './ui';
 
 export const zh: PartialStrings = {
   skipToContent: '跳到正文',
-  wordmarkSub: 'Lake Hawea, New Zealand',
+  wordmarkSub: 'Lake Hāwea, New Zealand',
   mainNav: '主导航',
   nav: { home: '首页', guide: '住客指南', map: '访客地图', gallery: '相册', menu: '菜单' },
   language: '语言',
@@ -13,16 +13,16 @@ export const zh: PartialStrings = {
     note: '请勿在室内吸烟。如果您住得愉快，我们将非常感谢您在 Airbnb 上留下评价。',
   },
   home: {
-    title: 'The Nest at Twin Elms, Lake Hawea',
+    title: 'The Nest at Twin Elms, Lake Hāwea',
     description:
       '欢迎来到 The Nest at Twin Elms。阅读住客指南，认识我们的小动物，看看客人们来自哪里。',
     hero: {
-      eyebrow: 'Lake Hawea, New Zealand',
+      eyebrow: 'Lake Hāwea, New Zealand',
       heading: '欢迎来到 The Nest',
       intro:
-        '很高兴您选择来到美丽的 Lake Hawea，入住我们家。这份指南能帮您更好地享受这次旅程；如果还有什么想了解的，请随时问我们。',
+        '很高兴您选择来到美丽的 Lake Hāwea，入住我们家。这份指南能帮您更好地享受这次旅程；如果还有什么想了解的，请随时问我们。',
       openGuide: '打开住客指南',
-      photoAlt: 'Lake Hawea多石的湖岸上，用浮木拼出的“HAWEA”字样，湖对岸是白雪覆盖的群山。',
+      photoAlt: 'Lake Hāwea多石的湖岸上，用浮木拼出的“HAWEA”字样，湖对岸是白雪覆盖的群山。',
     },
     stay: {
       label: '您的住宿',
@@ -33,7 +33,7 @@ export const zh: PartialStrings = {
     about: {
       eyebrow: '关于我们',
       heading: '我们是 Jo 和 Stuart',
-      body: '2021 年，我们带着孩子 Jessiah 和 Zoe 搬到了 Lake Hawea。我们热爱户外，喜欢跑步、滑雪、山地自行车、徒步和骑马。我们很乐意与客人分享这片小小的天堂，也希望您会喜欢。',
+      body: '2021 年，我们带着孩子 Jessiah 和 Zoe 搬到了 Lake Hāwea。我们热爱户外，喜欢跑步、滑雪、山地自行车、徒步和骑马。我们很乐意与客人分享这片小小的天堂，也希望您会喜欢。',
       photoAlt: 'Jo 和 Stuart 戴着太阳镜和帽子，在湖前笑着自拍，身后是群山。',
     },
     animals: {
@@ -43,7 +43,7 @@ export const zh: PartialStrings = {
       dexter: {
         name: 'Dexter',
         kind: '新西兰 Huntaway 牧羊犬',
-        photoAlt: 'Lake Hawea 岸边的棕黑色小狗德克斯特。',
+        photoAlt: 'Lake Hāwea 岸边的棕黑色小狗德克斯特。',
         body: 'Dexter 喜欢结识新朋友，能玩上一整天，兴奋起来还会“话很多”。如果您不想和狗见面，请告诉我们，我们会把它安置在别处。',
       },
       chickens: {
@@ -67,10 +67,10 @@ export const zh: PartialStrings = {
   guide: {
     title: '住客指南 | The Nest at Twin Elms',
     description:
-      '入住 The Nest 所需的一切信息，以及我们在 Hawea 和 Wanaka 一带推荐的美食、景点、徒步和骑行去处。',
+      '入住 The Nest 所需的一切信息，以及我们在 Hāwea 和 Wānaka 一带推荐的美食、景点、徒步和骑行去处。',
     heading: '住客指南',
     intro:
-      '入住所需的一切信息，以及我们在 Hawea 和 Wanaka 一带推荐的美食、景点、徒步和骑行去处。',
+      '入住所需的一切信息，以及我们在 Hāwea 和 Wānaka 一带推荐的美食、景点、徒步和骑行去处。',
     jumpLabel: '本页内容',
     jump: { house: '房屋', highlights: '推荐', eat: '美食', shops: '购物', hikes: '徒步', biking: '骑行', skiing: '滑雪', emergency: '紧急情况' },
     links: { website: '网站', menu: '菜单', directions: '路线', doc: 'DOC 步道详情', newTab: '（在新标签页中打开）' },
@@ -110,7 +110,7 @@ export const zh: PartialStrings = {
       eyebrow: '玩什么',
       heading: '当地推荐',
       places: {
-        sauna: { body: '木柴加热的桶式桑拿，之后可以跳进 Lake Hawea 清澈的湖水中冷泳。' },
+        sauna: { body: '木柴加热的桶式桑拿，之后可以跳进 Lake Hāwea 清澈的湖水中冷泳。' },
         lavender: { body: '20 英亩（约 8 公顷）壮观的薰衣草花田，还有农场动物和展示花园。' },
         museum: { body: '世界上规模最大的私人收藏之一，展出飞机、车辆和玩具。' },
         puzzling: { body: '有迷宫、错觉房间和各种谜题，适合所有年龄。' },
@@ -120,8 +120,8 @@ export const zh: PartialStrings = {
     eat: {
       eyebrow: '吃喝',
       heading: '去哪里吃',
-      hawea: '在 Hawea',
-      wanaka: '在 Wanaka',
+      hawea: '在 Hāwea',
+      wanaka: '在 Wānaka',
       places: {
         hotel: { body: '应季菜单。', meta: ['每天供应晚餐', '周五至周日供应午餐'] },
         store: {
@@ -147,7 +147,7 @@ export const zh: PartialStrings = {
       atms: '自动取款机',
       atmsSub: 'New World Three Parks、Helwick Street、Ardmore Street',
     },
-    hikes: { eyebrow: '步行', heading: '当地徒步路线', hawea: 'Hawea', wanaka: 'Wanaka' },
+    hikes: { eyebrow: '步行', heading: '当地徒步路线', hawea: 'Hāwea', wanaka: 'Wānaka' },
     biking: {
       eyebrow: '骑行',
       heading: '山地自行车',
@@ -166,7 +166,7 @@ export const zh: PartialStrings = {
   },
   gallery: {
     title: '相册 | The Nest at Twin Elms',
-    description: 'The Nest at Twin Elms、Lake Hawea 和我们一家的照片。',
+    description: 'The Nest at Twin Elms、Lake Hāwea 和我们一家的照片。',
     heading: '相册',
     intro: '看看 The Nest、湖和我们一家。点按任意照片可查看大图。',
     filterLabel: '筛选照片',
@@ -183,7 +183,7 @@ export const zh: PartialStrings = {
       'main-bedroom': '主卧',
       chickens: '我们的母鸡',
       kitchen: '厨房',
-      'lake-winter': '冬天的 Lake Hawea',
+      'lake-winter': '冬天的 Lake Hāwea',
       'breast-hill': '从 Isthmus Peak 眺望 Corner Peak 和 Breast Hill',
       'aurora-green': '从房子看到的南极光',
     },
@@ -193,14 +193,14 @@ export const zh: PartialStrings = {
     description: '看看 The Nest at Twin Elms 的客人来自哪里，也把您的家乡加到地图上吧。',
     heading: '我们的客人来自哪里',
     intro: '每一枚金色图钉都代表一位客人的家乡。加上您的家乡，一起把地图填满吧。',
-    mapLabel: '世界地图：金色图钉标出客人的家乡，赤陶色图钉标出位于 Lake Hawea 的 The Nest',
+    mapLabel: '世界地图：金色图钉标出客人的家乡，赤陶色图钉标出位于 Lake Hāwea 的 The Nest',
     stat: '客人来自 {countries}的 {towns}',
     statEmpty: '成为第一个添加家乡的客人吧！',
     towns: { one: '{n} 个城镇', other: '{n} 个城镇' },
     countries: { one: '{n} 个国家', other: '{n} 个国家' },
     visits: { one: '到访 {n} 次', other: '到访 {n} 次' },
     legendGuests: '客人的家乡',
-    legendHome: 'The Nest, Lake Hawea',
+    legendHome: 'The Nest, Lake Hāwea',
     legendVisits: '图钉越大，到访次数越多',
     listToggle: '查看城镇列表',
     loadError: '地图暂时无法加载城镇，请稍后再试。',

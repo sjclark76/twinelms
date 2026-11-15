@@ -417,8 +417,8 @@ const config = {
   };
 
   const homeLatLng = L.latLng(config.home.lat, config.home.lng);
-  L.marker(homeLatLng, { icon: icon(true), title: 'The Nest, Lake Hawea', alt: 'The Nest, Lake Hawea', zIndexOffset: 1000 })
-    .bindPopup('<b>The Nest at Twin Elms</b>Lake Hawea, New Zealand')
+  L.marker(homeLatLng, { icon: icon(true), title: 'The Nest, Lake Hāwea', alt: 'The Nest, Lake Hāwea', zIndexOffset: 1000 })
+    .bindPopup('<b>The Nest at Twin Elms</b>Lake Hāwea, New Zealand')
     .addTo(map);
 
   const towns = new Map<string, { town: Town; marker: L.Marker }>();

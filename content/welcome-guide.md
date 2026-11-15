@@ -1,10 +1,10 @@
 **Welcome to The Nest at Twin** **Elms**
 
-We are delighted you’ve chosen to stay with us here in beautiful Lake Hawea and hope you have a wonderful time. This guide will help you make the most of your stay here but if there is anything you would like to know please ask us.
+We are delighted you’ve chosen to stay with us here in beautiful Lake Hāwea and hope you have a wonderful time. This guide will help you make the most of your stay here but if there is anything you would like to know please ask us.
 
 **About us**
 
-We are Jo and Stuart, and we moved to Lake Hawea with our children Jessiah and Zoe in 2021. We are passionate about the outdoors and love to run, ski, mountain bike, hike and ride horses.  We love sharing our slice of paradise with guests and we hope that you love it too. 
+We are Jo and Stuart, and we moved to Lake Hāwea with our children Jessiah and Zoe in 2021. We are passionate about the outdoors and love to run, ski, mountain bike, hike and ride horses.  We love sharing our slice of paradise with guests and we hope that you love it too. 
 
 **Contact Us:**
 
@@ -67,7 +67,7 @@ What goes in each bin [added from the QLDC kerbside guide; hosts to confirm]:
 
 **Local Highlights**
 
-- **The Secret Sauna – **Wood fired barrel sauna followed by a cold plunge in the clear waters of Lake Hawea. The Camp, Lake Hawea.
+- **The Secret Sauna – **Wood fired barrel sauna followed by a cold plunge in the clear waters of Lake Hāwea. The Camp, Lake Hawea.
 
 - **Wanaka Lavender Farm** – 20 acres of stunning lavender fields, farm animals and display gardens. 36 Morris Road, Wanaka.
 
@@ -76,7 +76,7 @@ What goes in each bin [added from the QLDC kerbside guide; hosts to confirm]:
 
 - **Cinema**** Paradiso** – Quirky seating, freshly baked intermission cookies and full food menu. Perfect for a rainy day. 72 Brownston Street, Wanaka.
 
-**Hawea Eateries**
+**Hāwea Eateries**
 
 - **The Hawea Hotel****, Eatery ****&**** Bar****:**** **Has a seasonal menu and is open every day  for dinner and Friday – Sunday for lunch and dinner. Take out menu offered. 
 
@@ -86,7 +86,7 @@ What goes in each bin [added from the QLDC kerbside guide; hosts to confirm]:
 
 - **The Camp**** food truck and bar: **Open summer months only. Great for evening swims and live music.
 
-**Wanaka Eateries**
+**Wānaka Eateries**
 
 - **The Pembroke Patisserie****: **Famous for its pastries! 20 Alison Avenue, Albert Town
 
@@ -133,7 +133,7 @@ Safe travels and hope to welcome you again soon,
 
 **Local Hikes**
 
-**Hawea**
+**Hāwea**
 
 - Lake Hawea Track / Gladstone Track
 
@@ -147,7 +147,7 @@ Safe travels and hope to welcome you again soon,
 
 - Mount Isthmus
 
-**Wanaka **
+**Wānaka **
 
 - Millenium Track
 
