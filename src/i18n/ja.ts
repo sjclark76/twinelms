@@ -43,6 +43,7 @@ export const ja: PartialStrings = {
       dexter: {
         name: 'Dexter',
         kind: 'ニュージーランド・ハンタウェイ',
+        photoAlt: 'Lake Hawea の岸辺にいる、茶色と黒の犬のデクスター。',
         body: 'Dexter は人が大好きで、一日中遊びます。興奮するとよく吠えておしゃべりになります。犬が苦手な方はお知らせください。別の場所に入れておきます。',
       },
       chickens: {

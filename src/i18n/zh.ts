@@ -43,6 +43,7 @@ export const zh: PartialStrings = {
       dexter: {
         name: 'Dexter',
         kind: '新西兰 Huntaway 牧羊犬',
+        photoAlt: 'Lake Hawea 岸边的棕黑色小狗德克斯特。',
         body: 'Dexter 喜欢结识新朋友，能玩上一整天，兴奋起来还会“话很多”。如果您不想和狗见面，请告诉我们，我们会把它安置在别处。',
       },
       chickens: {

@@ -47,6 +47,7 @@ export const en = {
       dexter: {
         name: 'Dexter',
         kind: 'New Zealand Huntaway',
+        photoAlt: 'Dexter, a brown and black dog, on the shore of Lake Hawea.',
         body: 'Dexter loves to meet people and will play all day, and he can get talkative when he’s excited. If you’d rather not meet a dog, let us know and we’ll put him away.',
       },
       chickens: {

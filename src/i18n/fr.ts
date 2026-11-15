@@ -43,6 +43,7 @@ export const fr: PartialStrings = {
       dexter: {
         name: 'Dexter',
         kind: 'Huntaway néo-zélandais',
+        photoAlt: 'Dexter, un chien brun et noir, sur la rive du Lake Hawea.',
         body: 'Dexter adore rencontrer du monde et peut jouer toute la journée. Quand il est excité, il devient bavard. Si vous préférez ne pas croiser de chien, dites-le-nous et nous le garderons à l’écart.',
       },
       chickens: {
