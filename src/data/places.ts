@@ -33,7 +33,7 @@ export const highlights: Place[] = [
     website: 'https://www.thesecretsauna.nz/hawea', map: 'The Secret Sauna, 1208 Makarora-Lake Hawea Road, Lake Hawea',
   },
   {
-    id: 'lavender', name: 'Wanaka Lavender Farm', address: '36 Morris Road, Wanaka', tags: ['outdoors'],
+    id: 'lavender', name: 'Wānaka Lavender Farm', address: '36 Morris Road, Wanaka', tags: ['outdoors'],
     website: 'https://www.wanakalavenderfarm.com/',
   },
   {
@@ -52,11 +52,11 @@ export const highlights: Place[] = [
 
 export const eateriesHawea: Place[] = [
   {
-    id: 'hotel', name: 'The Hawea Hotel, Eatery and Bar', tags: ['dinner', 'takeOut'],
+    id: 'hotel', name: 'The Hāwea Hotel, Eatery and Bar', tags: ['dinner', 'takeOut'],
     menu: 'https://haweahotel.nz/eat/', map: 'Hawea Hotel, 1 Capell Avenue, Lake Hawea',
   },
   {
-    id: 'store', name: 'The Hawea Store and Kitchen', tags: ['cafe', 'takeOut'],
+    id: 'store', name: 'The Hāwea Store and Kitchen', tags: ['cafe', 'takeOut'],
     website: 'https://www.haweastoreandkitchen.nz/', map: 'Hawea Store and Kitchen, 33 Capell Avenue, Lake Hawea',
   },
   {
@@ -95,8 +95,8 @@ export interface Trail {
 const DOC = 'https://www.doc.govt.nz/parks-and-recreation/places-to-go/otago/places/';
 
 export const hikesHawea: Trail[] = [
-  { name: 'Lake Hawea Track / Gladstone Track' },
-  { name: 'Hawea River Track', doc: DOC + 'wanaka-area/things-to-do/hawea-river-track/' },
+  { name: 'Lake Hāwea Track / Gladstone Track' },
+  { name: 'Hāwea River Track', doc: DOC + 'wanaka-area/things-to-do/hawea-river-track/' },
   { name: 'Timaru Creek Track', doc: DOC + 'hawea-conservation-park/things-to-do/timaru-river-tracks' },
   { name: 'Breast Hill Track', doc: DOC + 'hawea-conservation-park/things-to-do/breast-hill-track/' },
   { name: 'Grandview Mountain', doc: DOC + 'lake-hawea-township-area/things-to-do/grandview-mountain-track/' },
@@ -107,7 +107,7 @@ export const hikesWanaka: Trail[] = [
   { name: 'Roy’s Peak', doc: DOC + 'wanaka-area/things-to-do/roys-peak-track/' },
 ];
 export const bikeCrossCountry = [
-  'Gladstone Track', 'Hawea River Track', 'Dean’s Bank', 'Hikuwai Loop', 'Upper Clutha River Track',
+  'Gladstone Track', 'Hāwea River Track', 'Dean’s Bank', 'Hikuwai Loop', 'Upper Clutha River Track',
   'Newcastle Track', 'Millennium Track',
 ];
 export const bikeEnduro = ['Sticky Forest', 'Kirimoko Trails', 'Bike Glendhu', 'Cardrona Bike Park'];
