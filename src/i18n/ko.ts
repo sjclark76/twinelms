@@ -188,6 +188,9 @@ export const ko: PartialStrings = {
       'lake-winter': '겨울의 Lake Hawea',
       garden: '정원',
       'breast-hill': 'Isthmus Peak에서 바라본 Corner Peak와 Breast Hill',
+      'aurora-green': '집에서 본 남반구 오로라',
+      'aurora-valley': '계곡 위의 남반구 오로라',
+      'aurora-pink': '목초지 위의 분홍빛 노을 같은 오로라',
     },
   },
   map: {

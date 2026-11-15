@@ -23,4 +23,7 @@ export const photos: GalleryPhoto[] = [
   { id: 'lake-winter', category: 'lake', tone: 'lake-tint' },
   { id: 'garden', category: 'house', tone: 'fern' },
   { id: 'breast-hill', category: 'out', tone: 'lake-mist' },
+  { id: 'aurora-green', category: 'out', tone: 'lake-mist' },
+  { id: 'aurora-valley', category: 'out', tone: 'lake-mist' },
+  { id: 'aurora-pink', category: 'out', tone: 'lake-mist' },
 ];
