@@ -92,6 +92,14 @@ export const en = {
       smoking: 'Please no smoking inside',
       bins: 'Rubbish and recycling',
       binsSub: 'Red: general waste. Yellow: recycling. Blue: glass.',
+      binRules: {
+        heading: 'What goes in each bin',
+        intro: 'If you’re not sure, put it in the red bin.',
+        red: { name: 'Red bin: rubbish', body: 'Anything that can’t be recycled, such as soft plastics and plastic bags, takeaway coffee cups, drink cartons, lids and nappies.' },
+        yellow: { name: 'Yellow bin: recycling', body: 'Clean cans, paper and cardboard, and plastic bottles, trays and containers marked ♳, ♴ or ♷. Rinse them first, and leave out lids and greasy pizza boxes.' },
+        blue: { name: 'Blue bin: glass', body: 'Clean glass bottles and jars only. Lids, drinking glasses, window glass and crockery go in the red bin.' },
+        more: 'Council recycling guide',
+      },
       leaveHeading: 'Before you leave',
       leaveIntro: 'We’d appreciate it if you could:',
       leave: [

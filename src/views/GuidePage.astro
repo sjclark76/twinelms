@@ -61,6 +61,21 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
             <li><Icon name="bin" /><div><b>{t.house.bins}</b><span>{t.house.binsSub}</span></div></li>
           </ul>
         </div>
+        <div class="nest-card bins">
+          <h3 class="heading-3">{t.house.binRules.heading}</h3>
+          <p class="muted">{t.house.binRules.intro}</p>
+          <dl>
+            <dt>{t.house.binRules.red.name}</dt>
+            <dd>{t.house.binRules.red.body}</dd>
+            <dt>{t.house.binRules.yellow.name}</dt>
+            <dd>{t.house.binRules.yellow.body}</dd>
+            <dt>{t.house.binRules.blue.name}</dt>
+            <dd>{t.house.binRules.blue.body}</dd>
+          </dl>
+          <a href="https://www.qldc.govt.nz/services/rubbish-recycling/how-we-recycle-in-the-queenstown-lakes-district" target="_blank" rel="noopener">
+            {t.house.binRules.more}<span class="nest-sr-only"> {t.links.newTab}</span>
+          </a>
+        </div>
         <div class="nest-card leave">
           <h3 class="heading-3">{t.house.leaveHeading}</h3>
           <p class="muted">{t.house.leaveIntro}</p>
@@ -195,6 +210,28 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
     align-items: start;
   }
   .nest-info :global(a) {
+    color: var(--lake);
+    font-weight: 600;
+    text-underline-offset: 3px;
+  }
+  .bins {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .bins h3,
+  .bins p,
+  .bins dl {
+    margin: 0;
+  }
+  .bins dt {
+    font-weight: 600;
+  }
+  .bins dd {
+    margin: 0 0 var(--space-3);
+  }
+  .bins a {
     color: var(--lake);
     font-weight: 600;
     text-underline-offset: 3px;

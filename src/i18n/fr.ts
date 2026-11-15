@@ -88,6 +88,14 @@ export const fr: PartialStrings = {
       smoking: 'Merci de ne pas fumer à l’intérieur',
       bins: 'Déchets et recyclage',
       binsSub: 'Rouge : déchets ordinaires. Jaune : recyclage. Bleu : verre.',
+      binRules: {
+        heading: 'Ce qui va dans chaque bac',
+        intro: 'En cas de doute, mettez-le dans le bac rouge.',
+        red: { name: 'Bac rouge : déchets', body: 'Tout ce qui ne se recycle pas, comme les plastiques souples et sacs en plastique, les gobelets à café à emporter, les briques de boisson, les couvercles et les couches.' },
+        yellow: { name: 'Bac jaune : recyclage', body: 'Boîtes de conserve et canettes propres, papier et carton, et bouteilles, barquettes et récipients en plastique marqués ♳, ♴ ou ♷. Rincez-les d’abord, et laissez de côté les couvercles et les cartons à pizza gras.' },
+        blue: { name: 'Bac bleu : verre', body: 'Uniquement des bouteilles et des bocaux en verre propres. Les couvercles, les verres à boire, le verre de fenêtre et la vaisselle vont dans le bac rouge.' },
+        more: 'Guide du recyclage de la commune',
+      },
       leaveHeading: 'Avant de partir',
       leaveIntro: 'Nous vous serions reconnaissants de :',
       leave: [

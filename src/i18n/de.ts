@@ -88,6 +88,14 @@ export const de: PartialStrings = {
       smoking: 'Bitte nicht im Haus rauchen',
       bins: 'Müll und Recycling',
       binsSub: 'Rot: Restmüll. Gelb: Recycling. Blau: Glas.',
+      binRules: {
+        heading: 'Was in welche Tonne gehört',
+        intro: 'Wenn Sie unsicher sind, werfen Sie es in die rote Tonne.',
+        red: { name: 'Rote Tonne: Restmüll', body: 'Alles, was nicht recycelt werden kann, zum Beispiel weiche Kunststofffolien und Plastiktüten, Coffee-to-go-Becher, Getränkekartons, Deckel und Windeln.' },
+        yellow: { name: 'Gelbe Tonne: Recycling', body: 'Saubere Dosen, Papier und Pappe sowie Plastikflaschen, -schalen und -behälter mit der Kennzeichnung ♳, ♴ oder ♷. Bitte vorher ausspülen; Deckel und fettige Pizzakartons gehören nicht hinein.' },
+        blue: { name: 'Blaue Tonne: Glas', body: 'Nur saubere Glasflaschen und Gläser. Deckel, Trinkgläser, Fensterglas und Geschirr gehören in die rote Tonne.' },
+        more: 'Recycling-Ratgeber der Gemeinde',
+      },
       leaveHeading: 'Vor der Abreise',
       leaveIntro: 'Wir würden uns freuen, wenn Sie:',
       leave: [

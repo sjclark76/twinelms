@@ -59,6 +59,12 @@ Please use the bins provided:
 
 - Blue: Glass
 
+What goes in each bin [added from the QLDC kerbside guide; hosts to confirm]:
+
+- Red (rubbish): anything that can't be recycled, such as soft plastics and plastic bags, takeaway coffee cups, drink cartons, lids and nappies. If unsure, use the red bin.
+- Yellow (recycling): clean cans, paper and cardboard, and plastic bottles, trays and containers marked 1, 2 or 5. Rinse first; leave out lids and greasy pizza boxes.
+- Blue (glass): clean glass bottles and jars only. Lids, drinking glasses, window glass and crockery go in the red bin.
+
 **Local Highlights**
 
 - **The Secret Sauna – **Wood fired barrel sauna followed by a cold plunge in the clear waters of Lake Hawea. The Camp, Lake Hawea.
