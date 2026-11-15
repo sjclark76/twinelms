@@ -88,6 +88,14 @@ export const es: PartialStrings = {
       smoking: 'Por favor, no fume dentro de la casa',
       bins: 'Basura y reciclaje',
       binsSub: 'Rojo: residuos generales. Amarillo: reciclaje. Azul: vidrio.',
+      binRules: {
+        heading: 'Qué va en cada contenedor',
+        intro: 'Si no está seguro, échelo al contenedor rojo.',
+        red: { name: 'Contenedor rojo: basura', body: 'Todo lo que no se pueda reciclar, como plásticos blandos y bolsas de plástico, vasos de café para llevar, envases de bebidas de cartón, tapas y pañales.' },
+        yellow: { name: 'Contenedor amarillo: reciclaje', body: 'Latas limpias, papel y cartón, y botellas, bandejas y envases de plástico marcados con ♳, ♴ o ♷. Enjuáguelos antes y deje fuera las tapas y las cajas de pizza con grasa.' },
+        blue: { name: 'Contenedor azul: vidrio', body: 'Solo botellas y frascos de vidrio limpios. Las tapas, los vasos, el vidrio de ventana y la vajilla van al contenedor rojo.' },
+        more: 'Guía de reciclaje del municipio',
+      },
       leaveHeading: 'Antes de irse',
       leaveIntro: 'Le agradeceremos que:',
       leave: [

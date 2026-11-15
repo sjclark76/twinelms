@@ -88,6 +88,14 @@ export const nl: PartialStrings = {
       smoking: 'Niet roken in huis, alsjeblieft',
       bins: 'Afval en recycling',
       binsSub: 'Rood: restafval. Geel: recycling. Blauw: glas.',
+      binRules: {
+        heading: 'Wat in welke bak hoort',
+        intro: 'Twijfel je? Gooi het dan in de rode bak.',
+        red: { name: 'Rode bak: restafval', body: 'Alles wat niet gerecycled kan worden, zoals zachte plastics en plastic zakken, koffiebekers voor onderweg, drankenkartons, deksels en luiers.' },
+        yellow: { name: 'Gele bak: recycling', body: 'Schone blikken, papier en karton, en plastic flessen, bakjes en verpakkingen met het teken ♳, ♴ of ♷. Spoel ze eerst om, en laat deksels en vette pizzadozen weg.' },
+        blue: { name: 'Blauwe bak: glas', body: 'Alleen schone glazen flessen en potten. Deksels, drinkglazen, vensterglas en servies horen in de rode bak.' },
+        more: 'Recyclinggids van de gemeente',
+      },
       leaveHeading: 'Voor je vertrekt',
       leaveIntro: 'We zouden het fijn vinden als je:',
       leave: [
