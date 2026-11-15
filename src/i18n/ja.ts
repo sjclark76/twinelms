@@ -189,8 +189,6 @@ export const ja: PartialStrings = {
       garden: '庭',
       'breast-hill': 'Isthmus Peak から望む Corner Peak と Breast Hill',
       'aurora-green': '家から見たサザンライト（南極光）',
-      'aurora-valley': '谷の上に広がるサザンライト',
-      'aurora-pink': '牧草地の上のピンク色の輝き',
     },
   },
   map: {

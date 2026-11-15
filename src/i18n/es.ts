@@ -189,8 +189,6 @@ export const es: PartialStrings = {
       garden: 'El jardín',
       'breast-hill': 'Corner Peak y Breast Hill, vistos desde Isthmus Peak',
       'aurora-green': 'Aurora austral desde la casa',
-      'aurora-valley': 'Aurora austral sobre el valle',
-      'aurora-pink': 'Un resplandor rosa sobre el prado',
     },
   },
   map: {
