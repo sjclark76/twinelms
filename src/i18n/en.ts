@@ -193,8 +193,6 @@ export const en = {
       garden: 'The garden',
       'breast-hill': 'Corner Peak and Breast Hill from Isthmus Peak',
       'aurora-green': 'Southern lights from the house',
-      'aurora-valley': 'Southern lights over the valley',
-      'aurora-pink': 'A pink glow over the paddock',
     } as Record<string, string>,
   },
   map: {
