@@ -237,7 +237,7 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
   }
   .bin {
     border-radius: var(--radius-sm);
-    border-left: 6px solid var(--bin-stripe);
+    border-left: 4px solid var(--bin-stripe);
     background: var(--bin-tint);
     padding: 12px 14px;
   }
@@ -251,16 +251,16 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
     margin: 0;
   }
   .bin-red {
-    --bin-tint: var(--oat);
-    --bin-stripe: var(--clay);
+    --bin-tint: var(--bin-red-tint);
+    --bin-stripe: var(--bin-red);
   }
   .bin-yellow {
-    --bin-tint: var(--tussock);
-    --bin-stripe: var(--schist);
+    --bin-tint: var(--bin-yellow-tint);
+    --bin-stripe: var(--bin-yellow);
   }
   .bin-blue {
-    --bin-tint: var(--lake-tint);
-    --bin-stripe: var(--lake);
+    --bin-tint: var(--bin-blue-tint);
+    --bin-stripe: var(--bin-blue);
   }
   .bins a {
     color: var(--lake);
