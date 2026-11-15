@@ -6,13 +6,14 @@ import { ja } from './ja';
 import { ko } from './ko';
 import { fr } from './fr';
 import { es } from './es';
+import { nl } from './nl';
 
 export type Strings = typeof en;
 export type PartialStrings = DeepPartial<Strings>;
 
 type DeepPartial<T> = { [K in keyof T]?: T[K] extends Record<string, unknown> ? DeepPartial<T[K]> : T[K] };
 
-const translations: Record<Locale, PartialStrings> = { en, zh, de, ja, ko, fr, es };
+const translations: Record<Locale, PartialStrings> = { en, zh, de, ja, ko, fr, es, nl };
 
 function merge<T>(base: T, over: DeepPartial<T> | undefined): T {
   if (!over) return base;

@@ -1,4 +1,4 @@
-export type Locale = 'en' | 'zh' | 'de' | 'ja' | 'ko' | 'fr' | 'es';
+export type Locale = 'en' | 'zh' | 'de' | 'ja' | 'ko' | 'fr' | 'es' | 'nl';
 
 interface LocaleInfo {
   /** URL prefix; English is served from the root. */
@@ -19,6 +19,7 @@ export const LOCALES: Record<Locale, LocaleInfo> = {
   ko: { prefix: 'ko', htmlLang: 'ko', chip: '한국어', name: '한국어' },
   fr: { prefix: 'fr', htmlLang: 'fr', chip: 'FR', name: 'Français' },
   es: { prefix: 'es', htmlLang: 'es', chip: 'ES', name: 'Español' },
+  nl: { prefix: 'nl', htmlLang: 'nl', chip: 'NL', name: 'Nederlands' },
 };
 
 export const DEFAULT_LOCALE: Locale = 'en';
@@ -34,7 +35,7 @@ export const PREFIXED_LOCALES = ALL_LOCALES.filter((l) => l !== DEFAULT_LOCALE);
  * Every locale has routes, but one that isn't listed here is hidden and marked noindex.
  * Add each language here once its translation is done (issue #9).
  */
-export const ENABLED_LOCALES: Locale[] = ['en', 'zh', 'de', 'ja', 'ko', 'fr', 'es'];
+export const ENABLED_LOCALES: Locale[] = ['en', 'zh', 'de', 'ja', 'ko', 'fr', 'es', 'nl'];
 
 /** Remove a locale prefix from a pathname: "/de/guide/" -> "/guide/". */
 export function stripLocale(pathname: string): string {
