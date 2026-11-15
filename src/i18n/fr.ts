@@ -40,6 +40,8 @@ export const fr: PartialStrings = {
       eyebrow: 'Nos animaux',
       heading: 'Faites connaissance avec la famille',
       artAlt: 'Un panneau peint à la main où l’on lit The Nest at Twin Elms, avec Dexter le chien assis dans l’herbe parmi les poules et deux canards.',
+      hostsAlt: 'Jo et Stuart sourient sur un selfie devant un lac, avec lunettes de soleil et chapeaux, des montagnes en arrière-plan.',
+      hostsCaption: 'Vos hôtes, Jo et Stuart',
       dexter: {
         name: 'Dexter',
         kind: 'Huntaway néo-zélandais',
