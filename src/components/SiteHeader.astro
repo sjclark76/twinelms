@@ -25,7 +25,15 @@ const links = [
     <a class="nest-wordmark" href={localePath(locale, '/')}>
       The Nest at Twin Elms<small>{t.wordmarkSub}</small>
     </a>
-    <nav aria-label={t.mainNav}>
+    <button class="nest-menu-btn" type="button" aria-expanded="false" aria-controls="nest-main-nav">
+      <svg class="nest-menu-icon" aria-hidden="true" viewBox="0 0 24 24">
+        <path class="nest-menu-open" d="M4 7h16M4 12h16M4 17h16" />
+        <path class="nest-menu-close" d="M6 6l12 12M18 6L6 18" />
+      </svg>
+      <span>{t.nav.menu}</span>
+    </button>
+    <LanguageSwitcher locale={locale} pathname={pathname} />
+    <nav id="nest-main-nav" aria-label={t.mainNav}>
       <ul class="nest-nav">
         {
           links.map((l) => (
@@ -38,6 +46,27 @@ const links = [
         }
       </ul>
     </nav>
-    <LanguageSwitcher locale={locale} pathname={pathname} />
   </div>
 </header>
+
+<script is:inline>
+  // Runs before first paint so phones never flash the open menu. Without JavaScript the links simply stay visible.
+  (function () {
+    var header = document.currentScript.previousElementSibling;
+    var btn = header.querySelector('.nest-menu-btn');
+    header.classList.add('has-menu');
+    var set = function (open) {
+      header.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    };
+    btn.addEventListener('click', function () {
+      set(btn.getAttribute('aria-expanded') !== 'true');
+    });
+    header.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+        set(false);
+        btn.focus();
+      }
+    });
+  })();
+</script>

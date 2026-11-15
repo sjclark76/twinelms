@@ -4,7 +4,7 @@ export const ko: PartialStrings = {
   skipToContent: '본문으로 건너뛰기',
   wordmarkSub: 'Lake Hawea, New Zealand',
   mainNav: '주 메뉴',
-  nav: { home: '홈', guide: '게스트 가이드', map: '방문자 지도', gallery: '갤러리' },
+  nav: { home: '홈', guide: '게스트 가이드', map: '방문자 지도', gallery: '갤러리', menu: '메뉴' },
   language: '언어',
   footer: {
     contact: '연락처',

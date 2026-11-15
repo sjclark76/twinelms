@@ -61,16 +61,33 @@
 .nest-nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:var(--radius-pill);font:600 15px/20px var(--font-sans);color:var(--ink);text-decoration:none}
 .nest-nav a:hover{background:var(--lake-mist)}
 .nest-nav a[aria-current="page"]{background:var(--white)}
-.nest-nav a:focus-visible,.nest-lang a:focus-visible,.nest-lang-select:focus-visible,.nest-wordmark:focus-visible{outline:3px solid var(--lake);outline-offset:2px}
+.nest-nav a:focus-visible,.nest-lang a:focus-visible,.nest-wordmark:focus-visible{outline:3px solid var(--lake);outline-offset:2px}
 
-/* Phones: wordmark and language select share the top row; the four links sit below, evenly spaced */
+/* Menu button: only shown on phones, and only once the page script has run (header.has-menu) */
+.nest-menu-btn{display:none;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:var(--radius-pill);border:1px solid var(--slate);background:var(--white);font:600 15px/20px var(--font-sans);color:var(--ink);cursor:pointer}
+.nest-menu-btn:focus-visible{outline:3px solid var(--lake);outline-offset:2px}
+.nest-menu-icon{width:22px;height:22px;fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round}
+.nest-menu-close,.nest-menu-btn[aria-expanded="true"] .nest-menu-open{display:none}
+.nest-menu-btn[aria-expanded="true"] .nest-menu-close{display:inline}
+.nest-header-inner nav{order:1}
+.nest-lang-switch{order:2}
+
+/* Phones: wordmark and Menu button share the top row, the language codes sit below, the open menu drops under them */
 @media (max-width:639px){
 .nest-header-inner{display:grid;grid-template-columns:1fr auto;align-items:start;padding:var(--space-4)}
-.nest-header-inner nav{grid-column:1/-1;grid-row:2}
+.nest-header-inner .nest-lang-switch{grid-column:1/-1;grid-row:2}
+.nest-header-inner nav{grid-column:1/-1;grid-row:3}
 .nest-wordmark{font-size:22px;line-height:26px;text-wrap:balance}
 .nest-nav{flex-wrap:nowrap;justify-content:space-between;gap:0}
 .nest-nav a{padding:0 clamp(4px,2.5vw,12px);font-size:14px;white-space:nowrap}
-.nest-lang-select{padding:0 38px 0 16px;font-size:14px}
+.has-menu .nest-menu-btn{display:inline-flex}
+.has-menu nav{display:none}
+.has-menu.is-open nav{display:block}
+.has-menu .nest-nav{flex-direction:column;gap:4px;padding-top:var(--space-2);border-top:1px solid var(--line)}
+.has-menu .nest-nav a{display:flex;font-size:16px;padding:0 16px;min-height:48px}
+.nest-lang{flex-wrap:nowrap;gap:4px}
+.nest-lang li{flex:1 1 0;min-width:0}
+.nest-lang a{width:100%;justify-content:center;min-height:44px;padding:0;font-size:13px}
 }
 
 /* Language switcher */
@@ -78,7 +95,6 @@
 .nest-lang a{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border-radius:var(--radius-pill);font:600 14px/18px var(--font-sans);color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--white)}
 .nest-lang a:hover{background:var(--mist)}
 .nest-lang a[aria-current="true"]{background:var(--lake);border-color:var(--lake);color:var(--white)}
-.nest-lang-select{min-height:44px;padding:0 40px 0 14px;border-radius:var(--radius-pill);border:1px solid var(--slate);background:var(--white);font:600 15px/20px var(--font-sans);color:var(--ink);appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat}
 
 /* Info list */
 .nest-info{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
@@ -113,10 +129,6 @@
 .nest-field .nest-help{font-size:14px;line-height:20px;color:var(--slate)}
 .nest-input{min-height:44px;padding:0 14px;border-radius:var(--radius-sm);border:1px solid var(--slate);background:var(--white);font:400 16px/24px var(--font-sans);color:var(--ink);width:100%}
 .nest-input:focus{outline:2px solid var(--lake);outline-offset:1px;border-color:var(--lake)}
-
-/* Language switcher: chips on wide screens, select on phones */
-@media (max-width:639px){.nest-lang-switch .nest-lang{display:none}}
-@media (min-width:640px){.nest-lang-switch .nest-lang-select{display:none}}
 
 /* Site footer */
 .nest-footer{background:var(--beech);color:var(--white);margin-top:calc(var(--space-10) + var(--space-6))}
