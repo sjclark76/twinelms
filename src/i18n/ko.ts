@@ -179,7 +179,7 @@ export const ko: PartialStrings = {
       kitchen: '주방',
       'lake-winter': '겨울의 Lake Hawea',
       garden: '정원',
-      'breast-hill': 'Breast Hill에서 본 풍경',
+      'breast-hill': 'Isthmus Peak에서 바라본 Corner Peak와 Breast Hill',
     },
   },
   map: {

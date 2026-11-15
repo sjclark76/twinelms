@@ -183,7 +183,7 @@ export const en = {
       kitchen: 'The kitchen',
       'lake-winter': 'Lake Hawea in winter',
       garden: 'The garden',
-      'breast-hill': 'Breast Hill view',
+      'breast-hill': 'Corner Peak and Breast Hill from Isthmus Peak',
     } as Record<string, string>,
   },
   map: {

@@ -179,7 +179,7 @@ export const de: PartialStrings = {
       kitchen: 'Die Küche',
       'lake-winter': 'Lake Hawea im Winter',
       garden: 'Der Garten',
-      'breast-hill': 'Aussicht vom Breast Hill',
+      'breast-hill': 'Corner Peak und Breast Hill, vom Isthmus Peak aus gesehen',
     },
   },
   map: {
