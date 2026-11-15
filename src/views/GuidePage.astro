@@ -64,14 +64,20 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
         <div class="nest-card bins">
           <h3 class="heading-3">{t.house.binRules.heading}</h3>
           <p class="muted">{t.house.binRules.intro}</p>
-          <dl>
-            <dt>{t.house.binRules.red.name}</dt>
-            <dd>{t.house.binRules.red.body}</dd>
-            <dt>{t.house.binRules.yellow.name}</dt>
-            <dd>{t.house.binRules.yellow.body}</dd>
-            <dt>{t.house.binRules.blue.name}</dt>
-            <dd>{t.house.binRules.blue.body}</dd>
-          </dl>
+          <div class="bin-list">
+            <div class="bin bin-red">
+              <h4>{t.house.binRules.red.name}</h4>
+              <p>{t.house.binRules.red.body}</p>
+            </div>
+            <div class="bin bin-yellow">
+              <h4>{t.house.binRules.yellow.name}</h4>
+              <p>{t.house.binRules.yellow.body}</p>
+            </div>
+            <div class="bin bin-blue">
+              <h4>{t.house.binRules.blue.name}</h4>
+              <p>{t.house.binRules.blue.body}</p>
+            </div>
+          </div>
           <a href="https://www.qldc.govt.nz/services/rubbish-recycling/how-we-recycle-in-the-queenstown-lakes-district" target="_blank" rel="noopener">
             {t.house.binRules.more}<span class="nest-sr-only"> {t.links.newTab}</span>
           </a>
@@ -221,15 +227,40 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
     gap: 12px;
   }
   .bins h3,
-  .bins p,
-  .bins dl {
+  .bins > p {
     margin: 0;
   }
-  .bins dt {
-    font-weight: 600;
+  .bin-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
   }
-  .bins dd {
-    margin: 0 0 var(--space-3);
+  .bin {
+    border-radius: var(--radius-sm);
+    border-left: 6px solid var(--bin-stripe);
+    background: var(--bin-tint);
+    padding: 12px 14px;
+  }
+  .bin h4 {
+    margin: 0 0 4px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .bin p {
+    margin: 0;
+  }
+  .bin-red {
+    --bin-tint: var(--oat);
+    --bin-stripe: var(--clay);
+  }
+  .bin-yellow {
+    --bin-tint: var(--tussock);
+    --bin-stripe: var(--schist);
+  }
+  .bin-blue {
+    --bin-tint: var(--lake-tint);
+    --bin-stripe: var(--lake);
   }
   .bins a {
     color: var(--lake);
