@@ -49,6 +49,7 @@ export const zh: PartialStrings = {
       chickens: {
         name: '我们的母鸡',
         kind: 'Duchess、Zelda、Thelma 和 Louise',
+        photoAlt: '鸡舍前的两只母鸡：一只毛茸茸的白色，一只黑金色。',
         body: '我们的四只母鸡在院子里自由活动。它们习惯了有人，如果您开着门，它们会试着走进屋里！',
       },
       ducks: {

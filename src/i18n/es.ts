@@ -49,6 +49,7 @@ export const es: PartialStrings = {
       chickens: {
         name: 'Las gallinas',
         kind: 'Duchess, Zelda, Thelma y Louise',
+        photoAlt: 'Dos de las gallinas: una blanca y esponjosa y otra negra y dorada, delante del gallinero.',
         body: 'Nuestras cuatro gallinas andan sueltas por la propiedad. Están acostumbradas a la gente y intentarán entrar en la casa si deja la puerta abierta.',
       },
       ducks: {

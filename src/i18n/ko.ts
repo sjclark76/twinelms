@@ -49,6 +49,7 @@ export const ko: PartialStrings = {
       chickens: {
         name: '닭들',
         kind: 'Duchess, Zelda, Thelma, Louise',
+        photoAlt: '닭장 앞에 있는 닭 두 마리. 보송보송한 흰 닭과 검정과 금빛이 섞인 닭.',
         body: '닭 네 마리는 마당을 자유롭게 돌아다녀요. 사람에게 익숙해서 문을 열어 두면 집 안으로 들어오려고 해요!',
       },
       ducks: {

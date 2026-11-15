@@ -49,6 +49,7 @@ export const nl: PartialStrings = {
       chickens: {
         name: 'De kippen',
         kind: 'Duchess, Zelda, Thelma en Louise',
+        photoAlt: 'Twee van de kippen: een pluizige witte en een zwart met gouden, voor het kippenhok.',
         body: 'Onze vier kippen lopen vrij over het terrein. Ze zijn aan mensen gewend en proberen naar binnen te komen als de deur openstaat!',
       },
       ducks: {
