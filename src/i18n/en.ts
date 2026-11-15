@@ -233,7 +233,6 @@ export const en = {
     how: [
       { title: 'Only your town is shown', body: 'We never show your name, and we don’t store anything else about you.' },
       { title: 'One pin per town', body: 'If several guests share a home town, its pin shows how many visits.' },
-      { title: 'Kept tidy', body: 'A quick automatic check from Cloudflare keeps robots out, so the map stays spam-free.' },
     ],
   },
   notFound: {

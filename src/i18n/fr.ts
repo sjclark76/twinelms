@@ -228,7 +228,6 @@ export const fr: PartialStrings = {
     how: [
       { title: 'Seule votre ville est affichée', body: 'Nous n’affichons jamais votre nom et ne conservons aucune autre information sur vous.' },
       { title: 'Une épingle par ville', body: 'Si plusieurs hôtes viennent de la même ville, son épingle indique le nombre de visites.' },
-      { title: 'Une carte bien tenue', body: 'Une vérification automatique rapide de Cloudflare bloque les robots : la carte reste ainsi sans spam.' },
     ],
   },
   notFound: {

@@ -228,7 +228,6 @@ export const es: PartialStrings = {
     how: [
       { title: 'Solo se muestra su ciudad', body: 'Nunca mostramos su nombre ni guardamos ningún otro dato sobre usted.' },
       { title: 'Una chincheta por ciudad', body: 'Si varios huéspedes son de la misma ciudad, su chincheta muestra cuántas visitas hay.' },
-      { title: 'Un mapa ordenado', body: 'Una comprobación automática rápida de Cloudflare impide el paso a los robots, así el mapa no tiene spam.' },
     ],
   },
   notFound: {
