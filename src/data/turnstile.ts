@@ -7,5 +7,5 @@ export const TURNSTILE_SITE_KEY = '0x4AAAAAAF_EQ0xnoYD8iGFf';
 
 /** Turnstile's language codes for our locales. */
 export const turnstileLanguage: Record<string, string> = {
-  en: 'en', zh: 'zh-cn', de: 'de', ja: 'ja', ko: 'ko', fr: 'fr', es: 'es', nl: 'nl',
+  en: 'en', zh: 'zh-cn', de: 'de', ja: 'ja', ko: 'ko', fr: 'fr', es: 'es', nl: 'nl', it: 'it',
 };
