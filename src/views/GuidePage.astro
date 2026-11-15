@@ -128,9 +128,33 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
 
     <GuideSection id="hikes" eyebrow={t.hikes.eyebrow} heading={t.hikes.heading}>
       <h3 class="heading-2 group">{t.hikes.hawea}</h3>
-      <ul class="trails">{hikesHawea.map((n) => <li class="nest-card"><span class="nest-tag nest-tag-hike">{t.tags.hike}</span><p>{n}</p></li>)}</ul>
+      <ul class="trails">
+        {hikesHawea.map((h) => (
+          <li class="nest-card">
+            <span class="nest-tag nest-tag-hike">{t.tags.hike}</span>
+            <p>{h.name}</p>
+            {h.doc && (
+              <a class="trail-link" href={h.doc} target="_blank" rel="noopener">
+                {t.links.doc}<span class="nest-sr-only"> {t.links.newTab}</span>
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
       <h3 class="heading-2 group">{t.hikes.wanaka}</h3>
-      <ul class="trails">{hikesWanaka.map((n) => <li class="nest-card"><span class="nest-tag nest-tag-hike">{t.tags.hike}</span><p>{n}</p></li>)}</ul>
+      <ul class="trails">
+        {hikesWanaka.map((h) => (
+          <li class="nest-card">
+            <span class="nest-tag nest-tag-hike">{t.tags.hike}</span>
+            <p>{h.name}</p>
+            {h.doc && (
+              <a class="trail-link" href={h.doc} target="_blank" rel="noopener">
+                {t.links.doc}<span class="nest-sr-only"> {t.links.newTab}</span>
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
     </GuideSection>
 
     <GuideSection id="biking" eyebrow={t.biking.eyebrow} heading={t.biking.heading}>
@@ -308,6 +332,19 @@ const metaFor = (p: Place, text: PlaceText) => [...(p.address ? [p.address] : []
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-2);
+  }
+  .trail-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--lake);
+    font-weight: 600;
+    text-underline-offset: 3px;
+  }
+  .trail-link:focus-visible {
+    outline: 3px solid var(--lake);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
   }
   .trails p {
     margin: 0;

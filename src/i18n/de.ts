@@ -72,7 +72,7 @@ export const de: PartialStrings = {
       'Alles, was Sie für Ihren Aufenthalt brauchen, dazu unsere Lieblingsorte zum Essen, Entdecken, Wandern und Radfahren rund um Hawea und Wanaka.',
     jumpLabel: 'Auf dieser Seite',
     jump: { house: 'Haus', highlights: 'Highlights', eat: 'Essen', shops: 'Einkaufen', hikes: 'Wandern', biking: 'Radfahren', skiing: 'Skifahren', emergency: 'Notfall' },
-    links: { website: 'Website', menu: 'Speisekarte', directions: 'Route', newTab: '(öffnet in neuem Tab)' },
+    links: { website: 'Website', menu: 'Speisekarte', directions: 'Route', doc: 'DOC-Infos zur Wanderung', newTab: '(öffnet in neuem Tab)' },
     tags: {
       lake: 'See', outdoors: 'Natur', rainyDay: 'Regentag', dinner: 'Abendessen', takeOut: 'Zum Mitnehmen', cafe: 'Café',
       foodTruck: 'Foodtruck', summer: 'Sommer', bakery: 'Bäckerei', breakfast: 'Frühstück', lunch: 'Mittagessen',

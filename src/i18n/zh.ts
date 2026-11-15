@@ -72,7 +72,7 @@ export const zh: PartialStrings = {
       '入住所需的一切信息，以及我们在 Hawea 和 Wanaka 一带推荐的美食、景点、徒步和骑行去处。',
     jumpLabel: '本页内容',
     jump: { house: '房屋', highlights: '推荐', eat: '美食', shops: '购物', hikes: '徒步', biking: '骑行', skiing: '滑雪', emergency: '紧急情况' },
-    links: { website: '网站', menu: '菜单', directions: '路线', newTab: '（在新标签页中打开）' },
+    links: { website: '网站', menu: '菜单', directions: '路线', doc: 'DOC 步道详情', newTab: '（在新标签页中打开）' },
     tags: {
       lake: '湖', outdoors: '户外', rainyDay: '雨天', dinner: '晚餐', takeOut: '外带', cafe: '咖啡馆',
       foodTruck: '餐车', summer: '夏季', bakery: '面包店', breakfast: '早餐', lunch: '午餐',

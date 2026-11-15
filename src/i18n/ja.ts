@@ -72,7 +72,7 @@ export const ja: PartialStrings = {
       'ご滞在に必要な情報と、Hawea と Wanaka 周辺のおすすめの食事、観光、ハイキング、サイクリングスポットをご紹介します。',
     jumpLabel: 'このページの内容',
     jump: { house: '家のこと', highlights: 'おすすめ', eat: '食事', shops: '買い物', hikes: 'ハイキング', biking: '自転車', skiing: 'スキー', emergency: '緊急時' },
-    links: { website: 'ウェブサイト', menu: 'メニュー', directions: '行き方', newTab: '（新しいタブで開きます）' },
+    links: { website: 'ウェブサイト', menu: 'メニュー', directions: '行き方', doc: 'DOCのコース詳細', newTab: '（新しいタブで開きます）' },
     tags: {
       lake: '湖', outdoors: 'アウトドア', rainyDay: '雨の日', dinner: 'ディナー', takeOut: 'テイクアウト', cafe: 'カフェ',
       foodTruck: 'フードトラック', summer: '夏', bakery: 'ベーカリー', breakfast: '朝食', lunch: 'ランチ',
