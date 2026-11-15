@@ -44,6 +44,8 @@ export const en = {
       eyebrow: 'Our animals',
       heading: 'Meet the family',
       artAlt: 'A hand-painted sign reading The Nest at Twin Elms, with Dexter the dog sitting in the grass among the chickens and two ducks.',
+      hostsAlt: 'Jo and Stuart smiling in a selfie in front of a lake, with sunglasses and hats and mountains behind.',
+      hostsCaption: 'Your hosts, Jo and Stuart',
       dexter: {
         name: 'Dexter',
         kind: 'New Zealand Huntaway',
