@@ -11,9 +11,10 @@ import { ja } from '../src/i18n/ja';
 import { ko } from '../src/i18n/ko';
 import { fr } from '../src/i18n/fr';
 import { es } from '../src/i18n/es';
+import { nl } from '../src/i18n/nl';
 
 const STATUS_FILE = 'src/i18n/status.json';
-const translations: Record<string, unknown> = { zh, de, ja, ko, fr, es };
+const translations: Record<string, unknown> = { zh, de, ja, ko, fr, es, nl };
 
 type Flat = Record<string, string>;
 function flatten(value: unknown, prefix = '', out: Flat = {}): Flat {
