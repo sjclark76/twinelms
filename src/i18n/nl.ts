@@ -228,7 +228,6 @@ export const nl: PartialStrings = {
     how: [
       { title: 'Alleen je plaats is zichtbaar', body: 'We tonen nooit je naam en bewaren verder niets over je.' },
       { title: 'Eén speld per plaats', body: 'Als meerdere gasten uit dezelfde plaats komen, laat de speld het aantal bezoeken zien.' },
-      { title: 'Netjes gehouden', body: 'Een snelle automatische controle van Cloudflare houdt robots buiten, zodat de kaart vrij blijft van spam.' },
     ],
   },
   notFound: {

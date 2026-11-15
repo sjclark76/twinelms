@@ -228,7 +228,6 @@ export const ko: PartialStrings = {
     how: [
       { title: '도시만 표시돼요', body: '이름은 절대 표시하지 않으며, 그 밖의 정보도 저장하지 않아요.' },
       { title: '도시마다 핀 하나', body: '같은 도시에서 온 손님이 여러 명이면 핀에 방문 횟수가 표시돼요.' },
-      { title: '깔끔하게 관리해요', body: 'Cloudflare의 간단한 자동 확인으로 로봇을 막아서 지도에 스팸이 없어요.' },
     ],
   },
   notFound: {

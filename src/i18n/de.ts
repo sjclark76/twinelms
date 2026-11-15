@@ -228,7 +228,6 @@ export const de: PartialStrings = {
     how: [
       { title: 'Nur Ihr Ort wird angezeigt', body: 'Wir zeigen nie Ihren Namen und speichern sonst nichts über Sie.' },
       { title: 'Eine Nadel pro Ort', body: 'Wenn mehrere Gäste aus demselben Ort kommen, zeigt die Nadel die Zahl der Besuche.' },
-      { title: 'Ordentlich gehalten', body: 'Eine kurze automatische Prüfung von Cloudflare hält Roboter fern, so bleibt die Karte frei von Spam.' },
     ],
   },
   notFound: {

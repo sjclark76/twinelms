@@ -228,7 +228,6 @@ export const it: PartialStrings = {
     how: [
       { title: 'Viene mostrata solo la vostra città', body: 'Non mostriamo mai il vostro nome e non conserviamo nient’altro su di voi.' },
       { title: 'Una spilla per città', body: 'Se più ospiti vengono dalla stessa città, la sua spilla indica quante visite ci sono state.' },
-      { title: 'Sempre in ordine', body: 'Un rapido controllo automatico di Cloudflare tiene lontani i robot, così la mappa resta senza spam.' },
     ],
   },
   notFound: {

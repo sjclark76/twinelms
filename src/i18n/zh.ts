@@ -228,7 +228,6 @@ export const zh: PartialStrings = {
     how: [
       { title: '只显示您的城镇', body: '我们从不显示您的名字，也不保存关于您的任何其他信息。' },
       { title: '每个城镇一枚图钉', body: '如果几位客人来自同一个城镇，图钉会显示到访次数。' },
-      { title: '保持整洁', body: 'Cloudflare 的快速自动检查会挡住机器人，让地图不受垃圾信息干扰。' },
     ],
   },
   notFound: {
