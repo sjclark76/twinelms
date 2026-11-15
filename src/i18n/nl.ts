@@ -39,6 +39,7 @@ export const nl: PartialStrings = {
     animals: {
       eyebrow: 'Onze dieren',
       heading: 'Maak kennis met het gezin',
+      artAlt: 'Een met de hand geschilderd bord met de tekst The Nest at Twin Elms, met hond Dexter in het gras tussen de kippen en twee eenden.',
       dexter: {
         name: 'Dexter',
         kind: 'Nieuw-Zeelandse Huntaway',

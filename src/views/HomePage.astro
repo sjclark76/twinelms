@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import heroPhoto from '../assets/hero-hawea.jpg';
+import houseSign from '../assets/house-sign.jpg';
 import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
 import AnimalCard from '../components/AnimalCard.astro';
 import { useStrings } from '../i18n/ui';
@@ -66,6 +67,13 @@ const t = useStrings(locale).home;
         <p class="label eyebrow">{t.animals.eyebrow}</p>
         <h2 class="heading-1">{t.animals.heading}</h2>
       </div>
+      <Image
+        class="sign"
+        src={houseSign}
+        alt={t.animals.artAlt}
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 800px) 720px, 100vw"
+      />
       <div class="animals-grid">
         <AnimalCard {...t.animals.dexter} initial="D" />
         <AnimalCard {...t.animals.chickens} initial="C" />
@@ -216,6 +224,14 @@ const t = useStrings(locale).home;
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
+  }
+  .sign {
+    width: 100%;
+    max-width: 720px;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    border-radius: var(--radius-md);
+    align-self: center;
   }
   .animals-grid {
     display: grid;

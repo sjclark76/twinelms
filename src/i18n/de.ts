@@ -39,6 +39,7 @@ export const de: PartialStrings = {
     animals: {
       eyebrow: 'Unsere Tiere',
       heading: 'Lernen Sie die Familie kennen',
+      artAlt: 'Ein handgemaltes Schild mit der Aufschrift The Nest at Twin Elms: Hund Dexter sitzt im Gras, umgeben von Hühnern und zwei Enten.',
       dexter: {
         name: 'Dexter',
         kind: 'Neuseeländischer Huntaway',

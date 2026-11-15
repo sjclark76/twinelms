@@ -39,6 +39,7 @@ export const ja: PartialStrings = {
     animals: {
       eyebrow: '私たちの動物',
       heading: '家族を紹介します',
+      artAlt: '手描きの看板。「The Nest at Twin Elms」の文字の下で、犬のデクスターが草の上に座り、ニワトリたちと2羽のアヒルに囲まれています。',
       dexter: {
         name: 'Dexter',
         kind: 'ニュージーランド・ハンタウェイ',
