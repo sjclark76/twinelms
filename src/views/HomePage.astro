@@ -5,7 +5,6 @@ import heroPhoto from '../assets/hero-hawea.jpg';
 import houseSign from '../assets/house-sign.jpg';
 import hostsPhoto from '../assets/hosts.jpg';
 import dexterFace from '../assets/dexter-face.jpg';
-import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
 import AnimalCard from '../components/AnimalCard.astro';
 import { useStrings } from '../i18n/ui';
 import { address, hosts } from '../data/contact';
@@ -56,7 +55,14 @@ const t = useStrings(locale).home;
 
 
     <section class="nest-container section about">
-      <div class="about-photo"><PhotoPlaceholder label={t.about.photoLabel} ratio="3 / 2" tone="fern" /></div>
+      <div class="about-photo">
+        <Image
+          src={hostsPhoto}
+          alt={t.about.photoAlt}
+          widths={[400, 700, 1000]}
+          sizes="(min-width: 900px) 520px, 100vw"
+        />
+      </div>
       <div class="about-text">
         <p class="label eyebrow">{t.about.eyebrow}</p>
         <h2 class="heading-1">{t.about.heading}</h2>
@@ -81,15 +87,6 @@ const t = useStrings(locale).home;
         <AnimalCard {...t.animals.chickens} initial="C" />
         <AnimalCard {...t.animals.ducks} initial="D" />
       </div>
-      <figure class="hosts">
-        <Image
-          src={hostsPhoto}
-          alt={t.animals.hostsAlt}
-          widths={[400, 700, 1000]}
-          sizes="(min-width: 640px) 520px, 100vw"
-        />
-        <figcaption>{t.animals.hostsCaption}</figcaption>
-      </figure>
     </section>
 
     <section class="nest-container section">
@@ -216,6 +213,14 @@ const t = useStrings(locale).home;
     flex: 1 1 360px;
     min-width: 0;
   }
+  .about-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+  }
   .about-text {
     flex: 1 1 380px;
     display: flex;
@@ -243,28 +248,6 @@ const t = useStrings(locale).home;
     aspect-ratio: 3 / 2;
     border-radius: var(--radius-md);
     align-self: center;
-  }
-  .hosts {
-    margin: 0;
-    width: 100%;
-    max-width: 520px;
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-  .hosts img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border-radius: var(--radius-md);
-  }
-  .hosts figcaption {
-    color: var(--slate);
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
   }
   .animals-grid {
     display: grid;

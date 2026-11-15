@@ -34,14 +34,12 @@ export const ko: PartialStrings = {
       eyebrow: '저희 소개',
       heading: '저희는 Jo와 Stuart예요',
       body: '저희는 2021년에 아이들인 Jessiah, Zoe와 함께 Lake Hawea로 이사 왔어요. 야외 활동을 좋아해서 달리기, 스키, 산악자전거, 하이킹, 승마를 즐깁니다. 저희의 작은 낙원을 손님들과 나누는 것이 정말 좋고, 여러분도 좋아하시면 좋겠습니다.',
-      photoLabel: '사진: Jo, Stuart, Jessiah, Zoe',
+      photoAlt: '호수 앞에서 선글라스와 모자를 쓰고 웃으며 셀카를 찍는 Jo와 Stuart. 뒤로 산이 보입니다.',
     },
     animals: {
       eyebrow: '저희 동물들',
       heading: '가족을 소개합니다',
       artAlt: '손으로 그린 간판으로, The Nest at Twin Elms라는 글자 아래 강아지 덱스터가 풀밭에 앉아 닭들과 오리 두 마리에 둘러싸여 있습니다.',
-      hostsAlt: '호수 앞에서 선글라스와 모자를 쓰고 웃으며 셀카를 찍는 Jo와 Stuart. 뒤로 산이 보입니다.',
-      hostsCaption: '호스트 Jo와 Stuart',
       dexter: {
         name: 'Dexter',
         kind: '뉴질랜드 헌터웨이',

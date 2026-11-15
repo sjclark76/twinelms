@@ -38,14 +38,12 @@ export const en = {
       eyebrow: 'About us',
       heading: 'We’re Jo and Stuart',
       body: 'We moved to Lake Hawea with our children Jessiah and Zoe in 2021. We’re passionate about the outdoors and love to run, ski, mountain bike, hike and ride horses. We love sharing our slice of paradise with guests and we hope you love it too.',
-      photoLabel: 'Photo: Jo, Stuart, Jessiah and Zoe',
+      photoAlt: 'Jo and Stuart smiling in a selfie in front of a lake, with sunglasses and hats and mountains behind.',
     },
     animals: {
       eyebrow: 'Our animals',
       heading: 'Meet the family',
       artAlt: 'A hand-painted sign reading The Nest at Twin Elms, with Dexter the dog sitting in the grass among the chickens and two ducks.',
-      hostsAlt: 'Jo and Stuart smiling in a selfie in front of a lake, with sunglasses and hats and mountains behind.',
-      hostsCaption: 'Your hosts, Jo and Stuart',
       dexter: {
         name: 'Dexter',
         kind: 'New Zealand Huntaway',

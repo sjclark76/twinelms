@@ -34,14 +34,12 @@ export const zh: PartialStrings = {
       eyebrow: '关于我们',
       heading: '我们是 Jo 和 Stuart',
       body: '2021 年，我们带着孩子 Jessiah 和 Zoe 搬到了 Lake Hawea。我们热爱户外，喜欢跑步、滑雪、山地自行车、徒步和骑马。我们很乐意与客人分享这片小小的天堂，也希望您会喜欢。',
-      photoLabel: '照片：Jo、Stuart、Jessiah 和 Zoe',
+      photoAlt: 'Jo 和 Stuart 戴着太阳镜和帽子，在湖前笑着自拍，身后是群山。',
     },
     animals: {
       eyebrow: '我们的动物',
       heading: '认识一下我们的家人',
       artAlt: '一块手绘招牌，写着 The Nest at Twin Elms，小狗德克斯特坐在草地上，周围是几只母鸡和两只鸭子。',
-      hostsAlt: 'Jo 和 Stuart 戴着太阳镜和帽子，在湖前笑着自拍，身后是群山。',
-      hostsCaption: '您的主人 Jo 和 Stuart',
       dexter: {
         name: 'Dexter',
         kind: '新西兰 Huntaway 牧羊犬',

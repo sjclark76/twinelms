@@ -34,14 +34,12 @@ export const ja: PartialStrings = {
       eyebrow: '私たちについて',
       heading: 'Jo と Stuart です',
       body: '私たちは 2021 年に、子どもの Jessiah と Zoe と一緒に Lake Hawea に引っ越してきました。アウトドアが大好きで、ランニング、スキー、マウンテンバイク、ハイキング、乗馬を楽しんでいます。私たちの小さな楽園をゲストの皆さんと分かち合えたらと思っています。気に入っていただけますように。',
-      photoLabel: '写真：Jo、Stuart、Jessiah、Zoe',
+      photoAlt: '湖の前でサングラスと帽子をかぶり、笑顔で自撮りするJoとStuart。背後には山々が見えます。',
     },
     animals: {
       eyebrow: '私たちの動物',
       heading: '家族を紹介します',
       artAlt: '手描きの看板。「The Nest at Twin Elms」の文字の下で、犬のデクスターが草の上に座り、ニワトリたちと2羽のアヒルに囲まれています。',
-      hostsAlt: '湖の前でサングラスと帽子をかぶり、笑顔で自撮りするJoとStuart。背後には山々が見えます。',
-      hostsCaption: 'ホストのJoとStuart',
       dexter: {
         name: 'Dexter',
         kind: 'ニュージーランド・ハンタウェイ',

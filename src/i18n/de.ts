@@ -34,14 +34,12 @@ export const de: PartialStrings = {
       eyebrow: 'Über uns',
       heading: 'Wir sind Jo und Stuart',
       body: 'Wir sind 2021 mit unseren Kindern Jessiah und Zoe nach Lake Hawea gezogen. Wir lieben die Natur und sind gern draußen unterwegs: beim Laufen, Skifahren, Mountainbiken, Wandern und Reiten. Wir teilen unser kleines Paradies gern mit unseren Gästen und hoffen, dass es Ihnen genauso gefällt.',
-      photoLabel: 'Foto: Jo, Stuart, Jessiah und Zoe',
+      photoAlt: 'Jo und Stuart lächeln in einem Selfie vor einem See, mit Sonnenbrillen und Hüten und Bergen im Hintergrund.',
     },
     animals: {
       eyebrow: 'Unsere Tiere',
       heading: 'Lernen Sie die Familie kennen',
       artAlt: 'Ein handgemaltes Schild mit der Aufschrift The Nest at Twin Elms: Hund Dexter sitzt im Gras, umgeben von Hühnern und zwei Enten.',
-      hostsAlt: 'Jo und Stuart lächeln in einem Selfie vor einem See, mit Sonnenbrillen und Hüten und Bergen im Hintergrund.',
-      hostsCaption: 'Ihre Gastgeber, Jo und Stuart',
       dexter: {
         name: 'Dexter',
         kind: 'Neuseeländischer Huntaway',
