@@ -72,7 +72,7 @@ export const ko: PartialStrings = {
       '숙박에 필요한 모든 정보와, Hawea와 Wanaka 주변에서 저희가 좋아하는 식당, 명소, 하이킹, 자전거 코스를 소개합니다.',
     jumpLabel: '이 페이지의 내용',
     jump: { house: '집', highlights: '추천', eat: '식당', shops: '쇼핑', hikes: '하이킹', biking: '자전거', skiing: '스키', emergency: '긴급 상황' },
-    links: { website: '웹사이트', menu: '메뉴', directions: '길찾기', newTab: '(새 탭에서 열림)' },
+    links: { website: '웹사이트', menu: '메뉴', directions: '길찾기', doc: 'DOC 트레일 안내', newTab: '(새 탭에서 열림)' },
     tags: {
       lake: '호수', outdoors: '야외', rainyDay: '비 오는 날', dinner: '저녁', takeOut: '포장', cafe: '카페',
       foodTruck: '푸드트럭', summer: '여름', bakery: '빵집', breakfast: '아침', lunch: '점심',

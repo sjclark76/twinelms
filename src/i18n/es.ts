@@ -72,7 +72,7 @@ export const es: PartialStrings = {
       'Todo lo que necesita para su estancia, además de nuestros lugares favoritos para comer, explorar, hacer senderismo y montar en bici por Hawea y Wanaka.',
     jumpLabel: 'En esta página',
     jump: { house: 'La casa', highlights: 'Imprescindibles', eat: 'Comer', shops: 'Compras', hikes: 'Senderismo', biking: 'Bicicleta', skiing: 'Esquí', emergency: 'Emergencias' },
-    links: { website: 'Sitio web', menu: 'Carta', directions: 'Cómo llegar', newTab: '(se abre en una pestaña nueva)' },
+    links: { website: 'Sitio web', menu: 'Carta', directions: 'Cómo llegar', doc: 'Detalles del sendero (DOC)', newTab: '(se abre en una pestaña nueva)' },
     tags: {
       lake: 'Lago', outdoors: 'Aire libre', rainyDay: 'Día de lluvia', dinner: 'Cena', takeOut: 'Para llevar', cafe: 'Café',
       foodTruck: 'Food truck', summer: 'Verano', bakery: 'Pastelería', breakfast: 'Desayuno', lunch: 'Almuerzo',

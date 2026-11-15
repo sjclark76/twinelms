@@ -72,7 +72,7 @@ export const nl: PartialStrings = {
       'Alles wat je nodig hebt voor je verblijf, plus onze favoriete plekken om te eten, te ontdekken, te wandelen en te fietsen rond Hawea en Wanaka.',
     jumpLabel: 'Op deze pagina',
     jump: { house: 'Huis', highlights: 'Hoogtepunten', eat: 'Eten', shops: 'Winkels', hikes: 'Wandelen', biking: 'Fietsen', skiing: 'Skiën', emergency: 'Noodgeval' },
-    links: { website: 'Website', menu: 'Menukaart', directions: 'Route', newTab: '(opent in een nieuw tabblad)' },
+    links: { website: 'Website', menu: 'Menukaart', directions: 'Route', doc: 'DOC-routegegevens', newTab: '(opent in een nieuw tabblad)' },
     tags: {
       lake: 'Meer', outdoors: 'Buiten', rainyDay: 'Regendag', dinner: 'Diner', takeOut: 'Afhalen', cafe: 'Café',
       foodTruck: 'Foodtruck', summer: 'Zomer', bakery: 'Bakkerij', breakfast: 'Ontbijt', lunch: 'Lunch',

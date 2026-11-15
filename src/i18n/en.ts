@@ -76,7 +76,7 @@ export const en = {
       'Everything you need for your stay, plus our favourite places to eat, explore, hike and ride around Hawea and Wanaka.',
     jumpLabel: 'On this page',
     jump: { house: 'House', highlights: 'Highlights', eat: 'Eat', shops: 'Shops', hikes: 'Hikes', biking: 'Biking', skiing: 'Skiing', emergency: 'Emergency' },
-    links: { website: 'Website', menu: 'Menu', directions: 'Directions', newTab: '(opens in a new tab)' },
+    links: { website: 'Website', menu: 'Menu', directions: 'Directions', doc: 'DOC trail details', newTab: '(opens in a new tab)' },
     tags: {
       lake: 'Lake', outdoors: 'Outdoors', rainyDay: 'Rainy day', dinner: 'Dinner', takeOut: 'Take out', cafe: 'Café',
       foodTruck: 'Food truck', summer: 'Summer', bakery: 'Bakery', breakfast: 'Breakfast', lunch: 'Lunch',

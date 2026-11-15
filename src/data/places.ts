@@ -86,11 +86,26 @@ export const skiFields: Place[] = [
   { id: 'snowfarm', name: 'Snow Farm', tags: ['skiing'], website: 'https://snowfarm.nz/', map: 'Snow Farm, Cardrona Valley Road, Wanaka' },
 ];
 
-export const hikesHawea = [
-  'Lake Hawea Track / Gladstone Track', 'Hawea River Track', 'Timaru Creek Track', 'Breast Hill Track',
-  'Grandview Mountain', 'Mount Isthmus',
+/** A walking track. `doc` is the Department of Conservation page, where one exists. */
+export interface Trail {
+  name: string;
+  doc?: string;
+}
+
+const DOC = 'https://www.doc.govt.nz/parks-and-recreation/places-to-go/otago/places/';
+
+export const hikesHawea: Trail[] = [
+  { name: 'Lake Hawea Track / Gladstone Track' },
+  { name: 'Hawea River Track', doc: DOC + 'wanaka-area/things-to-do/hawea-river-track/' },
+  { name: 'Timaru Creek Track', doc: DOC + 'hawea-conservation-park/things-to-do/timaru-river-tracks' },
+  { name: 'Breast Hill Track', doc: DOC + 'hawea-conservation-park/things-to-do/breast-hill-track/' },
+  { name: 'Grandview Mountain', doc: DOC + 'lake-hawea-township-area/things-to-do/grandview-mountain-track/' },
+  { name: 'Mount Isthmus', doc: DOC + 'wanaka-area/things-to-do/isthmus-peak-track/' },
 ];
-export const hikesWanaka = ['Millennium Track', 'Roy’s Peak'];
+export const hikesWanaka: Trail[] = [
+  { name: 'Millennium Track' },
+  { name: 'Roy’s Peak', doc: DOC + 'wanaka-area/things-to-do/roys-peak-track/' },
+];
 export const bikeCrossCountry = [
   'Gladstone Track', 'Hawea River Track', 'Dean’s Bank', 'Hikuwai Loop', 'Upper Clutha River Track',
   'Newcastle Track', 'Millennium Track',
