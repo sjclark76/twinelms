@@ -43,6 +43,7 @@ export const es: PartialStrings = {
       dexter: {
         name: 'Dexter',
         kind: 'Huntaway neozelandés',
+        photoAlt: 'Dexter, un perro marrón y negro, en la orilla del Lake Hawea.',
         body: 'A Dexter le encanta conocer gente y jugará todo el día; cuando se emociona, se pone muy hablador. Si prefiere no encontrarse con un perro, díganoslo y lo mantendremos aparte.',
       },
       chickens: {

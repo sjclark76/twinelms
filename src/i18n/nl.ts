@@ -43,6 +43,7 @@ export const nl: PartialStrings = {
       dexter: {
         name: 'Dexter',
         kind: 'Nieuw-Zeelandse Huntaway',
+        photoAlt: 'Dexter, een bruinzwarte hond, aan de oever van Lake Hawea.',
         body: 'Dexter vindt het heerlijk om mensen te ontmoeten en speelt de hele dag. Als hij opgewonden is, kan hij flink aan het woord zijn. Wil je liever geen hond tegenkomen? Laat het ons weten, dan zetten we hem even weg.',
       },
       chickens: {

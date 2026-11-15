@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import heroPhoto from '../assets/hero-hawea.jpg';
 import houseSign from '../assets/house-sign.jpg';
+import dexterFace from '../assets/dexter-face.jpg';
 import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
 import AnimalCard from '../components/AnimalCard.astro';
 import { useStrings } from '../i18n/ui';
@@ -75,7 +76,7 @@ const t = useStrings(locale).home;
         sizes="(min-width: 800px) 720px, 100vw"
       />
       <div class="animals-grid">
-        <AnimalCard {...t.animals.dexter} initial="D" />
+        <AnimalCard {...t.animals.dexter} initial="D" photo={dexterFace} />
         <AnimalCard {...t.animals.chickens} initial="C" />
         <AnimalCard {...t.animals.ducks} initial="D" />
       </div>

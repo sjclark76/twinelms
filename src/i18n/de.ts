@@ -43,6 +43,7 @@ export const de: PartialStrings = {
       dexter: {
         name: 'Dexter',
         kind: 'Neuseeländischer Huntaway',
+        photoAlt: 'Dexter, ein braun-schwarzer Hund, am Ufer des Lake Hawea.',
         body: 'Dexter liebt es, Menschen kennenzulernen, und spielt den ganzen Tag. Wenn er aufgeregt ist, kann er ziemlich gesprächig werden. Wenn Sie lieber keinem Hund begegnen möchten, sagen Sie uns Bescheid, dann bleibt er so lange woanders.',
       },
       chickens: {

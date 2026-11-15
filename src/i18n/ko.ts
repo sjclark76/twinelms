@@ -43,6 +43,7 @@ export const ko: PartialStrings = {
       dexter: {
         name: 'Dexter',
         kind: '뉴질랜드 헌터웨이',
+        photoAlt: 'Lake Hawea 호숫가에 있는 갈색과 검은색 강아지 덱스터.',
         body: 'Dexter는 사람 만나는 것을 좋아하고 하루 종일 놀 수 있어요. 신나면 말이 많아지기도 해요. 개를 만나고 싶지 않으시면 알려 주세요. 다른 곳에 있게 할게요.',
       },
       chickens: {
