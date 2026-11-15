@@ -2,7 +2,7 @@ import type { PartialStrings } from './ui';
 
 export const es: PartialStrings = {
   skipToContent: 'Saltar al contenido',
-  wordmarkSub: 'Lake Hawea, New Zealand',
+  wordmarkSub: 'Lake Hāwea, New Zealand',
   mainNav: 'Navegación principal',
   nav: { home: 'Inicio', guide: 'Guía del huésped', map: 'Mapa de visitantes', gallery: 'Galería', menu: 'Menú' },
   language: 'Idioma',
@@ -13,16 +13,16 @@ export const es: PartialStrings = {
     note: 'Por favor, no fume dentro de la casa. ¿Le gustó su estancia? Le agradeceremos mucho una reseña en Airbnb.',
   },
   home: {
-    title: 'The Nest at Twin Elms, Lake Hawea',
+    title: 'The Nest at Twin Elms, Lake Hāwea',
     description:
       'Te damos la bienvenida a The Nest at Twin Elms. Lee la guía para huéspedes, conoce a los animales y descubre de dónde vienen nuestros huéspedes.',
     hero: {
-      eyebrow: 'Lake Hawea, New Zealand',
+      eyebrow: 'Lake Hāwea, New Zealand',
       heading: 'Bienvenidos a The Nest',
       intro:
-        'Estamos encantados de que haya elegido alojarse con nosotros en Lake Hawea, un lugar precioso. Esta guía le ayudará a aprovechar al máximo su estancia, y si quiere saber algo más, pregúntenos sin dudarlo.',
+        'Estamos encantados de que haya elegido alojarse con nosotros en Lake Hāwea, un lugar precioso. Esta guía le ayudará a aprovechar al máximo su estancia, y si quiere saber algo más, pregúntenos sin dudarlo.',
       openGuide: 'Abrir la guía del huésped',
-      photoAlt: 'Letras de madera de deriva que forman HAWEA en la orilla pedregosa del lago Hawea, con montañas nevadas al otro lado del agua.',
+      photoAlt: 'Letras de madera de deriva que forman HAWEA en la orilla pedregosa del lago Hāwea, con montañas nevadas al otro lado del agua.',
     },
     stay: {
       label: 'Su estancia',
@@ -33,7 +33,7 @@ export const es: PartialStrings = {
     about: {
       eyebrow: 'Sobre nosotros',
       heading: 'Somos Jo y Stuart',
-      body: 'Nos mudamos a Lake Hawea en 2021 con nuestros hijos Jessiah y Zoe. Nos apasiona la naturaleza y nos encanta correr, esquiar, ir en bici de montaña, hacer senderismo y montar a caballo. Nos gusta compartir nuestro pedacito de paraíso con los huéspedes y esperamos que a usted también le guste.',
+      body: 'Nos mudamos a Lake Hāwea en 2021 con nuestros hijos Jessiah y Zoe. Nos apasiona la naturaleza y nos encanta correr, esquiar, ir en bici de montaña, hacer senderismo y montar a caballo. Nos gusta compartir nuestro pedacito de paraíso con los huéspedes y esperamos que a usted también le guste.',
       photoAlt: 'Jo y Stuart sonríen en un selfi frente a un lago, con gafas de sol y sombreros y montañas al fondo.',
     },
     animals: {
@@ -43,7 +43,7 @@ export const es: PartialStrings = {
       dexter: {
         name: 'Dexter',
         kind: 'Huntaway neozelandés',
-        photoAlt: 'Dexter, un perro marrón y negro, en la orilla del Lake Hawea.',
+        photoAlt: 'Dexter, un perro marrón y negro, en la orilla del Lake Hāwea.',
         body: 'A Dexter le encanta conocer gente y jugará todo el día; cuando se emociona, se pone muy hablador. Si prefiere no encontrarse con un perro, díganoslo y lo mantendremos aparte.',
       },
       chickens: {
@@ -67,10 +67,10 @@ export const es: PartialStrings = {
   guide: {
     title: 'Guía del huésped | The Nest at Twin Elms',
     description:
-      'Todo lo que necesita para su estancia en The Nest, además de nuestros lugares favoritos para comer, explorar, hacer senderismo y montar en bici por Hawea y Wanaka.',
+      'Todo lo que necesita para su estancia en The Nest, además de nuestros lugares favoritos para comer, explorar, hacer senderismo y montar en bici por Hāwea y Wānaka.',
     heading: 'Guía del huésped',
     intro:
-      'Todo lo que necesita para su estancia, además de nuestros lugares favoritos para comer, explorar, hacer senderismo y montar en bici por Hawea y Wanaka.',
+      'Todo lo que necesita para su estancia, además de nuestros lugares favoritos para comer, explorar, hacer senderismo y montar en bici por Hāwea y Wānaka.',
     jumpLabel: 'En esta página',
     jump: { house: 'La casa', highlights: 'Imprescindibles', eat: 'Comer', shops: 'Compras', hikes: 'Senderismo', biking: 'Bicicleta', skiing: 'Esquí', emergency: 'Emergencias' },
     links: { website: 'Sitio web', menu: 'Carta', directions: 'Cómo llegar', doc: 'Detalles del sendero (DOC)', newTab: '(se abre en una pestaña nueva)' },
@@ -110,7 +110,7 @@ export const es: PartialStrings = {
       eyebrow: 'Qué hacer',
       heading: 'Lugares destacados de la zona',
       places: {
-        sauna: { body: 'Sauna de barril de leña seguida de un baño frío en las aguas cristalinas del Lake Hawea.' },
+        sauna: { body: 'Sauna de barril de leña seguida de un baño frío en las aguas cristalinas del Lake Hāwea.' },
         lavender: { body: '20 acres (unas 8 hectáreas) de campos de lavanda espectaculares, animales de granja y jardines de exhibición.' },
         museum: { body: 'Una de las mayores colecciones privadas del mundo de aviones, vehículos y juguetes.' },
         puzzling: { body: 'Laberintos, salas de ilusiones y rompecabezas para todas las edades.' },
@@ -120,8 +120,8 @@ export const es: PartialStrings = {
     eat: {
       eyebrow: 'Comer y beber',
       heading: 'Dónde comer',
-      hawea: 'En Hawea',
-      wanaka: 'En Wanaka',
+      hawea: 'En Hāwea',
+      wanaka: 'En Wānaka',
       places: {
         hotel: { body: 'Carta de temporada.', meta: ['Cena todos los días', 'Almuerzo de viernes a domingo'] },
         store: {
@@ -147,7 +147,7 @@ export const es: PartialStrings = {
       atms: 'Cajeros automáticos',
       atmsSub: 'New World Three Parks, Helwick Street, Ardmore Street',
     },
-    hikes: { eyebrow: 'A pie', heading: 'Senderismo en la zona', hawea: 'Hawea', wanaka: 'Wanaka' },
+    hikes: { eyebrow: 'A pie', heading: 'Senderismo en la zona', hawea: 'Hāwea', wanaka: 'Wānaka' },
     biking: {
       eyebrow: 'Sobre ruedas',
       heading: 'Bicicleta de montaña',
@@ -166,7 +166,7 @@ export const es: PartialStrings = {
   },
   gallery: {
     title: 'Galería | The Nest at Twin Elms',
-    description: 'Fotos de The Nest at Twin Elms, Lake Hawea, y de la familia.',
+    description: 'Fotos de The Nest at Twin Elms, Lake Hāwea, y de la familia.',
     heading: 'Galería',
     intro: 'Un vistazo a The Nest, al lago y a la familia. Toque cualquier foto para verla a tamaño completo.',
     filterLabel: 'Filtrar fotos',
@@ -183,7 +183,7 @@ export const es: PartialStrings = {
       'main-bedroom': 'El dormitorio principal',
       chickens: 'Las gallinas',
       kitchen: 'La cocina',
-      'lake-winter': 'Lake Hawea en invierno',
+      'lake-winter': 'Lake Hāwea en invierno',
       'breast-hill': 'Corner Peak y Breast Hill, vistos desde Isthmus Peak',
       'aurora-green': 'Aurora austral desde la casa',
     },
@@ -193,14 +193,14 @@ export const es: PartialStrings = {
     description: 'Descubra de dónde vienen los huéspedes de The Nest at Twin Elms y añada su ciudad al mapa.',
     heading: 'De dónde vienen nuestros huéspedes',
     intro: 'Cada chincheta dorada es la ciudad de un huésped. Añada la suya y ayúdenos a llenar el mapa.',
-    mapLabel: 'Mapa del mundo con chinchetas en las ciudades de los huéspedes y una chincheta terracota en The Nest, en Lake Hawea',
+    mapLabel: 'Mapa del mundo con chinchetas en las ciudades de los huéspedes y una chincheta terracota en The Nest, en Lake Hāwea',
     stat: 'Huéspedes de {towns} en {countries}',
     statEmpty: '¡Sea el primero en añadir su ciudad!',
     towns: { one: '{n} ciudad', other: '{n} ciudades' },
     countries: { one: '{n} país', other: '{n} países' },
     visits: { one: '{n} visita', other: '{n} visitas' },
     legendGuests: 'La ciudad de un huésped',
-    legendHome: 'The Nest, Lake Hawea',
+    legendHome: 'The Nest, Lake Hāwea',
     legendVisits: 'Cuanto más grande la chincheta, más visitas',
     listToggle: 'Ver la lista de ciudades',
     loadError: 'El mapa no ha podido cargar las ciudades en este momento. Inténtelo de nuevo más tarde.',

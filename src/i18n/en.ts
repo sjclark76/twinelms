@@ -1,7 +1,7 @@
 // English UI strings. Other languages add a file of the same shape (issue #8).
 export const en = {
   skipToContent: 'Skip to content',
-  wordmarkSub: 'Lake Hawea, New Zealand',
+  wordmarkSub: 'Lake Hāwea, New Zealand',
   mainNav: 'Main',
   nav: {
     home: 'Home',
@@ -18,16 +18,16 @@ export const en = {
     note: 'Please no smoking inside. Loved your stay? We’d be so grateful for a review on Airbnb.',
   },
   home: {
-    title: 'The Nest at Twin Elms, Lake Hawea',
+    title: 'The Nest at Twin Elms, Lake Hāwea',
     description:
       'Welcome to The Nest at Twin Elms. Read the guest guide, meet the animals and see where our guests come from.',
     hero: {
-      eyebrow: 'Lake Hawea, New Zealand',
+      eyebrow: 'Lake Hāwea, New Zealand',
       heading: 'Welcome to The Nest',
       intro:
-        'We are delighted you’ve chosen to stay with us in beautiful Lake Hawea. This guide will help you make the most of your stay, and if there’s anything else you’d like to know, just ask us.',
+        'We are delighted you’ve chosen to stay with us in beautiful Lake Hāwea. This guide will help you make the most of your stay, and if there’s anything else you’d like to know, just ask us.',
       openGuide: 'Open the guest guide',
-      photoAlt: 'Driftwood letters spelling HAWEA on the stony shore of Lake Hawea, with snow-capped mountains across the water.',
+      photoAlt: 'Driftwood letters spelling HAWEA on the stony shore of Lake Hāwea, with snow-capped mountains across the water.',
     },
     stay: {
       label: 'Your stay',
@@ -38,7 +38,7 @@ export const en = {
     about: {
       eyebrow: 'About us',
       heading: 'We’re Jo and Stuart',
-      body: 'We moved to Lake Hawea with our children Jessiah and Zoe in 2021. We’re passionate about the outdoors and love to run, ski, mountain bike, hike and ride horses. We love sharing our slice of paradise with guests and we hope you love it too.',
+      body: 'We moved to Lake Hāwea with our children Jessiah and Zoe in 2021. We’re passionate about the outdoors and love to run, ski, mountain bike, hike and ride horses. We love sharing our slice of paradise with guests and we hope you love it too.',
       photoAlt: 'Jo and Stuart smiling in a selfie in front of a lake, with sunglasses and hats and mountains behind.',
     },
     animals: {
@@ -48,7 +48,7 @@ export const en = {
       dexter: {
         name: 'Dexter',
         kind: 'New Zealand Huntaway',
-        photoAlt: 'Dexter, a brown and black dog, on the shore of Lake Hawea.',
+        photoAlt: 'Dexter, a brown and black dog, on the shore of Lake Hāwea.',
         body: 'Dexter loves to meet people and will play all day, and he can get talkative when he’s excited. If you’d rather not meet a dog, let us know and we’ll put him away.',
       },
       chickens: {
@@ -72,10 +72,10 @@ export const en = {
   guide: {
     title: 'Guest guide | The Nest at Twin Elms',
     description:
-      'Everything you need for your stay at The Nest, plus our favourite places to eat, explore, hike and ride around Hawea and Wanaka.',
+      'Everything you need for your stay at The Nest, plus our favourite places to eat, explore, hike and ride around Hāwea and Wānaka.',
     heading: 'Guest guide',
     intro:
-      'Everything you need for your stay, plus our favourite places to eat, explore, hike and ride around Hawea and Wanaka.',
+      'Everything you need for your stay, plus our favourite places to eat, explore, hike and ride around Hāwea and Wānaka.',
     jumpLabel: 'On this page',
     jump: { house: 'House', highlights: 'Highlights', eat: 'Eat', shops: 'Shops', hikes: 'Hikes', biking: 'Biking', skiing: 'Skiing', emergency: 'Emergency' },
     links: { website: 'Website', menu: 'Menu', directions: 'Directions', doc: 'DOC trail details', newTab: '(opens in a new tab)' },
@@ -115,7 +115,7 @@ export const en = {
       eyebrow: 'Things to do',
       heading: 'Local highlights',
       places: {
-        sauna: { body: 'Wood-fired barrel sauna followed by a cold plunge in the clear waters of Lake Hawea.' },
+        sauna: { body: 'Wood-fired barrel sauna followed by a cold plunge in the clear waters of Lake Hāwea.' },
         lavender: { body: '20 acres of stunning lavender fields, farm animals and display gardens.' },
         museum: { body: 'One of the world’s largest private collections of aircraft, vehicles and toys.' },
         puzzling: { body: 'Mazes, illusion rooms and puzzles for all ages.' },
@@ -125,8 +125,8 @@ export const en = {
     eat: {
       eyebrow: 'Food and drink',
       heading: 'Where to eat',
-      hawea: 'In Hawea',
-      wanaka: 'In Wanaka',
+      hawea: 'In Hāwea',
+      wanaka: 'In Wānaka',
       places: {
         hotel: { body: 'Seasonal menu.', meta: ['Dinner every day', 'Lunch Friday to Sunday'] },
         store: {
@@ -152,7 +152,7 @@ export const en = {
       atms: 'ATMs',
       atmsSub: 'New World Three Parks, Helwick Street, Ardmore Street',
     },
-    hikes: { eyebrow: 'Walking', heading: 'Local hikes', hawea: 'Hawea', wanaka: 'Wanaka' },
+    hikes: { eyebrow: 'Walking', heading: 'Local hikes', hawea: 'Hāwea', wanaka: 'Wānaka' },
     biking: {
       eyebrow: 'Riding',
       heading: 'Mountain biking',
@@ -171,7 +171,7 @@ export const en = {
   },
   gallery: {
     title: 'Gallery | The Nest at Twin Elms',
-    description: 'Photos of The Nest at Twin Elms, Lake Hawea, and the family.',
+    description: 'Photos of The Nest at Twin Elms, Lake Hāwea, and the family.',
     heading: 'Gallery',
     intro: 'A look around The Nest, the lake and the family. Tap any photo to see it full size.',
     filterLabel: 'Filter photos',
@@ -188,7 +188,7 @@ export const en = {
       'main-bedroom': 'The main bedroom',
       chickens: 'The chickens',
       kitchen: 'The kitchen',
-      'lake-winter': 'Lake Hawea in winter',
+      'lake-winter': 'Lake Hāwea in winter',
       'breast-hill': 'Corner Peak and Breast Hill from Isthmus Peak',
       'aurora-green': 'Southern lights from the house',
     } as Record<string, string>,
@@ -198,14 +198,14 @@ export const en = {
     description: 'See where guests of The Nest at Twin Elms come from, and add your home town to the map.',
     heading: 'Where our guests come from',
     intro: 'Every golden pin is a guest’s home town. Add yours and help us fill the map.',
-    mapLabel: 'World map with pins at guests’ home towns and a terracotta pin at The Nest in Lake Hawea',
+    mapLabel: 'World map with pins at guests’ home towns and a terracotta pin at The Nest in Lake Hāwea',
     stat: 'Guests from {towns} in {countries}',
     statEmpty: 'Be the first to add your home town!',
     towns: { one: '{n} town', other: '{n} towns' },
     countries: { one: '{n} country', other: '{n} countries' },
     visits: { one: '{n} visit', other: '{n} visits' },
     legendGuests: 'A guest’s home town',
-    legendHome: 'The Nest, Lake Hawea',
+    legendHome: 'The Nest, Lake Hāwea',
     legendVisits: 'Bigger pins mean more visits',
     listToggle: 'See the list of towns',
     loadError: 'The map couldn’t load the towns just now. Please try again later.',

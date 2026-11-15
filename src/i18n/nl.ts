@@ -2,7 +2,7 @@ import type { PartialStrings } from './ui';
 
 export const nl: PartialStrings = {
   skipToContent: 'Ga naar de inhoud',
-  wordmarkSub: 'Lake Hawea, New Zealand',
+  wordmarkSub: 'Lake Hāwea, New Zealand',
   mainNav: 'Hoofdmenu',
   nav: { home: 'Home', guide: 'Gastengids', map: 'Bezoekerskaart', gallery: 'Galerij', menu: 'Menu' },
   language: 'Taal',
@@ -13,16 +13,16 @@ export const nl: PartialStrings = {
     note: 'Niet roken in huis, alsjeblieft. Een fijn verblijf gehad? We zijn je heel dankbaar voor een review op Airbnb.',
   },
   home: {
-    title: 'The Nest at Twin Elms, Lake Hawea',
+    title: 'The Nest at Twin Elms, Lake Hāwea',
     description:
       'Welkom bij The Nest at Twin Elms. Lees de gastengids, maak kennis met de dieren en ontdek waar onze gasten vandaan komen.',
     hero: {
-      eyebrow: 'Lake Hawea, New Zealand',
+      eyebrow: 'Lake Hāwea, New Zealand',
       heading: 'Welkom bij The Nest',
       intro:
-        'Wat fijn dat je hebt gekozen om bij ons te verblijven in het mooie Lake Hawea. Deze gids helpt je het beste uit je verblijf te halen, en als je nog iets wilt weten, vraag het ons gerust.',
+        'Wat fijn dat je hebt gekozen om bij ons te verblijven in het mooie Lake Hāwea. Deze gids helpt je het beste uit je verblijf te halen, en als je nog iets wilt weten, vraag het ons gerust.',
       openGuide: 'Open de gastengids',
-      photoAlt: 'Letters van drijfhout die HAWEA spellen op de steenachtige oever van Lake Hawea, met besneeuwde bergen aan de overkant van het water.',
+      photoAlt: 'Letters van drijfhout die HAWEA spellen op de steenachtige oever van Lake Hāwea, met besneeuwde bergen aan de overkant van het water.',
     },
     stay: {
       label: 'Jouw verblijf',
@@ -33,7 +33,7 @@ export const nl: PartialStrings = {
     about: {
       eyebrow: 'Over ons',
       heading: 'Wij zijn Jo en Stuart',
-      body: 'We zijn in 2021 met onze kinderen Jessiah en Zoe naar Lake Hawea verhuisd. We zijn dol op de buitenlucht en houden van hardlopen, skiën, mountainbiken, wandelen en paardrijden. We delen ons stukje paradijs graag met gasten en hopen dat je er net zo van geniet als wij.',
+      body: 'We zijn in 2021 met onze kinderen Jessiah en Zoe naar Lake Hāwea verhuisd. We zijn dol op de buitenlucht en houden van hardlopen, skiën, mountainbiken, wandelen en paardrijden. We delen ons stukje paradijs graag met gasten en hopen dat je er net zo van geniet als wij.',
       photoAlt: 'Jo en Stuart lachen in een selfie voor een meer, met zonnebrillen en hoeden en bergen op de achtergrond.',
     },
     animals: {
@@ -43,7 +43,7 @@ export const nl: PartialStrings = {
       dexter: {
         name: 'Dexter',
         kind: 'Nieuw-Zeelandse Huntaway',
-        photoAlt: 'Dexter, een bruinzwarte hond, aan de oever van Lake Hawea.',
+        photoAlt: 'Dexter, een bruinzwarte hond, aan de oever van Lake Hāwea.',
         body: 'Dexter vindt het heerlijk om mensen te ontmoeten en speelt de hele dag. Als hij opgewonden is, kan hij flink aan het woord zijn. Wil je liever geen hond tegenkomen? Laat het ons weten, dan zetten we hem even weg.',
       },
       chickens: {
@@ -67,10 +67,10 @@ export const nl: PartialStrings = {
   guide: {
     title: 'Gastengids | The Nest at Twin Elms',
     description:
-      'Alles wat je nodig hebt voor je verblijf in The Nest, plus onze favoriete plekken om te eten, te ontdekken, te wandelen en te fietsen rond Hawea en Wanaka.',
+      'Alles wat je nodig hebt voor je verblijf in The Nest, plus onze favoriete plekken om te eten, te ontdekken, te wandelen en te fietsen rond Hāwea en Wānaka.',
     heading: 'Gastengids',
     intro:
-      'Alles wat je nodig hebt voor je verblijf, plus onze favoriete plekken om te eten, te ontdekken, te wandelen en te fietsen rond Hawea en Wanaka.',
+      'Alles wat je nodig hebt voor je verblijf, plus onze favoriete plekken om te eten, te ontdekken, te wandelen en te fietsen rond Hāwea en Wānaka.',
     jumpLabel: 'Op deze pagina',
     jump: { house: 'Huis', highlights: 'Hoogtepunten', eat: 'Eten', shops: 'Winkels', hikes: 'Wandelen', biking: 'Fietsen', skiing: 'Skiën', emergency: 'Noodgeval' },
     links: { website: 'Website', menu: 'Menukaart', directions: 'Route', doc: 'DOC-routegegevens', newTab: '(opent in een nieuw tabblad)' },
@@ -110,7 +110,7 @@ export const nl: PartialStrings = {
       eyebrow: 'Dingen om te doen',
       heading: 'Hoogtepunten in de buurt',
       places: {
-        sauna: { body: 'Houtgestookte tonsauna, gevolgd door een koude duik in het heldere water van Lake Hawea.' },
+        sauna: { body: 'Houtgestookte tonsauna, gevolgd door een koude duik in het heldere water van Lake Hāwea.' },
         lavender: { body: '20 acres (ruim 8 hectare) prachtige lavendelvelden, boerderijdieren en siertuinen.' },
         museum: { body: 'Een van de grootste privécollecties ter wereld van vliegtuigen, voertuigen en speelgoed.' },
         puzzling: { body: 'Doolhoven, illusiekamers en puzzels voor alle leeftijden.' },
@@ -120,8 +120,8 @@ export const nl: PartialStrings = {
     eat: {
       eyebrow: 'Eten en drinken',
       heading: 'Waar te eten',
-      hawea: 'In Hawea',
-      wanaka: 'In Wanaka',
+      hawea: 'In Hāwea',
+      wanaka: 'In Wānaka',
       places: {
         hotel: { body: 'Seizoensmenu.', meta: ['Elke dag diner', 'Lunch van vrijdag tot en met zondag'] },
         store: {
@@ -147,7 +147,7 @@ export const nl: PartialStrings = {
       atms: 'Geldautomaten',
       atmsSub: 'New World Three Parks, Helwick Street, Ardmore Street',
     },
-    hikes: { eyebrow: 'Wandelen', heading: 'Wandelingen in de buurt', hawea: 'Hawea', wanaka: 'Wanaka' },
+    hikes: { eyebrow: 'Wandelen', heading: 'Wandelingen in de buurt', hawea: 'Hāwea', wanaka: 'Wānaka' },
     biking: {
       eyebrow: 'Fietsen',
       heading: 'Mountainbiken',
@@ -166,7 +166,7 @@ export const nl: PartialStrings = {
   },
   gallery: {
     title: 'Galerij | The Nest at Twin Elms',
-    description: 'Foto’s van The Nest at Twin Elms, Lake Hawea, en van het gezin.',
+    description: 'Foto’s van The Nest at Twin Elms, Lake Hāwea, en van het gezin.',
     heading: 'Galerij',
     intro: 'Een kijkje in The Nest, bij het meer en bij het gezin. Tik op een foto om hem op volledige grootte te zien.',
     filterLabel: 'Foto’s filteren',
@@ -183,7 +183,7 @@ export const nl: PartialStrings = {
       'main-bedroom': 'De hoofdslaapkamer',
       chickens: 'De kippen',
       kitchen: 'De keuken',
-      'lake-winter': 'Lake Hawea in de winter',
+      'lake-winter': 'Lake Hāwea in de winter',
       'breast-hill': 'Corner Peak en Breast Hill, gezien vanaf Isthmus Peak',
       'aurora-green': 'Zuiderlicht vanaf het huis',
     },
@@ -193,14 +193,14 @@ export const nl: PartialStrings = {
     description: 'Zie waar de gasten van The Nest at Twin Elms vandaan komen en voeg je woonplaats toe aan de kaart.',
     heading: 'Waar onze gasten vandaan komen',
     intro: 'Elke gouden speld is de woonplaats van een gast. Voeg die van jou toe en help ons de kaart te vullen.',
-    mapLabel: 'Wereldkaart met spelden bij de woonplaatsen van gasten en een terracottakleurige speld bij The Nest in Lake Hawea',
+    mapLabel: 'Wereldkaart met spelden bij de woonplaatsen van gasten en een terracottakleurige speld bij The Nest in Lake Hāwea',
     stat: 'Gasten uit {towns} in {countries}',
     statEmpty: 'Wees de eerste die een woonplaats toevoegt!',
     towns: { one: '{n} plaats', other: '{n} plaatsen' },
     countries: { one: '{n} land', other: '{n} landen' },
     visits: { one: '{n} bezoek', other: '{n} bezoeken' },
     legendGuests: 'De woonplaats van een gast',
-    legendHome: 'The Nest, Lake Hawea',
+    legendHome: 'The Nest, Lake Hāwea',
     legendVisits: 'Grotere spelden betekenen meer bezoeken',
     listToggle: 'Bekijk de lijst met plaatsen',
     loadError: 'De kaart kon de plaatsen nu niet laden. Probeer het later opnieuw.',
