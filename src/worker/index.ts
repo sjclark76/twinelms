@@ -9,7 +9,7 @@ interface Env {
   TURNSTILE_SECRET?: string;
 }
 
-const USER_AGENT = 'TheNestAtTwinElms-VisitorMap/1.0 (+https://twinelms.sjclark76.workers.dev)';
+const USER_AGENT = 'TheNestAtTwinElms-VisitorMap/1.0 (+https://thenest.twinelms.co.nz)';
 const NOMINATIM_GAP_MS = 1100;
 
 type ErrorCode =
@@ -138,7 +138,7 @@ async function geocode(town: string, env: Env): Promise<Place | null> {
   url.search = new URLSearchParams({
     q: town, format: 'jsonv2', addressdetails: '1', extratags: '1', limit: '5', featureType: 'settlement', 'accept-language': 'en',
   }).toString();
-  const res = await fetch(url, { headers: { 'user-agent': USER_AGENT, referer: 'https://twinelms.sjclark76.workers.dev/' } });
+  const res = await fetch(url, { headers: { 'user-agent': USER_AGENT, referer: 'https://thenest.twinelms.co.nz/' } });
   if (!res.ok) throw new Error(`Nominatim ${res.status}`);
   const place = pickPlace((await res.json()) as NominatimResult[]);
 

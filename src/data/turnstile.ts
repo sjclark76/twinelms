@@ -1,6 +1,6 @@
 /**
  * Cloudflare Turnstile site key (public; it is meant to be in the page).
- * Widget "The Nest guest site" (hostname sjclark76.workers.dev, Managed).
+ * Widget "The Nest guest site" (hostnames sjclark76.workers.dev and thenest.twinelms.co.nz, Managed).
  * The matching secret is set with `npx wrangler secret put TURNSTILE_SECRET`.
  */
 export const TURNSTILE_SITE_KEY = '0x4AAAAAAF_EQ0xnoYD8iGFf';
