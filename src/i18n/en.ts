@@ -8,6 +8,7 @@ export const en = {
     guide: 'Guest guide',
     map: 'Visitor map',
     gallery: 'Gallery',
+    menu: 'Menu',
   },
   language: 'Language',
   footer: {

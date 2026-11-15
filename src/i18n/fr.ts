@@ -4,7 +4,7 @@ export const fr: PartialStrings = {
   skipToContent: 'Aller au contenu',
   wordmarkSub: 'Lake Hawea, New Zealand',
   mainNav: 'Navigation principale',
-  nav: { home: 'Accueil', guide: 'Guide du séjour', map: 'Carte des visiteurs', gallery: 'Galerie' },
+  nav: { home: 'Accueil', guide: 'Guide du séjour', map: 'Carte des visiteurs', gallery: 'Galerie', menu: 'Menu' },
   language: 'Langue',
   footer: {
     contact: 'Nous contacter',
