@@ -179,7 +179,7 @@ export const nl: PartialStrings = {
       kitchen: 'De keuken',
       'lake-winter': 'Lake Hawea in de winter',
       garden: 'De tuin',
-      'breast-hill': 'Uitzicht vanaf Breast Hill',
+      'breast-hill': 'Corner Peak en Breast Hill, gezien vanaf Isthmus Peak',
     },
   },
   map: {

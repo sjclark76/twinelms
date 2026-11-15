@@ -179,7 +179,7 @@ export const ja: PartialStrings = {
       kitchen: 'キッチン',
       'lake-winter': '冬の Lake Hawea',
       garden: '庭',
-      'breast-hill': 'Breast Hill からの眺め',
+      'breast-hill': 'Isthmus Peak から望む Corner Peak と Breast Hill',
     },
   },
   map: {
