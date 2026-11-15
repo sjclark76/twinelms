@@ -69,7 +69,7 @@ What goes in each bin [added from the QLDC kerbside guide; hosts to confirm]:
 
 - **The Secret Sauna – **Wood fired barrel sauna followed by a cold plunge in the clear waters of Lake Hāwea. The Camp, Lake Hawea.
 
-- **Wanaka Lavender Farm** – 20 acres of stunning lavender fields, farm animals and display gardens. 36 Morris Road, Wanaka.
+- **Wānaka Lavender Farm** – 20 acres of stunning lavender fields, farm animals and display gardens. 36 Morris Road, Wanaka.
 
 - **National Transport and ****Toy Museum** – One of the world’s largest private collections of aircraft, vehicles and toys. 891 Wanaka -Luggate Highway, Wanaka.
 - **Puzzling World** – Mazes, illusion rooms and puzzles for all ages. 188 Wanaka-Luggate Highway, Wanaka. [DESCRIPTION: added from research; hosts to confirm]
@@ -78,9 +78,9 @@ What goes in each bin [added from the QLDC kerbside guide; hosts to confirm]:
 
 **Hāwea Eateries**
 
-- **The Hawea Hotel****, Eatery ****&**** Bar****:**** **Has a seasonal menu and is open every day  for dinner and Friday – Sunday for lunch and dinner. Take out menu offered. 
+- **The Hāwea Hotel****, Eatery ****&**** Bar****:**** **Has a seasonal menu and is open every day  for dinner and Friday – Sunday for lunch and dinner. Take out menu offered. 
 
-- **The Hawea Store and Kitchen****:**** **Great little local café and country store. Serves breakfast and lunch, including fantastic pies and fresh pastries from the Albert town patisserie. Take out menu available.
+- **The Hāwea Store and Kitchen****:**** **Great little local café and country store. Serves breakfast and lunch, including fantastic pies and fresh pastries from the Albert town patisserie. Take out menu available.
 
 - **Wingin**** ****It**** ****food truck: **81 Longview Drive, Hawea. Blend of Indian flavours with Kiwi classics.  Open 7 days 11am-8pm.
 
@@ -100,9 +100,9 @@ What goes in each bin [added from the QLDC kerbside guide; hosts to confirm]:
 
 **Shops ****&**** Essentials**
 
-- **Supermarket****s**: Hawea Fresh Choice. New World Three Parks, or New World Wanaka
+- **Supermarket****s**: Hāwea Fresh Choice. New World Three Parks, or New World Wānaka
 
-- **Pharmacy**: Wanaka Pharmacy, Aspiring Pharmacy (both on Helwick Street)
+- **Pharmacy**: Wānaka Pharmacy, Aspiring Pharmacy (both on Helwick Street)
 
 - **ATM****: **New World Three Parks, Helwick Street, Ardmore Street
 
@@ -135,9 +135,9 @@ Safe travels and hope to welcome you again soon,
 
 **Hāwea**
 
-- Lake Hawea Track / Gladstone Track
+- Lake Hāwea Track / Gladstone Track
 
-- Hawea River Track
+- Hāwea River Track
 
 - Timaru Creek Track
 
@@ -159,7 +159,7 @@ Safe travels and hope to welcome you again soon,
 
 - Gladstone Track
 
-- Hawea River Track
+- Hāwea River Track
 
 - Dean’s Bank
 
