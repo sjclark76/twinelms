@@ -13,10 +13,10 @@ interface LocaleInfo {
 
 export const LOCALES: Record<Locale, LocaleInfo> = {
   en: { prefix: '', htmlLang: 'en', chip: 'EN', name: 'English' },
-  zh: { prefix: 'zh', htmlLang: 'zh-Hans', chip: 'ZH', name: '简体中文' },
+  zh: { prefix: 'zh', htmlLang: 'zh-Hans', chip: '中文', name: '简体中文' },
   de: { prefix: 'de', htmlLang: 'de', chip: 'DE', name: 'Deutsch' },
-  ja: { prefix: 'ja', htmlLang: 'ja', chip: 'JA', name: '日本語' },
-  ko: { prefix: 'ko', htmlLang: 'ko', chip: 'KO', name: '한국어' },
+  ja: { prefix: 'ja', htmlLang: 'ja', chip: '日本語', name: '日本語' },
+  ko: { prefix: 'ko', htmlLang: 'ko', chip: '한국어', name: '한국어' },
   fr: { prefix: 'fr', htmlLang: 'fr', chip: 'FR', name: 'Français' },
   es: { prefix: 'es', htmlLang: 'es', chip: 'ES', name: 'Español' },
   nl: { prefix: 'nl', htmlLang: 'nl', chip: 'NL', name: 'Nederlands' },

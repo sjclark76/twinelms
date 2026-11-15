@@ -85,9 +85,9 @@
 .has-menu.is-open nav{display:block}
 .has-menu .nest-nav{flex-direction:column;gap:4px;padding-top:var(--space-2);border-top:1px solid var(--line)}
 .has-menu .nest-nav a{display:flex;font-size:16px;padding:0 16px;min-height:48px}
-.nest-lang{flex-wrap:nowrap;gap:4px}
-.nest-lang li{flex:1 1 0;min-width:0}
-.nest-lang a{width:100%;justify-content:center;min-height:44px;padding:0;font-size:13px}
+.nest-lang-switch .nest-lang{flex-wrap:nowrap;gap:3px}
+.nest-lang-switch .nest-lang li{flex:1 1 auto;min-width:0}
+.nest-lang-switch .nest-lang a{width:100%;justify-content:center;min-height:44px;padding:0 3px;font-size:13px;white-space:nowrap}
 }
 
 /* Language switcher */
