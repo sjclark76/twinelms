@@ -188,6 +188,9 @@ export const zh: PartialStrings = {
       'lake-winter': '冬天的 Lake Hawea',
       garden: '花园',
       'breast-hill': '从 Isthmus Peak 眺望 Corner Peak 和 Breast Hill',
+      'aurora-green': '从房子看到的南极光',
+      'aurora-valley': '山谷上空的南极光',
+      'aurora-pink': '牧场上空的粉色光晕',
     },
   },
   map: {

@@ -188,6 +188,9 @@ export const nl: PartialStrings = {
       'lake-winter': 'Lake Hawea in de winter',
       garden: 'De tuin',
       'breast-hill': 'Corner Peak en Breast Hill, gezien vanaf Isthmus Peak',
+      'aurora-green': 'Zuiderlicht vanaf het huis',
+      'aurora-valley': 'Zuiderlicht boven de vallei',
+      'aurora-pink': 'Een roze gloed boven de wei',
     },
   },
   map: {

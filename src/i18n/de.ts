@@ -188,6 +188,9 @@ export const de: PartialStrings = {
       'lake-winter': 'Lake Hawea im Winter',
       garden: 'Der Garten',
       'breast-hill': 'Corner Peak und Breast Hill, vom Isthmus Peak aus gesehen',
+      'aurora-green': 'Südlicht vom Haus aus',
+      'aurora-valley': 'Südlicht über dem Tal',
+      'aurora-pink': 'Ein rosa Schimmer über der Weide',
     },
   },
   map: {
