@@ -5,6 +5,7 @@ import heroPhoto from '../assets/hero-hawea.jpg';
 import houseSign from '../assets/house-sign.jpg';
 import hostsPhoto from '../assets/hosts.jpg';
 import dexterFace from '../assets/dexter-face.jpg';
+import chickensFace from '../assets/chickens-face.jpg';
 import AnimalCard from '../components/AnimalCard.astro';
 import { useStrings } from '../i18n/ui';
 import { address, hosts } from '../data/contact';
@@ -84,7 +85,7 @@ const t = useStrings(locale).home;
       />
       <div class="animals-grid">
         <AnimalCard {...t.animals.dexter} initial="D" photo={dexterFace} />
-        <AnimalCard {...t.animals.chickens} initial="C" />
+        <AnimalCard {...t.animals.chickens} initial="C" photo={chickensFace} />
         <AnimalCard {...t.animals.ducks} initial="D" />
       </div>
     </section>

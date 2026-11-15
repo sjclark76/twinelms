@@ -49,6 +49,7 @@ export const ja: PartialStrings = {
       chickens: {
         name: 'ニワトリたち',
         kind: 'Duchess、Zelda、Thelma、Louise',
+        photoAlt: '鶏小屋の前にいる2羽のニワトリ。ふわふわの白い子と、黒と金色の子。',
         body: '4 羽のニワトリは敷地内を自由に歩き回っています。人に慣れていて、ドアが開いていると家の中に入ってこようとします！',
       },
       ducks: {

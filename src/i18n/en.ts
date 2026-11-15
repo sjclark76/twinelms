@@ -53,6 +53,7 @@ export const en = {
       chickens: {
         name: 'The chickens',
         kind: 'Duchess, Zelda, Thelma and Louise',
+        photoAlt: 'Two of the chickens: a fluffy white one and a black and gold one, in front of the coop.',
         body: 'Our four chickens roam free across the property. They’re used to people and will try to come inside if you leave the door open!',
       },
       ducks: {

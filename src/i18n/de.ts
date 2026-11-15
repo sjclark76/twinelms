@@ -49,6 +49,7 @@ export const de: PartialStrings = {
       chickens: {
         name: 'Die Hühner',
         kind: 'Duchess, Zelda, Thelma und Louise',
+        photoAlt: 'Zwei unserer Hühner: ein flauschiges weißes und ein schwarz-goldenes, vor dem Hühnerstall.',
         body: 'Unsere vier Hühner laufen frei auf dem Grundstück herum. Sie sind an Menschen gewöhnt und versuchen, ins Haus zu kommen, wenn die Tür offen steht!',
       },
       ducks: {
