@@ -34,14 +34,12 @@ export const es: PartialStrings = {
       eyebrow: 'Sobre nosotros',
       heading: 'Somos Jo y Stuart',
       body: 'Nos mudamos a Lake Hawea en 2021 con nuestros hijos Jessiah y Zoe. Nos apasiona la naturaleza y nos encanta correr, esquiar, ir en bici de montaña, hacer senderismo y montar a caballo. Nos gusta compartir nuestro pedacito de paraíso con los huéspedes y esperamos que a usted también le guste.',
-      photoLabel: 'Foto: Jo, Stuart, Jessiah y Zoe',
+      photoAlt: 'Jo y Stuart sonríen en un selfi frente a un lago, con gafas de sol y sombreros y montañas al fondo.',
     },
     animals: {
       eyebrow: 'Nuestros animales',
       heading: 'Conozca a la familia',
       artAlt: 'Un cartel pintado a mano que dice The Nest at Twin Elms, con el perro Dexter sentado en la hierba entre las gallinas y dos patos.',
-      hostsAlt: 'Jo y Stuart sonríen en un selfi frente a un lago, con gafas de sol y sombreros y montañas al fondo.',
-      hostsCaption: 'Sus anfitriones, Jo y Stuart',
       dexter: {
         name: 'Dexter',
         kind: 'Huntaway neozelandés',

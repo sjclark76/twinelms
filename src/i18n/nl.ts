@@ -34,14 +34,12 @@ export const nl: PartialStrings = {
       eyebrow: 'Over ons',
       heading: 'Wij zijn Jo en Stuart',
       body: 'We zijn in 2021 met onze kinderen Jessiah en Zoe naar Lake Hawea verhuisd. We zijn dol op de buitenlucht en houden van hardlopen, skiën, mountainbiken, wandelen en paardrijden. We delen ons stukje paradijs graag met gasten en hopen dat je er net zo van geniet als wij.',
-      photoLabel: 'Foto: Jo, Stuart, Jessiah en Zoe',
+      photoAlt: 'Jo en Stuart lachen in een selfie voor een meer, met zonnebrillen en hoeden en bergen op de achtergrond.',
     },
     animals: {
       eyebrow: 'Onze dieren',
       heading: 'Maak kennis met het gezin',
       artAlt: 'Een met de hand geschilderd bord met de tekst The Nest at Twin Elms, met hond Dexter in het gras tussen de kippen en twee eenden.',
-      hostsAlt: 'Jo en Stuart lachen in een selfie voor een meer, met zonnebrillen en hoeden en bergen op de achtergrond.',
-      hostsCaption: 'Jullie gastheer en gastvrouw, Jo en Stuart',
       dexter: {
         name: 'Dexter',
         kind: 'Nieuw-Zeelandse Huntaway',
