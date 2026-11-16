@@ -10,6 +10,7 @@ export const zh: PartialStrings = {
     contact: '联系我们',
     emergency: '紧急情况请拨打 111',
     walkIn: '（无需预约，也提供非工作时间服务）',
+    book: '在 Airbnb 上预订',
     note: '请勿在室内吸烟。如果您住得愉快，我们将非常感谢您在 Airbnb 上留下评价。',
   },
   home: {
@@ -22,6 +23,7 @@ export const zh: PartialStrings = {
       intro:
         '很高兴您选择来到美丽的 Lake Hāwea，入住我们家。这份指南能帮您更好地享受这次旅程；如果还有什么想了解的，请随时问我们。',
       openGuide: '打开住客指南',
+      bookAirbnb: '在 Airbnb 上预订',
       photoAlt: 'Lake Hāwea多石的湖岸上，用浮木拼出的“HAWEA”字样，湖对岸是白雪覆盖的群山。',
     },
     stay: {

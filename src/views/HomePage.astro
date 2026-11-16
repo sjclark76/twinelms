@@ -8,7 +8,7 @@ import dexterFace from '../assets/dexter-face.jpg';
 import chickensFace from '../assets/chickens-face.jpg';
 import AnimalCard from '../components/AnimalCard.astro';
 import { useStrings } from '../i18n/ui';
-import { address, hosts } from '../data/contact';
+import { address, airbnbUrl, hosts } from '../data/contact';
 import { LOCALES, localePath, type Locale } from '../i18n/config';
 
 interface Props {
@@ -34,6 +34,7 @@ const schema = {
     postalCode: '9382',
     addressCountry: 'NZ',
   },
+  sameAs: [airbnbUrl],
   checkinTime: '15:00',
   checkoutTime: '11:00',
 };
@@ -48,6 +49,9 @@ const schema = {
         <p class="lead">{t.hero.intro}</p>
         <div class="actions">
           <a class="nest-btn nest-btn-primary" href={localePath(locale, '/guide/')}>{t.hero.openGuide}</a>
+          <a class="nest-btn nest-btn-quiet" href={airbnbUrl} target="_blank" rel="noopener">
+            {t.hero.bookAirbnb}<span class="nest-sr-only"> {useStrings(locale).guide.links.newTab}</span>
+          </a>
         </div>
       </div>
       <div class="hero-photo">

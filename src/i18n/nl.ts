@@ -10,6 +10,7 @@ export const nl: PartialStrings = {
     contact: 'Neem contact op',
     emergency: 'Bel in een noodgeval 111',
     walkIn: '(zonder afspraak en buiten openingstijden)',
+    book: 'Boeken via Airbnb',
     note: 'Niet roken in huis, alsjeblieft. Een fijn verblijf gehad? We zijn je heel dankbaar voor een review op Airbnb.',
   },
   home: {
@@ -22,6 +23,7 @@ export const nl: PartialStrings = {
       intro:
         'Wat fijn dat je hebt gekozen om bij ons te verblijven in het mooie Lake Hāwea. Deze gids helpt je het beste uit je verblijf te halen, en als je nog iets wilt weten, vraag het ons gerust.',
       openGuide: 'Open de gastengids',
+      bookAirbnb: 'Boeken via Airbnb',
       photoAlt: 'Letters van drijfhout die HAWEA spellen op de steenachtige oever van Lake Hāwea, met besneeuwde bergen aan de overkant van het water.',
     },
     stay: {

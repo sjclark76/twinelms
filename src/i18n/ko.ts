@@ -10,6 +10,7 @@ export const ko: PartialStrings = {
     contact: '연락처',
     emergency: '긴급 상황에는 111로 전화하세요',
     walkIn: '(예약 없이, 진료 시간 외에도 가능)',
+    book: 'Airbnb에서 예약하기',
     note: '실내에서는 금연입니다. 숙박이 즐거우셨다면 Airbnb에 후기를 남겨 주시면 정말 감사하겠습니다.',
   },
   home: {
@@ -22,6 +23,7 @@ export const ko: PartialStrings = {
       intro:
         '아름다운 Lake Hāwea에서 저희와 함께 지내 주셔서 감사합니다. 이 가이드가 즐거운 숙박에 도움이 되기를 바랍니다. 궁금한 점이 더 있으면 언제든지 물어보세요.',
       openGuide: '게스트 가이드 열기',
+      bookAirbnb: 'Airbnb에서 예약하기',
       photoAlt: 'Lake Hāwea의 자갈 해변에 유목으로 만든 HAWEA 글자, 호수 건너편으로 눈 덮인 산이 보입니다.',
     },
     stay: {
