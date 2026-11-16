@@ -1,0 +1,247 @@
+---
+import { LOCALES, type Locale } from '../i18n/config';
+import { useStrings } from '../i18n/ui';
+import { airbnbUrl } from '../data/contact';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useStrings(locale).home.availability;
+const book = useStrings(locale).home.hero.bookAirbnb;
+const newTab = useStrings(locale).guide.links.newTab;
+---
+
+<!-- Stays hidden unless the calendar feed loads, so a missing or failing feed never shows an empty box. -->
+<section class="nest-container section" data-availability hidden data-lang={LOCALES[locale].htmlLang} data-free={t.free} data-taken={t.taken}>
+  <div class="nest-card cal">
+    <p class="label eyebrow">{t.eyebrow}</p>
+    <h2 class="heading-1">{t.heading}</h2>
+    <p class="intro">{t.intro}</p>
+    <div class="cal-nav">
+      <button type="button" class="cal-step" data-prev aria-label={t.prev}>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"></path></svg>
+      </button>
+      <p class="cal-month" data-month aria-live="polite"></p>
+      <button type="button" class="cal-step" data-next aria-label={t.next}>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"></path></svg>
+      </button>
+    </div>
+    <div data-grid></div>
+    <ul class="cal-legend">
+      <li><span class="swatch free"></span>{t.free}</li>
+      <li><span class="swatch taken"></span>{t.taken}</li>
+    </ul>
+    <a class="nest-btn nest-btn-quiet" href={airbnbUrl} target="_blank" rel="noopener">
+      {book}<span class="nest-sr-only"> {newTab}</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  section {
+    padding-top: calc(var(--space-10) + var(--space-6));
+  }
+  .cal {
+    max-width: 480px;
+  }
+  .eyebrow {
+    margin: 0;
+    color: var(--slate);
+    text-transform: uppercase;
+  }
+  h2 {
+    margin: var(--space-2) 0 0;
+  }
+  .intro {
+    margin: var(--space-2) 0 var(--space-4);
+    color: var(--slate);
+    font-size: 15px;
+    line-height: 22px;
+  }
+  .cal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+  }
+  .cal-month {
+    margin: 0;
+    font: 600 18px/24px var(--font-sans);
+    text-align: center;
+  }
+  .cal-step {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--slate);
+    background: var(--white);
+    cursor: pointer;
+  }
+  .cal-step:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+  .cal-step:focus-visible {
+    outline: 3px solid var(--lake);
+    outline-offset: 2px;
+  }
+  .cal-step svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .cal-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+    margin: var(--space-4) 0;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .cal-legend li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .swatch,
+  :global(.cal-day) {
+    border-radius: var(--radius-sm);
+  }
+  .swatch {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--line);
+    background: var(--white);
+  }
+  .swatch.taken,
+  :global(.cal-day.taken) {
+    background: repeating-linear-gradient(135deg, var(--mist) 0 4px, var(--line) 4px 5px);
+  }
+  :global(.cal-table) {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 3px;
+    table-layout: fixed;
+  }
+  :global(.cal-table th) {
+    padding: 0 0 4px;
+    font: 600 13px/18px var(--font-sans);
+    color: var(--slate);
+    text-align: center;
+  }
+  :global(.cal-table td) {
+    padding: 0;
+  }
+  :global(.cal-day) {
+    display: grid;
+    place-items: center;
+    height: 44px;
+    border: 1px solid var(--line);
+    background: var(--white);
+    font: 400 15px/20px var(--font-sans);
+  }
+  :global(.cal-day.taken) {
+    color: var(--slate);
+    text-decoration: line-through;
+  }
+  :global(.cal-day.past) {
+    opacity: 0.45;
+  }
+  :global(.cal-day.today) {
+    border: 2px solid var(--lake);
+    font-weight: 600;
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-availability]');
+  if (root) {
+    const lang = root.dataset.lang ?? 'en';
+    const freeLabel = root.dataset.free ?? '';
+    const takenLabel = root.dataset.taken ?? '';
+    const monthEl = root.querySelector<HTMLElement>('[data-month]')!;
+    const grid = root.querySelector<HTMLElement>('[data-grid]')!;
+    const prev = root.querySelector<HTMLButtonElement>('[data-prev]')!;
+    const next = root.querySelector<HTMLButtonElement>('[data-next]')!;
+    const MONTHS_AHEAD = 11;
+
+    const iso = (d: Date) => `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
+    // Today's date where the guest is; the calendar is date-only, so everything else works in UTC.
+    const now = new Date();
+    const today = iso(new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())));
+    const monthName = new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric', timeZone: 'UTC' });
+    const dayLabel = new Intl.DateTimeFormat(lang, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+    const weekday = new Intl.DateTimeFormat(lang, { weekday: 'short', timeZone: 'UTC' });
+    const weekdayLong = new Intl.DateTimeFormat(lang, { weekday: 'long', timeZone: 'UTC' });
+
+    let taken = new Set<string>();
+    let offset = 0;
+
+    const render = () => {
+      const first = new Date(Date.UTC(now.getFullYear(), now.getMonth() + offset, 1));
+      monthEl.textContent = monthName.format(first);
+      prev.disabled = offset === 0;
+      next.disabled = offset === MONTHS_AHEAD;
+      const lead = (first.getUTCDay() + 6) % 7; // weeks start on Monday
+      const days = new Date(Date.UTC(first.getUTCFullYear(), first.getUTCMonth() + 1, 0)).getUTCDate();
+
+      const table = document.createElement('table');
+      table.className = 'cal-table';
+      const head = table.createTHead().insertRow();
+      for (let i = 0; i < 7; i++) {
+        const day = new Date(Date.UTC(2024, 0, 1 + i)); // 1 Jan 2024 was a Monday
+        const th = document.createElement('th');
+        th.scope = 'col';
+        th.textContent = weekday.format(day);
+        th.setAttribute('aria-label', weekdayLong.format(day));
+        head.append(th);
+      }
+      const body = table.createTBody();
+      let row = body.insertRow();
+      for (let i = 0; i < lead; i++) row.insertCell();
+      for (let d = 1; d <= days; d++) {
+        if (row.cells.length === 7) row = body.insertRow();
+        const date = new Date(Date.UTC(first.getUTCFullYear(), first.getUTCMonth(), d));
+        const key = iso(date);
+        const cell = row.insertCell();
+        const span = document.createElement('span');
+        const isTaken = taken.has(key);
+        span.className = 'cal-day' + (isTaken ? ' taken' : '') + (key < today ? ' past' : '') + (key === today ? ' today' : '');
+        span.textContent = String(d);
+        span.setAttribute('role', 'img');
+        span.setAttribute('aria-label', `${dayLabel.format(date)}: ${isTaken ? takenLabel : freeLabel}`);
+        cell.append(span);
+      }
+      while (row.cells.length < 7) row.insertCell();
+      grid.replaceChildren(table);
+    };
+
+    prev.addEventListener('click', () => { offset = Math.max(0, offset - 1); render(); });
+    next.addEventListener('click', () => { offset = Math.min(MONTHS_AHEAD, offset + 1); render(); });
+
+    fetch('/api/availability')
+      .then((res) => (res.ok ? res.json() : Promise.reject()))
+      .then((data: { ranges: { from: string; to: string }[] }) => {
+        // Each range is the nights taken: from the first night up to, not including, the check-out day.
+        taken = new Set();
+        for (const r of data.ranges) {
+          for (let d = new Date(`${r.from}T00:00:00Z`); iso(d) < r.to; d.setUTCDate(d.getUTCDate() + 1)) taken.add(iso(d));
+        }
+        render();
+        root.hidden = false;
+      })
+      .catch(() => {
+        // No feed yet (or Airbnb is unreachable): leave the section out.
+      });
+  }
+</script>

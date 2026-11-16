@@ -65,6 +65,15 @@ export const en = {
         body: 'Our two ducks, Daphne and Elliot, complete the family.',
       },
     },
+    availability: {
+      eyebrow: 'Availability',
+      heading: 'When The Nest is free',
+      intro: 'Striped dates are booked or unavailable. The calendar can be a few hours behind, so please check Airbnb before you plan.',
+      free: 'Available',
+      taken: 'Not available',
+      prev: 'Previous month',
+      next: 'Next month',
+    },
     mapInvite: {
       heading: 'Where’s home for you?',
       body: 'Add your home town to our map and see where all our guests have come from.',

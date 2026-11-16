@@ -7,6 +7,7 @@ import hostsPhoto from '../assets/hosts.jpg';
 import dexterFace from '../assets/dexter-face.jpg';
 import chickensFace from '../assets/chickens-face.jpg';
 import AnimalCard from '../components/AnimalCard.astro';
+import AvailabilityCalendar from '../components/AvailabilityCalendar.astro';
 import { useStrings } from '../i18n/ui';
 import { address, airbnbUrl, hosts } from '../data/contact';
 import { LOCALES, localePath, type Locale } from '../i18n/config';
@@ -114,6 +115,8 @@ const schema = {
         <AnimalCard {...t.animals.ducks} initial="D" />
       </div>
     </section>
+
+    <AvailabilityCalendar locale={locale} />
 
     <section class="nest-container section">
       <div class="invite">
