@@ -10,6 +10,7 @@ export const fr: PartialStrings = {
     contact: 'Nous contacter',
     emergency: 'En cas d’urgence, composez le 111',
     walkIn: '(sans rendez-vous et en dehors des heures d’ouverture)',
+    book: 'Réserver sur Airbnb',
     note: 'Merci de ne pas fumer à l’intérieur. Votre séjour vous a plu ? Nous vous serions très reconnaissants de laisser un avis sur Airbnb.',
   },
   home: {
@@ -22,6 +23,7 @@ export const fr: PartialStrings = {
       intro:
         'Nous sommes ravis que vous ayez choisi de séjourner chez nous, à Lake Hāwea, un coin magnifique. Ce guide vous aidera à profiter pleinement de votre séjour, et si vous avez la moindre question, n’hésitez pas à nous la poser.',
       openGuide: 'Ouvrir le guide du séjour',
+      bookAirbnb: 'Réserver sur Airbnb',
       photoAlt: 'Des lettres en bois flotté formant le mot HAWEA sur la rive caillouteuse du lac Hāwea, avec des montagnes enneigées de l’autre côté de l’eau.',
     },
     stay: {

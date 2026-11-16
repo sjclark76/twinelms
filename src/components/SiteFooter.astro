@@ -1,7 +1,7 @@
 ---
 import type { Locale } from '../i18n/config';
 import { useStrings } from '../i18n/ui';
-import { address, hosts, medicalCentre } from '../data/contact';
+import { address, airbnbUrl, hosts, medicalCentre } from '../data/contact';
 
 interface Props {
   locale: Locale;
@@ -38,5 +38,10 @@ const t = useStrings(Astro.props.locale);
   </div>
   <div class="nest-container nest-footer-end">
     <p>{t.footer.note}</p>
+    <p>
+      <a href={airbnbUrl} target="_blank" rel="noopener">
+        {t.footer.book}<span class="nest-sr-only"> {t.guide.links.newTab}</span>
+      </a>
+    </p>
   </div>
 </footer>

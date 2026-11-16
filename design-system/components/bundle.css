@@ -140,6 +140,7 @@
 .nest-footer a:focus-visible{outline:3px solid var(--white);outline-offset:2px}
 .nest-footer-end{padding-bottom:var(--space-6)}
 .nest-footer-end p{padding-top:20px;border-top:1px solid var(--fern);font-size:14px;line-height:20px}
+.nest-footer-end p+p{margin:0;padding-top:8px;border-top:0}
 
 /* Skip link: visible only when focused */
 .nest-skip{position:absolute;left:var(--space-4);top:-100px;z-index:10;padding:10px 16px;border-radius:var(--radius-pill);background:var(--ink);color:var(--white);font:600 15px/20px var(--font-sans);text-decoration:none}

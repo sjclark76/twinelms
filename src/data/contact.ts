@@ -11,3 +11,6 @@ export const medicalCentre = {
   display: '+64 443 0725',
   tel: '+64344430725',
 };
+
+/** The Nest's Airbnb listing (no tracking parameters). */
+export const airbnbUrl = 'https://www.airbnb.co.nz/rooms/1478609490229044899';

@@ -15,6 +15,7 @@ export const en = {
     contact: 'Contact us',
     emergency: 'In an emergency dial 111',
     walkIn: '(walk-in and after hours)',
+    book: 'Book on Airbnb',
     note: 'Please no smoking inside. Loved your stay? We’d be so grateful for a review on Airbnb.',
   },
   home: {
@@ -27,6 +28,7 @@ export const en = {
       intro:
         'We are delighted you’ve chosen to stay with us in beautiful Lake Hāwea. This guide will help you make the most of your stay, and if there’s anything else you’d like to know, just ask us.',
       openGuide: 'Open the guest guide',
+      bookAirbnb: 'Book on Airbnb',
       photoAlt: 'Driftwood letters spelling HAWEA on the stony shore of Lake Hāwea, with snow-capped mountains across the water.',
     },
     stay: {

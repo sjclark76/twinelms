@@ -10,6 +10,7 @@ export const ja: PartialStrings = {
     contact: 'お問い合わせ',
     emergency: '緊急時は 111 に電話してください',
     walkIn: '（予約なし・時間外も受付）',
+    book: 'Airbnbで予約する',
     note: '室内は禁煙です。ご滞在を気に入っていただけたら、Airbnb にレビューを書いていただけるととても嬉しいです。',
   },
   home: {
@@ -22,6 +23,7 @@ export const ja: PartialStrings = {
       intro:
         '美しい Lake Hāwea の私たちの家にお泊まりいただき、ありがとうございます。このガイドが、ご滞在を楽しんでいただく助けになれば幸いです。ほかにも知りたいことがあれば、お気軽にお尋ねください。',
       openGuide: 'ゲストガイドを開く',
+      bookAirbnb: 'Airbnbで予約する',
       photoAlt: 'Lake Hāweaの石の多い岸辺に、流木の文字で「HAWEA」と並べた様子。湖の向こうには雪をかぶった山々が見えます。',
     },
     stay: {
