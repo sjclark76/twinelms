@@ -13,7 +13,7 @@ export const zh: PartialStrings = {
     note: '请勿在室内吸烟。如果您住得愉快，我们将非常感谢您在 Airbnb 上留下评价。',
   },
   home: {
-    title: 'The Nest at Twin Elms, Lake Hāwea',
+    title: 'The Nest at Twin Elms | Lake Hāwea 住客指南',
     description:
       '欢迎来到 The Nest at Twin Elms。阅读住客指南，认识我们的小动物，看看客人们来自哪里。',
     hero: {

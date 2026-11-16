@@ -18,7 +18,7 @@ export const en = {
     note: 'Please no smoking inside. Loved your stay? We’d be so grateful for a review on Airbnb.',
   },
   home: {
-    title: 'The Nest at Twin Elms, Lake Hāwea',
+    title: 'The Nest at Twin Elms | Lake Hāwea guest guide',
     description:
       'Welcome to The Nest at Twin Elms. Read the guest guide, meet the animals and see where our guests come from.',
     hero: {

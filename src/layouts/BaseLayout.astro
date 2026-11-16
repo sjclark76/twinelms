@@ -15,6 +15,8 @@ interface Props {
   description?: string;
   noindex?: boolean;
   locale?: Locale;
+  /** schema.org data for this page, written into the head as JSON-LD. */
+  schema?: Record<string, unknown>;
   /** A not-found page: no language redirect, no hreflang, and the switcher links to each language's home page. */
   notFound?: boolean;
 }
@@ -23,6 +25,7 @@ const {
   description = 'The Nest at Twin Elms, Lake Hāwea',
   noindex = false,
   locale = DEFAULT_LOCALE,
+  schema,
   notFound = false,
 } = Astro.props;
 const t = useStrings(locale);
@@ -36,6 +39,13 @@ const prefixes = Object.fromEntries(ALL_LOCALES.map((code) => [code, LOCALES[cod
 const alternates = !notFound && ENABLED_LOCALES.length > 1 && Astro.site
   ? ENABLED_LOCALES.map((code) => ({ code, href: new URL(localePath(code, rest), Astro.site).href }))
   : [];
+// The page's own address (canonical), and the share-preview photo, always on the live domain.
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const ogImage = Astro.site ? new URL('/og-image.jpg', Astro.site).href : undefined;
+const ogLocales: Record<Locale, string> = {
+  en: 'en_NZ', zh: 'zh_CN', de: 'de_DE', ja: 'ja_JP', ko: 'ko_KR', fr: 'fr_FR', es: 'es_ES', nl: 'nl_NL', it: 'it_IT',
+};
+const ogLocale = ogLocales[locale];
 ---
 
 <!doctype html>
@@ -45,6 +55,25 @@ const alternates = !notFound && ENABLED_LOCALES.length > 1 && Astro.site
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     {hidden && <meta name="robots" content="noindex" />}
+    {canonical && !hidden && !notFound && <link rel="canonical" href={canonical} />}
+    {
+      !hidden && !notFound && canonical && (
+        <>
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="The Nest at Twin Elms" />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+          <meta property="og:url" content={canonical} />
+          <meta property="og:locale" content={ogLocale} />
+          <meta property="og:image" content={ogImage} />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="og:image:alt" content={t.home.hero.photoAlt} />
+          <meta name="twitter:card" content="summary_large_image" />
+        </>
+      )
+    }
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
     {cjkFonts && <link rel="stylesheet" href={cjkFonts} />}
     {alternates.map((a) => <link rel="alternate" hreflang={LOCALES[a.code].htmlLang} href={a.href} />)}
     {alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={alternates[0].href} />}

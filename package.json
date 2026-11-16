@@ -12,6 +12,7 @@
     "tokens": "node scripts/build-tokens.mjs",
     "i18n:check": "tsx scripts/i18n-check.ts",
     "wifi-card": "tsx scripts/wifi-card.ts",
+    "site-card": "tsx scripts/site-card.ts",
     "test": "vitest run",
     "astro": "astro"
   },

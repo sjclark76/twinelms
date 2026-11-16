@@ -9,16 +9,37 @@ import chickensFace from '../assets/chickens-face.jpg';
 import AnimalCard from '../components/AnimalCard.astro';
 import { useStrings } from '../i18n/ui';
 import { address, hosts } from '../data/contact';
-import { localePath, type Locale } from '../i18n/config';
+import { LOCALES, localePath, type Locale } from '../i18n/config';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const t = useStrings(locale).home;
+
+// Tells search engines this is a place to stay. Only facts already on the page: no prices, ratings or availability.
+const site = Astro.site ?? new URL('https://thenest.twinelms.co.nz');
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: 'The Nest at Twin Elms',
+  description: t.description,
+  url: new URL(localePath(locale, '/'), site).href,
+  image: new URL('/og-image.jpg', site).href,
+  inLanguage: LOCALES[locale].htmlLang,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '180 Capell Avenue',
+    addressLocality: 'Lake Hawea',
+    postalCode: '9382',
+    addressCountry: 'NZ',
+  },
+  checkinTime: '15:00',
+  checkoutTime: '11:00',
+};
 ---
 
-<BaseLayout title={t.title} description={t.description} locale={locale}>
+<BaseLayout title={t.title} description={t.description} locale={locale} schema={schema}>
   <main id="main">
     <section class="nest-container section hero">
       <div class="hero-text">
