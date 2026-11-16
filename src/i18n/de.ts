@@ -13,7 +13,7 @@ export const de: PartialStrings = {
     note: 'Bitte nicht im Haus rauchen. Hat Ihnen Ihr Aufenthalt gefallen? Wir würden uns sehr über eine Bewertung auf Airbnb freuen.',
   },
   home: {
-    title: 'The Nest at Twin Elms, Lake Hāwea',
+    title: 'The Nest at Twin Elms | Gästeführer für Lake Hāwea',
     description:
       'Willkommen im The Nest at Twin Elms. Lesen Sie den Gästeführer, lernen Sie die Tiere kennen und sehen Sie, woher unsere Gäste kommen.',
     hero: {

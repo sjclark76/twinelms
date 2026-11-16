@@ -13,7 +13,7 @@ export const ko: PartialStrings = {
     note: '실내에서는 금연입니다. 숙박이 즐거우셨다면 Airbnb에 후기를 남겨 주시면 정말 감사하겠습니다.',
   },
   home: {
-    title: 'The Nest at Twin Elms, Lake Hāwea',
+    title: 'The Nest at Twin Elms | Lake Hāwea 게스트 가이드',
     description:
       'The Nest at Twin Elms에 오신 것을 환영합니다. 게스트 가이드를 읽고, 동물 친구들을 만나고, 손님들이 어디에서 오셨는지 확인해 보세요.',
     hero: {

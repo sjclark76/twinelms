@@ -13,7 +13,7 @@ export const ja: PartialStrings = {
     note: '室内は禁煙です。ご滞在を気に入っていただけたら、Airbnb にレビューを書いていただけるととても嬉しいです。',
   },
   home: {
-    title: 'The Nest at Twin Elms, Lake Hāwea',
+    title: 'The Nest at Twin Elms | Lake Hāwea ゲストガイド',
     description:
       'The Nest at Twin Elms へようこそ。ゲストガイドを読んだり、動物たちに会ったり、ゲストの皆さんの出身地を見たりできます。',
     hero: {

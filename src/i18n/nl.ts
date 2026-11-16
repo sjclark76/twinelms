@@ -13,7 +13,7 @@ export const nl: PartialStrings = {
     note: 'Niet roken in huis, alsjeblieft. Een fijn verblijf gehad? We zijn je heel dankbaar voor een review op Airbnb.',
   },
   home: {
-    title: 'The Nest at Twin Elms, Lake Hāwea',
+    title: 'The Nest at Twin Elms | Gastengids voor Lake Hāwea',
     description:
       'Welkom bij The Nest at Twin Elms. Lees de gastengids, maak kennis met de dieren en ontdek waar onze gasten vandaan komen.',
     hero: {
