@@ -19,7 +19,7 @@ The guest website for The Nest at Twin Elms, Jo and Stuart's family-run Airbnb a
 - **Town search:** suggestions come from GeoNames data (CC BY 4.0, credited under the form) built into `public/places/` by `scripts/build-places.py`; the browser searches those static files, and the Worker confirms a picked town from the same files. Folding and bucket rules live in `src/data/places-search.ts` and must match the build script (the tests check this). Photon was tried and refuses connections from Cloudflare, so don't reintroduce it server-side.
 - **Map:** Leaflet with OpenStreetMap tiles; geocoding of typed (not picked) towns with OpenStreetMap Nominatim (server-side, cached, at most 1 request per second, with a proper User-Agent, per its usage policy). Show the "© OpenStreetMap contributors" attribution.
 - **Security and caching headers:** Astro writes a Content Security Policy `<meta>` tag into every page (`security.csp` in `astro.config.mjs`), hashing the scripts and styles it bundles. Inline `is:inline` scripts aren't hashed automatically: put their text in `src/data/inline-scripts.ts` and add the hash with `Astro.csp.insertScriptHash` (BaseLayout does this). A new outside service (scripts, frames, images, fetches) must be added to the policy. Other headers (HSTS, framing, caching of `/_astro/*`) are in `public/_headers`. The CSP isn't applied in `astro dev`, so test with `npm run build` and `npx wrangler dev`.
-- No paid services, no translation APIs, no analytics or trackers without asking.
+- No paid services, no translation APIs, no analytics or trackers without asking. The one exception, chosen by the hosts: Cloudflare Web Analytics (cookie-free page counts), which Cloudflare injects itself and the security policy allows.
 
 ## Design rules
 
