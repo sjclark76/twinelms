@@ -10,7 +10,7 @@ const { locale } = Astro.props;
 const t = useStrings(locale).notFound;
 ---
 
-<BaseLayout title={t.title} locale={locale} noindex notFound>
+<BaseLayout title={t.title} description={t.body} locale={locale} noindex notFound>
   <main id="main" class="nest-container wrap">
     <h1 class="display">{t.heading}</h1>
     <p class="lead">{t.body}</p>

@@ -3,6 +3,7 @@ import {
   cleanTown, isPlaceId, normaliseQuery, pickPlace, readBody, turnstileAccepts, type NominatimResult, type Place, type TurnstileOutcome,
 } from './towns';
 import { foldName, ID_FILES } from '../data/places-search';
+import { SITE_URL } from '../data/site';
 
 interface Env {
   ASSETS: Fetcher;
@@ -11,7 +12,7 @@ interface Env {
   TURNSTILE_SECRET?: string;
 }
 
-const USER_AGENT = 'TheNestAtTwinElms-VisitorMap/1.0 (+https://thenest.twinelms.co.nz)';
+const USER_AGENT = `TheNestAtTwinElms-VisitorMap/1.0 (+${SITE_URL})`;
 const NOMINATIM_GAP_MS = 1100;
 /** If the queue for Nominatim is longer than this, give up rather than keep the guest waiting. */
 const NOMINATIM_MAX_WAIT_MS = 5000;
@@ -149,7 +150,7 @@ async function geocode(town: string, env: Env): Promise<Place | null> {
   url.search = new URLSearchParams({
     q: town, format: 'jsonv2', addressdetails: '1', extratags: '1', limit: '5', featureType: 'settlement', 'accept-language': 'en',
   }).toString();
-  const res = await fetch(url, { headers: { 'user-agent': USER_AGENT, referer: 'https://thenest.twinelms.co.nz/' } });
+  const res = await fetch(url, { headers: { 'user-agent': USER_AGENT, referer: `${SITE_URL}/` } });
   if (!res.ok) throw new Error(`Nominatim ${res.status}`);
   const place = pickPlace((await res.json()) as NominatimResult[]);
 

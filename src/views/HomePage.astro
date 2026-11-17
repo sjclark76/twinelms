@@ -8,7 +8,9 @@ import dexterFace from '../assets/dexter-face.jpg';
 import chickensFace from '../assets/chickens-face.jpg';
 import AnimalCard from '../components/AnimalCard.astro';
 import { useStrings } from '../i18n/ui';
-import { address, airbnbUrl, hosts } from '../data/contact';
+import { address, airbnbUrl, hosts, postalAddress } from '../data/contact';
+import { SITE_URL } from '../data/site';
+import Icon from '../components/Icon.astro';
 import { LOCALES, localePath, type Locale } from '../i18n/config';
 
 interface Props {
@@ -18,7 +20,7 @@ const { locale } = Astro.props;
 const t = useStrings(locale).home;
 
 // Tells search engines this is a place to stay. Only facts already on the page: no prices, ratings or availability.
-const site = Astro.site ?? new URL('https://thenest.twinelms.co.nz');
+const site = new URL(SITE_URL);
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'LodgingBusiness',
@@ -29,10 +31,10 @@ const schema = {
   inLanguage: LOCALES[locale].htmlLang,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '180 Capell Avenue',
-    addressLocality: 'Lake Hawea',
-    postalCode: '9382',
-    addressCountry: 'NZ',
+    streetAddress: postalAddress.street,
+    addressLocality: postalAddress.locality,
+    postalCode: postalAddress.postcode,
+    addressCountry: postalAddress.country,
   },
   sameAs: [airbnbUrl],
   checkinTime: '15:00',
@@ -61,15 +63,15 @@ const schema = {
 
     <section class="nest-container section stay" aria-label={t.stay.label}>
       <div class="nest-card stay-card">
-        <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+        <Icon name="clock" />
         <div><p class="stay-title">{t.stay.checkIn}</p><p class="stay-sub">{t.stay.checkOut}</p></div>
       </div>
       <div class="nest-card stay-card">
-        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+        <Icon name="pin" />
         <div><p class="stay-title">{address[0]}</p><p class="stay-sub">{address[1]}</p></div>
       </div>
       <div class="nest-card stay-card">
-        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"></path></svg>
+        <Icon name="phone" />
         <div class="stay-body">
           <p class="stay-title">{t.stay.questions}</p>
           <ul class="hosts">
@@ -192,7 +194,7 @@ const schema = {
     align-items: flex-start;
     padding: 20px;
   }
-  .stay-card svg {
+  .stay-card :global(svg) {
     flex: none;
     width: 24px;
     height: 24px;

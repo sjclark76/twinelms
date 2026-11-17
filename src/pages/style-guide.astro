@@ -18,7 +18,7 @@ for (const { html } of components)
   for (const [, css] of html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)) Astro.csp?.insertStyleHash(scriptHash(css));
 ---
 
-<BaseLayout title="Style guide | The Nest at Twin Elms" noindex>
+<BaseLayout title="Style guide | The Nest at Twin Elms" description="Design tokens and components (internal reference)." noindex>
   <main id="main" style="max-width: 1120px; margin: 0 auto; padding: var(--space-10) var(--space-4)">
     <h1 class="display" style="margin: 0 0 var(--space-4)">Style guide</h1>
     <p class="body">Design tokens and components from <code>design-system/</code>. Internal reference, not linked from the site.</p>

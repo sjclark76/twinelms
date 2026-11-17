@@ -1,5 +1,9 @@
 // Names, addresses and phone numbers are never translated.
-export const address = ['180 Capell Avenue', 'Lake Hawea 9382'];
+/** The postal address, in parts (also used for search engines' structured data). */
+export const postalAddress = { street: '180 Capell Avenue', locality: 'Lake Hawea', postcode: '9382', country: 'NZ' };
+
+/** The address as it's shown on the page, on two lines. */
+export const address = [postalAddress.street, `${postalAddress.locality} ${postalAddress.postcode}`];
 
 export const hosts = [
   { name: 'Jo', display: '+64 (0)22 031 8726', tel: '+64220318726' },

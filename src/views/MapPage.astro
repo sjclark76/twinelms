@@ -62,7 +62,7 @@ const config = {
           <span class="nest-help credit">
             {t.searchCredit.split('{geonames}')[0]}<a href="https://www.geonames.org/">GeoNames</a>{t.searchCredit.split('{geonames}')[1]}
           </span>
-          <span class="visually-hidden" role="status" aria-live="polite" data-combo-status></span>
+          <span class="nest-sr-only" role="status" aria-live="polite" data-combo-status></span>
         </div>
         <div class="turnstile" data-turnstile></div>
         <div><button type="submit" class="nest-btn nest-btn-warm" data-submit>{t.submit}</button></div>
@@ -246,14 +246,6 @@ const config = {
   .combo-list :global(li.empty) {
     cursor: default;
     color: var(--slate);
-  }
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
   }
   .turnstile:empty {
     display: none;

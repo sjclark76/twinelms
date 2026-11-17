@@ -13,7 +13,8 @@ import { headerMenu, languageRedirect, scriptHash } from '../data/inline-scripts
 
 interface Props {
   title: string;
-  description?: string;
+  /** Every page has its own, translated description. */
+  description: string;
   noindex?: boolean;
   locale?: Locale;
   /** schema.org data for this page, written into the head as JSON-LD. */
@@ -23,7 +24,7 @@ interface Props {
 }
 const {
   title,
-  description = 'The Nest at Twin Elms, Lake Hāwea',
+  description,
   noindex = false,
   locale = DEFAULT_LOCALE,
   schema,

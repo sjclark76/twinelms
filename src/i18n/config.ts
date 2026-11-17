@@ -7,7 +7,7 @@ interface LocaleInfo {
   htmlLang: string;
   /** Short label for the language chips. */
   chip: string;
-  /** Language name in its own script, for the phone select. */
+  /** Language name in its own script ("Deutsch"). */
   name: string;
 }
 
@@ -34,7 +34,7 @@ export const PREFIXED_LOCALES = ALL_LOCALES.filter((l) => l !== DEFAULT_LOCALE);
 /**
  * Locales that are public: shown in the language switcher, listed in hreflang and indexed by search engines.
  * Every locale has routes, but one that isn't listed here is hidden and marked noindex.
- * Add each language here once its translation is done (issue #9).
+ * Add each language here once its translation is done.
  */
 export const ENABLED_LOCALES: Locale[] = ['en', 'zh', 'de', 'ja', 'ko', 'fr', 'es', 'nl', 'it'];
 

@@ -1,11 +1,12 @@
 import type { APIRoute } from 'astro';
+import { SITE_URL } from '../data/site';
 import { ENABLED_LOCALES, LOCALES, localePath } from '../i18n/config';
 
 // Every public page in every enabled language, each listing its translations. Not-found and style-guide pages are left out.
 const pages = ['/', '/guide/', '/map/', '/gallery/'];
 
 export const GET: APIRoute = ({ site }) => {
-  const base = site ?? new URL('https://thenest.twinelms.co.nz');
+  const base = site ?? new URL(SITE_URL);
   const abs = (locale: (typeof ENABLED_LOCALES)[number], page: string) => new URL(localePath(locale, page), base).href;
   const urls = pages.flatMap((page) =>
     ENABLED_LOCALES.map((locale) => {
