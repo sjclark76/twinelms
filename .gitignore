@@ -30,3 +30,6 @@ pnpm-debug.log*
 # local-only Wi-Fi details and the printed card built from them
 .wifi.local.json
 out/
+
+# Lighthouse reports from `npx lighthouse … --view`
+*.report.html
