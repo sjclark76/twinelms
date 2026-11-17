@@ -27,12 +27,17 @@ export function createTurnstile(el: HTMLElement, options: { siteKey: string; lan
     };
     check();
   });
+  // The widget is invisible unless Turnstile needs the guest to tick a box, but its frame can still take keyboard focus.
+  // Keep it inert (out of the Tab order) while it's hidden, and reachable only while it's asking for a tick.
+  el.inert = true;
   whenReady.then((ready) => {
     widgetId = ready.render(el, {
       sitekey: options.siteKey,
       language: options.language,
       appearance: 'interaction-only',
       theme: 'light',
+      'before-interactive-callback': () => (el.inert = false),
+      'after-interactive-callback': () => (el.inert = true),
     });
   });
 
