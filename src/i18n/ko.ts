@@ -181,7 +181,7 @@ export const ko: PartialStrings = {
     prev: '이전 사진',
     next: '다음 사진',
     photos: {
-      'lake-dawn': '새벽의 호수',
+      'lake-sunset': '해 질 녘의 호수',
       'living-room': '거실',
       dexter: 'Dexter',
       'main-bedroom': '안방',

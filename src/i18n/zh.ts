@@ -181,7 +181,7 @@ export const zh: PartialStrings = {
     prev: '上一张照片',
     next: '下一张照片',
     photos: {
-      'lake-dawn': '黎明时的湖',
+      'lake-sunset': '日落时的湖',
       'living-room': '客厅',
       dexter: 'Dexter',
       'main-bedroom': '主卧',

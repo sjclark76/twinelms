@@ -181,7 +181,7 @@ export const ja: PartialStrings = {
     prev: '前の写真',
     next: '次の写真',
     photos: {
-      'lake-dawn': '夜明けの湖',
+      'lake-sunset': '夕暮れの湖',
       'living-room': 'リビング',
       dexter: 'Dexter',
       'main-bedroom': 'メインの寝室',

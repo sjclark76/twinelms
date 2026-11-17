@@ -181,7 +181,7 @@ export const it: PartialStrings = {
     prev: 'Foto precedente',
     next: 'Foto successiva',
     photos: {
-      'lake-dawn': 'Il lago all’alba',
+      'lake-sunset': 'Il lago al tramonto',
       'living-room': 'Il soggiorno',
       dexter: 'Dexter',
       'main-bedroom': 'La camera da letto principale',
