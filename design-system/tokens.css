@@ -31,8 +31,8 @@
   --radius-sm: 6px;
   --radius-md: 14px;
   --radius-pill: 999px;
-  --font-display: Fraunces, "Noto Serif SC", "Noto Serif JP", "Noto Serif KR", Georgia, serif;
-  --font-sans: Figtree, "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", system-ui, sans-serif;
+  --font-display: Fraunces, Georgia, serif;
+  --font-sans: Figtree, system-ui, sans-serif;
 }
 .display { font-family: var(--font-display); font-size: 48px; line-height: 52px; font-weight: 600; }
 .heading-1 { font-family: var(--font-display); font-size: 32px; line-height: 38px; font-weight: 600; }

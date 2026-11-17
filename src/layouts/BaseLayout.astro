@@ -3,9 +3,6 @@ import '../styles/global.css';
 import {
   DEFAULT_LOCALE, ENABLED_LOCALES, LOCALES, localePath, stripLocale, type Locale,
 } from '../i18n/config';
-import zhFonts from '../styles/fonts-zh.css?url';
-import jaFonts from '../styles/fonts-ja.css?url';
-import koFonts from '../styles/fonts-ko.css?url';
 import { useStrings } from '../i18n/ui';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -34,8 +31,6 @@ const t = useStrings(locale);
 
 // A language that isn't public yet stays out of search engines.
 const hidden = noindex || !ENABLED_LOCALES.includes(locale);
-// Chinese, Japanese and Korean pages also load their Noto fonts (the browser fetches only the glyph slices it needs).
-const cjkFonts = { zh: zhFonts, ja: jaFonts, ko: koFonts }[locale as 'zh' | 'ja' | 'ko'];
 const rest = stripLocale(Astro.url.pathname);
 const alternates = !notFound && ENABLED_LOCALES.length > 1 && Astro.site
   ? ENABLED_LOCALES.map((code) => ({ code, href: new URL(localePath(code, rest), Astro.site).href }))
@@ -79,7 +74,6 @@ for (const code of redirect ? [languageRedirect, headerMenu] : [headerMenu]) Ast
       )
     }
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
-    {cjkFonts && <link rel="stylesheet" href={cjkFonts} />}
     {alternates.map((a) => <link rel="alternate" hreflang={LOCALES[a.code].htmlLang} href={a.href} />)}
     {alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={alternates[0].href} />}
     {redirect && <script is:inline set:html={languageRedirect} />}
