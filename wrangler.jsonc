@@ -51,5 +51,6 @@
       "simple": { "limit": 5, "period": 60 }
     }
   ]
+  // AIRBNB_ICAL_URL is a secret (the private Airbnb calendar feed): `npx wrangler secret put AIRBNB_ICAL_URL`. Without it the home page simply hides the availability calendar.
   // TURNSTILE_SECRET is a secret: set it with `npx wrangler secret put TURNSTILE_SECRET` (and in .dev.vars for local dev).
 }

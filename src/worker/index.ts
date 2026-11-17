@@ -1,12 +1,15 @@
 // Visitor map API. Static pages are served by the assets binding; only /api/* reaches this code.
 import { cleanTown, isPlaceId, normaliseQuery, pickPlace, type NominatimResult, type Place } from './towns';
 import { foldName, ID_FILES } from '../data/places-search';
+import { parseIcal } from './availability';
 
 interface Env {
   ASSETS: Fetcher;
   DB: D1Database;
   SUBMIT_LIMITER: RateLimit;
   TURNSTILE_SECRET?: string;
+  /** The Airbnb calendar feed (private; set with `npx wrangler secret put AIRBNB_ICAL_URL`). */
+  AIRBNB_ICAL_URL?: string;
 }
 
 const USER_AGENT = 'TheNestAtTwinElms-VisitorMap/1.0 (+https://thenest.twinelms.co.nz)';
@@ -14,7 +17,7 @@ const NOMINATIM_GAP_MS = 1100;
 
 type ErrorCode =
   | 'invalid_request' | 'invalid_town' | 'verification_failed' | 'not_found' | 'rate_limited' | 'geocoder_unavailable'
-  | 'not_configured' | 'not_found_route';
+  | 'not_configured' | 'not_found_route' | 'availability_unavailable';
 
 const json = (body: unknown, status = 200, headers: Record<string, string> = {}) =>
   new Response(JSON.stringify(body), {
@@ -31,10 +34,31 @@ export default {
       if (request.method === 'POST') return addTown(request, env);
       return new Response(null, { status: 405, headers: { allow: 'GET, POST' } });
     }
+    if (url.pathname === '/api/availability') {
+      if (request.method !== 'GET') return new Response(null, { status: 405, headers: { allow: 'GET' } });
+      return availability(env);
+    }
     if (url.pathname.startsWith('/api/')) return fail('not_found_route', 404);
     return env.ASSETS.fetch(request);
   },
 } satisfies ExportedHandler<Env>;
+
+// Dates The Nest can't be booked, from the Airbnb calendar feed. Airbnb refreshes the feed every few hours, so this is a guide.
+async function availability(env: Env): Promise<Response> {
+  if (!env.AIRBNB_ICAL_URL) return fail('not_configured', 503);
+  try {
+    const res = await fetch(env.AIRBNB_ICAL_URL, {
+      headers: { 'user-agent': USER_AGENT },
+      cf: { cacheTtl: 1800, cacheEverything: true },
+    });
+    if (!res.ok) return fail('availability_unavailable', 502);
+    const today = new Date().toISOString().slice(0, 10);
+    const ranges = parseIcal(await res.text(), today);
+    return json({ ranges }, 200, { 'cache-control': 'public, max-age=900' });
+  } catch {
+    return fail('availability_unavailable', 502);
+  }
+}
 
 async function listTowns(env: Env): Promise<Response> {
   const { results } = await env.DB.prepare(

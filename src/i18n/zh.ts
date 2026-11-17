@@ -60,6 +60,15 @@ export const zh: PartialStrings = {
         body: '我们的两只鸭子 Daphne 和 Elliot，也是这个家的一员。',
       },
     },
+    availability: {
+      eyebrow: '空房情况',
+      heading: 'The Nest 什么时候有空',
+      intro: '带斜线的日期已被预订或不可订。日历可能比实际晚几个小时更新，请在安排行程前到 Airbnb 确认。',
+      free: '可订',
+      taken: '不可订',
+      prev: '上个月',
+      next: '下个月',
+    },
     mapInvite: {
       heading: '您的家乡在哪里？',
       body: '把您的家乡城市添加到我们的地图上，看看我们的客人都来自哪里。',

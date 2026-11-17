@@ -60,6 +60,15 @@ export const ko: PartialStrings = {
         body: '오리 두 마리, Daphne와 Elliot도 저희 가족이에요.',
       },
     },
+    availability: {
+      eyebrow: '예약 현황',
+      heading: 'The Nest 예약 가능 날짜',
+      intro: '줄무늬로 표시된 날짜는 예약되었거나 이용할 수 없습니다. 캘린더는 몇 시간 늦게 반영될 수 있으니 계획을 세우기 전에 Airbnb에서 확인해 주세요.',
+      free: '예약 가능',
+      taken: '예약 불가',
+      prev: '이전 달',
+      next: '다음 달',
+    },
     mapInvite: {
       heading: '고향이 어디세요?',
       body: '지도에 고향 도시를 추가하고, 손님들이 어디에서 왔는지 확인해 보세요.',

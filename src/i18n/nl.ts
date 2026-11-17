@@ -60,6 +60,15 @@ export const nl: PartialStrings = {
         body: 'Onze twee eenden, Daphne en Elliot, maken het gezin compleet.',
       },
     },
+    availability: {
+      eyebrow: 'Beschikbaarheid',
+      heading: 'Wanneer The Nest vrij is',
+      intro: 'Gestreepte datums zijn geboekt of niet beschikbaar. De kalender kan een paar uur achterlopen, controleer dus Airbnb voordat je plannen maakt.',
+      free: 'Beschikbaar',
+      taken: 'Niet beschikbaar',
+      prev: 'Vorige maand',
+      next: 'Volgende maand',
+    },
     mapInvite: {
       heading: 'Waar ben jij thuis?',
       body: 'Voeg je woonplaats toe aan onze kaart en zie waar al onze gasten vandaan komen.',

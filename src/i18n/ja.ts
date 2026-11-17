@@ -60,6 +60,15 @@ export const ja: PartialStrings = {
         body: '2 羽のアヒル、Daphne と Elliot も家族の一員です。',
       },
     },
+    availability: {
+      eyebrow: '空き状況',
+      heading: 'The Nest の空き日',
+      intro: '斜線の日は予約済み、または利用できません。カレンダーの更新が数時間遅れることがあるため、計画を立てる前にAirbnbでご確認ください。',
+      free: '空きあり',
+      taken: '空きなし',
+      prev: '前の月',
+      next: '次の月',
+    },
     mapInvite: {
       heading: 'あなたの出身地はどこですか？',
       body: 'あなたの出身地をマップに追加して、ゲストの皆さんがどこから来たのか見てみましょう。',

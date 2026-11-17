@@ -60,6 +60,15 @@ export const de: PartialStrings = {
         body: 'Unsere beiden Enten Daphne und Elliot machen die Familie komplett.',
       },
     },
+    availability: {
+      eyebrow: 'Verfügbarkeit',
+      heading: 'Wann The Nest frei ist',
+      intro: 'Schraffierte Tage sind gebucht oder nicht verfügbar. Der Kalender kann einige Stunden hinterherhinken. Bitte prüfen Sie vor der Planung Airbnb.',
+      free: 'Verfügbar',
+      taken: 'Nicht verfügbar',
+      prev: 'Vorheriger Monat',
+      next: 'Nächster Monat',
+    },
     mapInvite: {
       heading: 'Wo sind Sie zu Hause?',
       body: 'Tragen Sie Ihren Heimatort in unsere Karte ein und sehen Sie, woher alle unsere Gäste kommen.',
