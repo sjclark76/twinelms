@@ -179,6 +179,7 @@ export const en = {
     heading: 'Gallery',
     intro: 'A look around The Nest, the lake and the family. Tap any photo to see it full size.',
     filterLabel: 'Filter photos',
+    shown: { one: '{n} photo', other: '{n} photos' },
     filters: { all: 'All', house: 'The house', lake: 'The lake', animals: 'The animals', out: 'Out and about' },
     viewLarger: 'View larger: {caption}',
     viewer: 'Photo viewer',

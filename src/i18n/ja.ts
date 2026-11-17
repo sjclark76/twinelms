@@ -174,6 +174,7 @@ export const ja: PartialStrings = {
     heading: 'ギャラリー',
     intro: 'The Nest と湖、そして家族の写真をご覧ください。写真をタップすると大きく表示されます。',
     filterLabel: '写真を絞り込む',
+    shown: { one: '{n} 枚の写真', other: '{n} 枚の写真' },
     filters: { all: 'すべて', house: '家', lake: '湖', animals: '動物', out: 'お出かけ' },
     viewLarger: '拡大して見る：{caption}',
     viewer: '写真ビューア',
