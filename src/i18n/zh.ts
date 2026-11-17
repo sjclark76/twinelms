@@ -185,7 +185,6 @@ export const zh: PartialStrings = {
       'living-room': '客厅',
       dexter: 'Dexter',
       'main-bedroom': '主卧',
-      'main-bedroom-2': '主卧',
       chickens: '我们的母鸡',
       kitchen: '厨房',
       'lake-winter': '冬天的 Lake Hāwea',
