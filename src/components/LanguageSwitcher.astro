@@ -23,8 +23,8 @@ const items = ENABLED_LOCALES.map((code) => ({
       <ul class="nest-lang" aria-label={t.language}>
         {items.map((l) => (
           <li>
-            <a href={l.href} lang={l.htmlLang} aria-label={l.name} data-locale={l.code} aria-current={l.current ? 'true' : undefined}>
-              {l.chip}
+            <a href={l.href} lang={l.htmlLang} data-locale={l.code} aria-current={l.current ? 'true' : undefined}>
+              {l.chip}{l.chip !== l.name && <span class="nest-sr-only"> {l.name}</span>}
             </a>
           </li>
         ))}
