@@ -13,7 +13,7 @@ const t = useStrings(locale).map;
 // Everything the map script needs, passed as JSON so the script itself has no text in it.
 const config = {
   locale: LOCALES[locale].htmlLang,
-  home: nestLocation,
+  home: { ...nestLocation, label: t.legendHome, place: useStrings(locale).wordmarkSub },
   turnstile: { siteKey: TURNSTILE_SITE_KEY, language: turnstileLanguage[locale] ?? 'auto' },
   strings: {
     stat: t.stat, statEmpty: t.statEmpty, towns: t.towns, countries: t.countries, visits: t.visits,
@@ -353,7 +353,7 @@ const config = {
   interface Plural { one: string; other: string }
   interface Config {
     locale: string;
-    home: { lat: number; lng: number };
+    home: { lat: number; lng: number; label: string; place: string };
     turnstile: { siteKey: string; language: string };
     strings: {
       stat: string; statEmpty: string; towns: Plural; countries: Plural; visits: Plural; loadError: string;
@@ -376,7 +376,12 @@ const config = {
 
   // One copy of the world, never repeated: it can't be panned past its edges or zoomed out beyond filling the width.
   const WORLD = L.latLngBounds([-85, -180], [85, 180]);
+  // Guests who ask for less motion get instant jumps instead of animated zooms.
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const map = L.map('visitor-map', {
+    zoomAnimation: !calm,
+    fadeAnimation: !calm,
+    markerZoomAnimation: !calm,
     scrollWheelZoom: false,
     maxZoom: 10,
     zoomControl: false,
@@ -417,8 +422,8 @@ const config = {
   };
 
   const homeLatLng = L.latLng(config.home.lat, config.home.lng);
-  L.marker(homeLatLng, { icon: icon(true), title: 'The Nest, Lake Hāwea', alt: 'The Nest, Lake Hāwea', zIndexOffset: 1000 })
-    .bindPopup('<b>The Nest at Twin Elms</b>Lake Hāwea, New Zealand')
+  L.marker(homeLatLng, { icon: icon(true), title: config.home.label, alt: config.home.label, zIndexOffset: 1000 })
+    .bindPopup(`<b>The Nest at Twin Elms</b>${esc(config.home.place)}`)
     .addTo(map);
 
   const towns = new Map<string, { town: Town; marker: L.Marker }>();
@@ -622,8 +627,14 @@ const config = {
   const turnstileEl = form.querySelector<HTMLElement>('[data-turnstile]')!;
   let widgetId: string | undefined;
   const turnstile = () => (window as unknown as { turnstile?: TurnstileApi }).turnstile;
+  // Wait for the Turnstile script, but give up after 30 s (blocked or offline): submitting then shows the verification error.
   const whenReady = new Promise<TurnstileApi>((resolve) => {
-    const check = () => (turnstile() ? resolve(turnstile()!) : setTimeout(check, 100));
+    let tries = 0;
+    const check = () => {
+      const api = turnstile();
+      if (api) resolve(api);
+      else if (++tries < 300) setTimeout(check, 100);
+    };
     check();
   });
   whenReady.then((api) => {
@@ -675,7 +686,9 @@ const config = {
       if (res.ok && data.town) {
         const marker = upsert(data.town as Town);
         render();
-        map.flyTo(marker.getLatLng(), Math.max(map.getZoom(), 4), { duration: 0.8 });
+        const zoom = Math.max(map.getZoom(), 4);
+        if (calm) map.setView(marker.getLatLng(), zoom, { animate: false });
+        else map.flyTo(marker.getLatLng(), zoom, { duration: 0.8 });
         marker.openPopup();
         townInput.value = '';
         chosen = null;
