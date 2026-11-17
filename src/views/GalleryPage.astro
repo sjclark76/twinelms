@@ -19,12 +19,20 @@ const files = import.meta.glob<{ default: ImageMetadata }>('/src/assets/gallery/
 const fileFor = (id: string) =>
   Object.entries(files).find(([path]) => path.split('/').pop()?.replace(/\.[^.]+$/, '') === id)?.[1].default;
 
+/** WebP quality for gallery photos: visually the same as the default at noticeably smaller files. */
+const LIGHTBOX_QUALITY = 70;
 const tiles = await Promise.all(
   photos.map(async (p) => {
     const src = fileFor(p.id);
     const caption = t.photos[p.id] ?? p.id;
-    const full = src ? (await getImage({ src, width: 1600, format: 'webp' })).src : undefined;
-    return { ...p, src, full, caption };
+    // The lightbox picks a size for the screen: phones get 800 or 1200px instead of 1600px.
+    const full = src
+      ? await getImage({ src, widths: [800, 1200, 1600], format: 'webp', quality: LIGHTBOX_QUALITY })
+      : undefined;
+    return {
+      ...p, src, caption,
+      full: full && { src: full.src, srcset: full.srcSet.attribute, width: full.attributes.width, height: full.attributes.height },
+    };
   }),
 );
 const filters = Object.entries(t.filters);
@@ -54,13 +62,14 @@ const filters = Object.entries(t.filters);
         {
           tiles.map((p) => (
             <li class:list={['tile', { wide: p.wide }]} data-tile data-category={p.category}
-              data-caption={p.caption} data-full={p.full} data-tone={p.src ? undefined : p.tone}>
+              data-caption={p.caption} data-full={p.full?.src} data-srcset={p.full?.srcset}
+              data-width={p.full?.width} data-height={p.full?.height} data-tone={p.src ? undefined : p.tone}>
               <figure class="nest-tile" style={p.src ? undefined : `background: var(--${p.tone})`}>
                 <button type="button" class="tile-btn" aria-label={t.viewLarger.replace('{caption}', p.caption)}>
                   {p.src && (
                     <Image src={p.src} alt="" widths={[360, 720, 1080]}
                       sizes={p.wide ? '(min-width: 760px) 720px, 100vw' : '(min-width: 760px) 360px, 100vw'}
-                      format="webp" loading="lazy" />
+                      format="webp" quality={LIGHTBOX_QUALITY} loading="lazy" />
                   )}
                 </button>
                 <figcaption>{p.caption}</figcaption>
@@ -270,6 +279,11 @@ const filters = Object.entries(t.filters);
     if (tile.dataset.full) {
       const img = document.createElement('img');
       img.src = tile.dataset.full;
+      if (tile.dataset.srcset) img.srcset = tile.dataset.srcset;
+      img.sizes = '(min-width: 1020px) 928px, 94vw';
+      // Known size, so the dialog doesn't jump while the photo loads.
+      if (tile.dataset.width) img.width = Number(tile.dataset.width);
+      if (tile.dataset.height) img.height = Number(tile.dataset.height);
       img.alt = tile.dataset.caption ?? '';
       stage.append(img);
     } else {

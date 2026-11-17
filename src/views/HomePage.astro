@@ -55,7 +55,7 @@ const schema = {
         </div>
       </div>
       <div class="hero-photo">
-        <Image src={heroPhoto} alt={t.hero.photoAlt} widths={[400, 800, 1200]} sizes="(min-width: 900px) 520px, 100vw" loading="eager" />
+        <Image src={heroPhoto} alt={t.hero.photoAlt} widths={[400, 800, 1200]} sizes="(min-width: 900px) 520px, 100vw" loading="eager" fetchpriority="high" />
       </div>
     </section>
 
