@@ -1,7 +1,7 @@
 export type GalleryCategory = 'house' | 'lake' | 'animals' | 'out';
 
 export interface GalleryPhoto {
-  /** Also the photo's filename in src/assets/gallery (e.g. lake-dawn.jpg). */
+  /** Also the photo's filename in src/assets/gallery (e.g. lake-sunset.jpg). */
   id: string;
   category: GalleryCategory;
   /** Placeholder colour until the real photo is added. */
@@ -11,7 +11,7 @@ export interface GalleryPhoto {
 }
 
 export const photos: GalleryPhoto[] = [
-  { id: 'lake-dawn', category: 'lake', tone: 'lake-mist', wide: true },
+  { id: 'lake-sunset', category: 'lake', tone: 'lake-mist', wide: true },
   { id: 'living-room', category: 'house', tone: 'oat' },
   { id: 'dexter', category: 'animals', tone: 'tussock' },
   { id: 'main-bedroom', category: 'house', tone: 'lake-tint' },

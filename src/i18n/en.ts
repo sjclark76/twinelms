@@ -184,7 +184,7 @@ export const en = {
     prev: 'Previous photo',
     next: 'Next photo',
     photos: {
-      'lake-dawn': 'The lake at dawn',
+      'lake-sunset': 'The lake at sunset',
       'living-room': 'The living room',
       dexter: 'Dexter',
       'main-bedroom': 'The main bedroom',

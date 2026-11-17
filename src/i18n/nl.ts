@@ -179,7 +179,7 @@ export const nl: PartialStrings = {
     prev: 'Vorige foto',
     next: 'Volgende foto',
     photos: {
-      'lake-dawn': 'Het meer bij zonsopgang',
+      'lake-sunset': 'Het meer bij zonsondergang',
       'living-room': 'De woonkamer',
       dexter: 'Dexter',
       'main-bedroom': 'De hoofdslaapkamer',
