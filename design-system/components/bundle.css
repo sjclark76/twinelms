@@ -74,13 +74,13 @@
 
 /* Phones: wordmark and Menu button share the top row, the language codes sit below, the open menu drops under them */
 @media (max-width:639px){
-.nest-header-inner{display:grid;grid-template-columns:1fr auto;align-items:start;padding:var(--space-4)}
+.nest-header-inner{display:grid;grid-template-columns:1fr auto;align-items:start;column-gap:var(--space-2);padding:var(--space-4)}
 .nest-header-inner .nest-lang-switch{grid-column:1/-1;grid-row:2}
 .nest-header-inner nav{grid-column:1/-1;grid-row:3}
-.nest-wordmark{font-size:22px;line-height:26px;text-wrap:balance}
+.nest-wordmark{font-size:21px;line-height:26px;text-wrap:balance}
 .nest-nav{flex-wrap:nowrap;justify-content:space-between;gap:0}
 .nest-nav a{padding:0 clamp(4px,2.5vw,12px);font-size:14px;white-space:nowrap}
-.has-menu .nest-menu-btn{display:inline-flex}
+.has-menu .nest-menu-btn{display:inline-flex;padding:0 12px;gap:6px}
 .has-menu nav{display:none}
 .has-menu.is-open nav{display:block}
 .has-menu .nest-nav{flex-direction:column;gap:4px;padding-top:var(--space-2);border-top:1px solid var(--line)}
@@ -88,6 +88,12 @@
 .nest-lang-switch .nest-lang{flex-wrap:nowrap;gap:3px}
 .nest-lang-switch .nest-lang li{flex:1 1 auto;min-width:0}
 .nest-lang-switch .nest-lang a{width:100%;justify-content:center;min-height:44px;padding:0 3px;font-size:13px;white-space:nowrap}
+}
+
+/* Small phones: the Menu button shows just its icon (the word stays for screen readers) so the wordmark keeps to one line */
+@media (max-width:379px){
+.has-menu .nest-menu-btn{width:44px;padding:0;justify-content:center}
+.nest-menu-btn span{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 }
 
 /* Language switcher */

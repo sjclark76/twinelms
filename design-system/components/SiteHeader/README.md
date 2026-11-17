@@ -6,6 +6,6 @@ Put the content in `nest-header-inner` so it lines up with the page's 1120px col
 
 **Wide screens (640px and up):** wordmark, the four links (Home, Guest guide, Visitor map, Gallery) and the language chips sit in one row.
 
-**Phones (under 640px):** the wordmark and a Menu button (`nest-menu-btn`, hamburger icon plus the word "Menu") share the top row. The language chips sit on their own row beneath, always visible. The four links are in a panel that opens under the chips when the button is tapped; it closes on Escape or a second tap. The button reports its state with `aria-expanded` and points at the nav with `aria-controls`.
+**Phones (under 640px):** the wordmark and a Menu button (`nest-menu-btn`, hamburger icon plus the word "Menu") share the top row, with the wordmark at 21px so it stays on one line in every language. Under 380px wide the button shows only the icon (a 44px circle; the word stays for screen readers). The language chips sit on their own row beneath, always visible. The four links are in a panel that opens under the chips when the button is tapped; it closes on Escape or a second tap. The button reports its state with `aria-expanded` and points at the nav with `aria-controls`.
 
 The menu is added by a small inline script that puts `has-menu` on the header before first paint. Without JavaScript the links stay visible as a plain list, so the site still works.
