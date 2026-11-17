@@ -1,5 +1,7 @@
 // Visitor map API. Static pages are served by the assets binding; only /api/* reaches this code.
-import { cleanTown, isPlaceId, normaliseQuery, pickPlace, type NominatimResult, type Place } from './towns';
+import {
+  cleanTown, isPlaceId, normaliseQuery, pickPlace, readBody, turnstileAccepts, type NominatimResult, type Place, type TurnstileOutcome,
+} from './towns';
 import { foldName, ID_FILES } from '../data/places-search';
 
 interface Env {
@@ -11,6 +13,10 @@ interface Env {
 
 const USER_AGENT = 'TheNestAtTwinElms-VisitorMap/1.0 (+https://thenest.twinelms.co.nz)';
 const NOMINATIM_GAP_MS = 1100;
+/** If the queue for Nominatim is longer than this, give up rather than keep the guest waiting. */
+const NOMINATIM_MAX_WAIT_MS = 5000;
+/** Turnstile tokens can be up to 2048 characters, plus a town of up to 80 (3 bytes each in some scripts). */
+const MAX_BODY = 4096;
 
 type ErrorCode =
   | 'invalid_request' | 'invalid_town' | 'verification_failed' | 'not_found' | 'rate_limited' | 'geocoder_unavailable'
@@ -47,8 +53,9 @@ async function listTowns(env: Env): Promise<Response> {
 async function addTown(request: Request, env: Env): Promise<Response> {
   if (!env.TURNSTILE_SECRET) return fail('not_configured', 503);
   if (!(request.headers.get('content-type') ?? '').includes('application/json')) return fail('invalid_request', 415);
-  const raw = await request.text();
-  if (raw.length > 1000) return fail('invalid_request', 413);
+  // Refuse big bodies before reading them into memory.
+  const raw = await readBody(request, MAX_BODY);
+  if (raw === null) return fail('invalid_request', 413);
 
   let body: { town?: unknown; place?: unknown; token?: unknown };
   try {
@@ -62,7 +69,8 @@ async function addTown(request: Request, env: Env): Promise<Response> {
   const { success } = await env.SUBMIT_LIMITER.limit({ key });
   if (!success) return fail('rate_limited', 429);
 
-  if (typeof body.token !== 'string' || !(await verifyTurnstile(body.token, env.TURNSTILE_SECRET)))
+  const ip = request.headers.get('cf-connecting-ip') ?? undefined;
+  if (typeof body.token !== 'string' || !(await verifyTurnstile(body.token, env.TURNSTILE_SECRET, new URL(request.url).hostname, ip)))
     return fail('verification_failed', 403);
   // Either a town picked from the suggestions (an OpenStreetMap id) or typed text.
   let place: Place | null;
@@ -104,8 +112,11 @@ async function saveVisit(place: Place, env: Env) {
       .bind(same.id)
       .first();
   }
+  // Two guests adding the same new town at once: the second insert becomes a visit instead of failing.
   return env.DB.prepare(
-    `INSERT INTO towns (place_key, name, country, country_code, lat, lng) VALUES (?, ?, ?, ?, ?, ?) RETURNING ${TOWN_COLUMNS}`,
+    `INSERT INTO towns (place_key, name, country, country_code, lat, lng) VALUES (?, ?, ?, ?, ?, ?)
+     ON CONFLICT(place_key) DO UPDATE SET visits = visits + 1, updated_at = datetime('now')
+     RETURNING ${TOWN_COLUMNS}`,
   )
     .bind(place.placeKey, place.name, place.country, place.countryCode, place.lat, place.lng)
     .first();
@@ -148,24 +159,30 @@ async function geocode(town: string, env: Env): Promise<Place | null> {
   return place;
 }
 
-/** Nominatim's usage policy allows at most 1 request per second; space requests out across all visitors. */
+/**
+ * Nominatim's usage policy allows at most 1 request per second. Each request books the next free slot in one
+ * statement (D1 runs statements one at a time, so two visitors can't get the same slot), then waits for it.
+ */
 async function waitForNominatim(env: Env): Promise<void> {
   const now = Date.now();
-  const row = await env.DB.prepare("SELECT value FROM meta WHERE key = 'nominatim_last'").first<{ value: string }>();
-  const wait = row ? Number(row.value) + NOMINATIM_GAP_MS - now : 0;
-  const next = now + Math.max(0, wait);
-  await env.DB.prepare("INSERT OR REPLACE INTO meta (key, value) VALUES ('nominatim_last', ?)").bind(String(next)).run();
-  if (wait > 0) await new Promise((resolve) => setTimeout(resolve, Math.min(wait, NOMINATIM_GAP_MS)));
+  const row = await env.DB.prepare(
+    `INSERT INTO meta (key, value) VALUES ('nominatim_last', ?1)
+     ON CONFLICT(key) DO UPDATE SET value = CAST(max(CAST(value AS INTEGER) + ?2, ?1) AS TEXT)
+     RETURNING value`,
+  )
+    .bind(now, NOMINATIM_GAP_MS)
+    .first<{ value: string }>();
+  const wait = Number(row?.value ?? now) - now;
+  if (wait > NOMINATIM_MAX_WAIT_MS) throw new Error('Nominatim queue too long');
+  if (wait > 0) await new Promise((resolve) => setTimeout(resolve, wait));
 }
 
-/** Ask Cloudflare whether the Turnstile token from the form is genuine. Tokens are single-use. */
-async function verifyTurnstile(token: string, secret: string): Promise<boolean> {
+/** Ask Cloudflare whether the Turnstile token from the form is genuine, and was issued on this site. Tokens are single-use. */
+async function verifyTurnstile(token: string, secret: string, host: string, ip?: string): Promise<boolean> {
   if (!token || token.length > 2048) return false;
-  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-    method: 'POST',
-    body: new URLSearchParams({ secret, response: token }),
-  });
+  const form = new URLSearchParams({ secret, response: token });
+  if (ip) form.set('remoteip', ip);
+  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body: form });
   if (!res.ok) return false;
-  const outcome = (await res.json()) as { success?: boolean };
-  return outcome.success === true;
+  return turnstileAccepts((await res.json()) as TurnstileOutcome, host, secret);
 }

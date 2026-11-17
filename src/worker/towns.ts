@@ -1,4 +1,4 @@
-// Pure helpers for the visitor map API (no I/O), so they can be unit tested.
+// Helpers for the visitor map API that don't touch the database or the network, so they can be unit tested.
 
 export interface Place {
   placeKey: string;
@@ -80,3 +80,45 @@ export function toPlace(result: NominatimResult | undefined): Place | null {
 
 /** Is a picked town id well formed ("G" + GeoNames id)? */
 export const isPlaceId = (id: unknown): id is string => typeof id === 'string' && /^G\d{1,10}$/.test(id);
+
+/** What Turnstile's siteverify answers (only the fields we use). */
+export interface TurnstileOutcome {
+  success?: boolean;
+  hostname?: string;
+}
+
+/** Cloudflare's published always-pass test secrets, used on PR previews. Their tokens report the hostname "example.com". */
+const isTestSecret = (secret: string) => secret.startsWith('1x0000000000000000000000000000000') || secret.startsWith('2x0000000000000000000000000000000');
+
+/** A token counts only if Turnstile says it passed and it was issued on the site the guest is posting to. */
+export function turnstileAccepts(outcome: TurnstileOutcome, host: string, secret: string): boolean {
+  if (outcome.success !== true) return false;
+  return isTestSecret(secret) || outcome.hostname === host;
+}
+
+/** Read a request body as text, or return null if it is longer than `max` bytes (stops reading as soon as it is). */
+export async function readBody(request: Request, max: number): Promise<string | null> {
+  const declared = Number(request.headers.get('content-length'));
+  if (declared > max) return null;
+  if (!request.body) return '';
+  const reader = request.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let size = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    size += value.byteLength;
+    if (size > max) {
+      await reader.cancel();
+      return null;
+    }
+    chunks.push(value);
+  }
+  const bytes = new Uint8Array(size);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return new TextDecoder().decode(bytes);
+}
