@@ -1,5 +1,6 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
+import { PHOTO_FORMATS, PHOTO_QUALITY } from '../data/images';
 // The round photo is optional; without one the tussock circle shows an initial.
 interface Props {
   name: string;
@@ -16,7 +17,7 @@ const { name, kind, body, initial, photo, photoAlt } = Astro.props;
   {
     photo && photoAlt ? (
       <div class="nest-animal-face">
-        <Image src={photo} alt={photoAlt} width={128} height={128} />
+        <Picture formats={PHOTO_FORMATS} quality={PHOTO_QUALITY} src={photo} alt={photoAlt} width={128} height={128} densities={[1, 2]} />
       </div>
     ) : (
       <div class="nest-animal-face" aria-hidden="true">{initial}</div>

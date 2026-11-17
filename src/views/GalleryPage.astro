@@ -1,5 +1,6 @@
 ---
-import { Image, getImage } from 'astro:assets';
+import { Picture, getImage } from 'astro:assets';
+import { PHOTO_FORMATS, PHOTO_QUALITY } from '../data/images';
 import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { useStrings } from '../i18n/ui';
@@ -19,19 +20,20 @@ const files = import.meta.glob<{ default: ImageMetadata }>('/src/assets/gallery/
 const fileFor = (id: string) =>
   Object.entries(files).find(([path]) => path.split('/').pop()?.replace(/\.[^.]+$/, '') === id)?.[1].default;
 
-/** WebP quality for gallery photos: visually the same as the default at noticeably smaller files. */
-const LIGHTBOX_QUALITY = 70;
 const tiles = await Promise.all(
   photos.map(async (p) => {
     const src = fileFor(p.id);
     const caption = t.photos[p.id] ?? p.id;
     // The lightbox picks a size for the screen: phones get 800 or 1200px instead of 1600px.
-    const full = src
-      ? await getImage({ src, widths: [800, 1200, 1600], format: 'webp', quality: LIGHTBOX_QUALITY })
-      : undefined;
+    const sizes = (format: 'avif' | 'webp') =>
+      getImage({ src: src!, widths: [800, 1200, 1600], format, quality: PHOTO_QUALITY });
+    const [avif, webp] = src ? await Promise.all([sizes('avif'), sizes('webp')]) : [];
     return {
       ...p, src, caption,
-      full: full && { src: full.src, srcset: full.srcSet.attribute, width: full.attributes.width, height: full.attributes.height },
+      full: webp && avif && {
+        src: webp.src, srcset: webp.srcSet.attribute, avif: avif.srcSet.attribute,
+        width: webp.attributes.width, height: webp.attributes.height,
+      },
     };
   }),
 );
@@ -60,16 +62,18 @@ const filters = Object.entries(t.filters);
     <section class="nest-container grid-section">
       <ul class="nest-gallery grid">
         {
-          tiles.map((p) => (
+          // The first photo is the biggest thing on the page: fetch it straight away, the rest as they scroll into view.
+          tiles.map((p, i) => (
             <li class:list={['tile', { wide: p.wide }]} data-tile data-category={p.category}
-              data-caption={p.caption} data-full={p.full?.src} data-srcset={p.full?.srcset}
+              data-caption={p.caption} data-full={p.full?.src} data-srcset={p.full?.srcset} data-avif={p.full?.avif}
               data-width={p.full?.width} data-height={p.full?.height} data-tone={p.src ? undefined : p.tone}>
               <figure class="nest-tile" style={p.src ? undefined : `background: var(--${p.tone})`}>
                 <button type="button" class="tile-btn" aria-label={t.viewLarger.replace('{caption}', p.caption)}>
                   {p.src && (
-                    <Image src={p.src} alt="" widths={[360, 720, 1080]}
+                    <Picture src={p.src} alt="" widths={[360, 720, 1080]}
                       sizes={p.wide ? '(min-width: 760px) 720px, 100vw' : '(min-width: 760px) 360px, 100vw'}
-                      format="webp" quality={LIGHTBOX_QUALITY} loading="lazy" />
+                      formats={PHOTO_FORMATS} quality={PHOTO_QUALITY}
+                      loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} />
                   )}
                 </button>
                 <figcaption>{p.caption}</figcaption>
@@ -281,11 +285,21 @@ const filters = Object.entries(t.filters);
       img.src = tile.dataset.full;
       if (tile.dataset.srcset) img.srcset = tile.dataset.srcset;
       img.sizes = '(min-width: 1020px) 928px, 94vw';
+      // AVIF where the browser supports it, otherwise the WebP sizes above.
+      const picture = document.createElement('picture');
+      if (tile.dataset.avif) {
+        const source = document.createElement('source');
+        source.type = 'image/avif';
+        source.srcset = tile.dataset.avif;
+        source.sizes = img.sizes;
+        picture.append(source);
+      }
       // Known size, so the dialog doesn't jump while the photo loads.
       if (tile.dataset.width) img.width = Number(tile.dataset.width);
       if (tile.dataset.height) img.height = Number(tile.dataset.height);
       img.alt = tile.dataset.caption ?? '';
-      stage.append(img);
+      picture.append(img);
+      stage.append(picture);
     } else {
       const box = document.createElement('div');
       box.className = 'lb-placeholder';
