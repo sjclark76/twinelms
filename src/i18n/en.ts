@@ -188,6 +188,7 @@ export const en = {
       'living-room': 'The living room',
       dexter: 'Dexter',
       'main-bedroom': 'The main bedroom',
+      'main-bedroom-2': 'The main bedroom',
       chickens: 'The chickens',
       kitchen: 'The kitchen',
       'lake-winter': 'Lake Hāwea in winter',

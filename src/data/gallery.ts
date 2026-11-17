@@ -15,6 +15,7 @@ export const photos: GalleryPhoto[] = [
   { id: 'living-room', category: 'house', tone: 'oat' },
   { id: 'dexter', category: 'animals', tone: 'tussock' },
   { id: 'main-bedroom', category: 'house', tone: 'lake-tint' },
+  { id: 'main-bedroom-2', category: 'house', tone: 'lake-tint' },
   { id: 'chickens', category: 'animals', tone: 'tussock' },
   { id: 'kitchen', category: 'house', tone: 'oat' },
   { id: 'lake-winter', category: 'lake', tone: 'lake-tint' },

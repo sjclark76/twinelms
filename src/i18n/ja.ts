@@ -183,6 +183,7 @@ export const ja: PartialStrings = {
       'living-room': 'リビング',
       dexter: 'Dexter',
       'main-bedroom': 'メインの寝室',
+      'main-bedroom-2': 'メインの寝室',
       chickens: 'ニワトリたち',
       kitchen: 'キッチン',
       'lake-winter': '冬の Lake Hāwea',

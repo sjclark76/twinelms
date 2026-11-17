@@ -183,6 +183,7 @@ export const ko: PartialStrings = {
       'living-room': '거실',
       dexter: 'Dexter',
       'main-bedroom': '안방',
+      'main-bedroom-2': '안방',
       chickens: '닭들',
       kitchen: '주방',
       'lake-winter': '겨울의 Lake Hāwea',
