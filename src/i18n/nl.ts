@@ -174,6 +174,7 @@ export const nl: PartialStrings = {
     heading: 'Galerij',
     intro: 'Een kijkje in The Nest, bij het meer en bij het gezin. Tik op een foto om hem op volledige grootte te zien.',
     filterLabel: 'Foto’s filteren',
+    shown: { one: '{n} foto', other: '{n} foto’s' },
     filters: { all: 'Alles', house: 'Het huis', lake: 'Het meer', animals: 'De dieren', out: 'Op pad' },
     viewLarger: 'Vergroten: {caption}',
     viewer: 'Fotoviewer',

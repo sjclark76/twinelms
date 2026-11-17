@@ -174,6 +174,7 @@ export const zh: PartialStrings = {
     heading: '相册',
     intro: '看看 The Nest、湖和我们一家。点按任意照片可查看大图。',
     filterLabel: '筛选照片',
+    shown: { one: '{n} 张照片', other: '{n} 张照片' },
     filters: { all: '全部', house: '房屋', lake: '湖', animals: '动物', out: '出游' },
     viewLarger: '查看大图：{caption}',
     viewer: '照片查看器',

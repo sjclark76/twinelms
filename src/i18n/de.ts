@@ -174,6 +174,7 @@ export const de: PartialStrings = {
     heading: 'Galerie',
     intro: 'Ein Blick auf The Nest, den See und die Familie. Tippen Sie auf ein Foto, um es in voller Größe zu sehen.',
     filterLabel: 'Fotos filtern',
+    shown: { one: '{n} Foto', other: '{n} Fotos' },
     filters: { all: 'Alle', house: 'Das Haus', lake: 'Der See', animals: 'Die Tiere', out: 'Unterwegs' },
     viewLarger: 'Vergrößern: {caption}',
     viewer: 'Fotoansicht',

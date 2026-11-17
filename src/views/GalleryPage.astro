@@ -3,7 +3,7 @@ import { Image, getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { useStrings } from '../i18n/ui';
-import type { Locale } from '../i18n/config';
+import { LOCALES, type Locale } from '../i18n/config';
 import { photos } from '../data/gallery';
 
 interface Props {
@@ -35,7 +35,7 @@ const filters = Object.entries(t.filters);
     <section class="nest-container intro">
       <h1 class="display">{t.heading}</h1>
       <p class="lead">{t.intro}</p>
-      <nav aria-label={t.filterLabel} class="filters" data-filters hidden>
+      <div role="group" aria-label={t.filterLabel} class="filters" data-filters hidden>
         <ul>
           {
             filters.map(([key, label]) => (
@@ -45,7 +45,8 @@ const filters = Object.entries(t.filters);
             ))
           }
         </ul>
-      </nav>
+      </div>
+      <p class="nest-sr-only" role="status" data-shown data-forms={JSON.stringify(t.shown)} data-locale={LOCALES[locale].htmlLang}></p>
     </section>
 
     <section class="nest-container grid-section">
@@ -72,7 +73,7 @@ const filters = Object.entries(t.filters);
 
     <dialog class="lightbox" aria-label={t.viewer} data-lightbox>
       <div class="lb-stage" data-stage></div>
-      <p class="lb-caption" data-caption-out></p>
+      <p class="lb-caption" data-caption-out aria-live="polite"></p>
       <div class="lb-controls">
         <button type="button" class="nest-btn nest-btn-quiet nest-btn-sm" data-prev>{t.prev}</button>
         <button type="button" class="nest-btn nest-btn-quiet nest-btn-sm" data-next>{t.next}</button>
@@ -236,6 +237,14 @@ const filters = Object.entries(t.filters);
   const captionOut = dialog.querySelector<HTMLElement>('[data-caption-out]')!;
   let current = 0;
 
+  // Tell screen reader users how many photos a filter leaves.
+  const shownEl = document.querySelector<HTMLElement>('[data-shown]')!;
+  const forms: { one: string; other: string } = JSON.parse(shownEl.dataset.forms!);
+  const plural = new Intl.PluralRules(shownEl.dataset.locale);
+  const announce = (n: number) => {
+    shownEl.textContent = (plural.select(n) === 'one' ? forms.one : forms.other).replace('{n}', String(n));
+  };
+
   // Filters (shown only when scripting is available).
   if (filterBar) {
     filterBar.hidden = false;
@@ -247,6 +256,7 @@ const filters = Object.entries(t.filters);
         tiles.forEach((tile) => {
           tile.hidden = key !== 'all' && tile.dataset.category !== key;
         });
+        announce(visible().length);
       }),
     );
   }

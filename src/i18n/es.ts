@@ -174,6 +174,7 @@ export const es: PartialStrings = {
     heading: 'Galería',
     intro: 'Un vistazo a The Nest, al lago y a la familia. Toque cualquier foto para verla a tamaño completo.',
     filterLabel: 'Filtrar fotos',
+    shown: { one: '{n} foto', other: '{n} fotos' },
     filters: { all: 'Todas', house: 'La casa', lake: 'El lago', animals: 'Los animales', out: 'De excursión' },
     viewLarger: 'Ampliar: {caption}',
     viewer: 'Visor de fotos',

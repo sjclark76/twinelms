@@ -174,6 +174,7 @@ export const ko: PartialStrings = {
     heading: '갤러리',
     intro: 'The Nest와 호수, 그리고 가족의 모습을 둘러보세요. 사진을 누르면 크게 볼 수 있어요.',
     filterLabel: '사진 필터',
+    shown: { one: '사진 {n}장', other: '사진 {n}장' },
     filters: { all: '전체', house: '집', lake: '호수', animals: '동물', out: '나들이' },
     viewLarger: '크게 보기: {caption}',
     viewer: '사진 뷰어',
