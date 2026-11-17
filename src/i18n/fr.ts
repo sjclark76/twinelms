@@ -185,6 +185,7 @@ export const fr: PartialStrings = {
       'living-room': 'Le salon',
       dexter: 'Dexter',
       'main-bedroom': 'La chambre principale',
+      'main-bedroom-2': 'La chambre principale',
       chickens: 'Les poules',
       kitchen: 'La cuisine',
       'lake-winter': 'Lake Hāwea en hiver',

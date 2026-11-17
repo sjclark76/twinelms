@@ -185,6 +185,7 @@ export const es: PartialStrings = {
       'living-room': 'El salón',
       dexter: 'Dexter',
       'main-bedroom': 'El dormitorio principal',
+      'main-bedroom-2': 'El dormitorio principal',
       chickens: 'Las gallinas',
       kitchen: 'La cocina',
       'lake-winter': 'Lake Hāwea en invierno',
