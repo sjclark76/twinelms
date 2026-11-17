@@ -8,6 +8,7 @@ import { defineConfig } from 'astro/config';
  * Astro writes /de/404.astro as /de/404/index.html, but Cloudflare serves the nearest 404.html.
  * Move each language's not-found page to /<lang>/404.html so broken links show it in that language.
  */
+/** @type {import('astro').AstroIntegration} */
 const localisedNotFoundPages = {
   name: 'localised-404-pages',
   hooks: {

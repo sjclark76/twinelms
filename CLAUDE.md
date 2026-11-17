@@ -64,6 +64,6 @@ Every page shares the site header (wordmark, navigation, language switcher) and 
 ## Working conventions
 
 - Work one GitHub issue at a time, on a branch, and open a pull request that references the issue.
-- Keep the build passing and check pages at 390px and 1280px before opening a PR.
+- Keep the build passing and check pages at 390px and 1280px before opening a PR. GitHub Actions (`.github/workflows/checks.yml`) runs `npm run typecheck`, `npm run i18n:check`, `npm test` and `npm run build` on every pull request. `.astro` files aren't type-checked yet: `@astrojs/check` doesn't support TypeScript 7.
 - If a design question isn't answered by the design system or mockups, ask rather than guess.
 - When the design system changes in code, update `design-system/` to match so the two never drift.

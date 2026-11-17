@@ -1,0 +1,29 @@
+# Runs on every pull request and on main: the same checks to run locally before opening a PR.
+name: Checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Type check
+        run: npm run typecheck
+      - name: Translations up to date
+        run: npm run i18n:check
+      - name: Tests
+        run: npm test
+      - name: Build
+        run: npm run build
