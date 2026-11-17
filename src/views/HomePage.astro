@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
+import { PHOTO_FORMATS, PHOTO_QUALITY } from '../data/images';
 import heroPhoto from '../assets/hero-hawea.jpg';
 import houseSign from '../assets/house-sign.jpg';
 import hostsPhoto from '../assets/hosts.jpg';
@@ -57,7 +58,7 @@ const schema = {
         </div>
       </div>
       <div class="hero-photo">
-        <Image src={heroPhoto} alt={t.hero.photoAlt} widths={[400, 800, 1200]} sizes="(min-width: 900px) 520px, 100vw" loading="eager" fetchpriority="high" />
+        <Picture formats={PHOTO_FORMATS} quality={PHOTO_QUALITY} src={heroPhoto} alt={t.hero.photoAlt} widths={[400, 800, 1200]} sizes="(min-width: 900px) 520px, 100vw" loading="eager" fetchpriority="high" />
       </div>
     </section>
 
@@ -84,7 +85,9 @@ const schema = {
 
     <section class="nest-container section about">
       <div class="about-photo">
-        <Image
+        <Picture
+          formats={PHOTO_FORMATS}
+          quality={PHOTO_QUALITY}
           src={hostsPhoto}
           alt={t.about.photoAlt}
           widths={[400, 700, 1000]}
@@ -103,7 +106,9 @@ const schema = {
         <p class="label eyebrow">{t.animals.eyebrow}</p>
         <h2 class="heading-1">{t.animals.heading}</h2>
       </div>
-      <Image
+      <Picture
+        formats={PHOTO_FORMATS}
+        quality={PHOTO_QUALITY}
         class="sign"
         src={houseSign}
         alt={t.animals.artAlt}

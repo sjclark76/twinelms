@@ -1,5 +1,6 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
+import { PHOTO_FORMATS, PHOTO_QUALITY } from '../data/images';
 import { tagVariant, type TagKey } from '../data/places';
 
 interface Props {
@@ -19,7 +20,7 @@ const { name, tags, body, meta = [], image, imageAlt, links = [], newTab = '' } 
 ---
 
 <article class="nest-card nest-place">
-  {image && imageAlt && <Image class="nest-place-photo" src={image} alt={imageAlt} widths={[360, 720]} sizes="(min-width: 700px) 360px, 100vw" />}
+  {image && imageAlt && <Picture formats={PHOTO_FORMATS} quality={PHOTO_QUALITY} class="nest-place-photo" src={image} alt={imageAlt} widths={[360, 720]} sizes="(min-width: 700px) 360px, 100vw" />}
   <div class="nest-row">
     {tags.map((t) => <span class={`nest-tag nest-tag-${tagVariant[t.key]}`}>{t.label}</span>)}
   </div>
