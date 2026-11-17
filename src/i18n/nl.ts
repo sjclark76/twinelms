@@ -183,7 +183,6 @@ export const nl: PartialStrings = {
       'living-room': 'De woonkamer',
       dexter: 'Dexter',
       'main-bedroom': 'De hoofdslaapkamer',
-      'main-bedroom-2': 'De hoofdslaapkamer',
       chickens: 'De kippen',
       kitchen: 'De keuken',
       'lake-winter': 'Lake Hāwea in de winter',

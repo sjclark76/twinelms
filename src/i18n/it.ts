@@ -183,7 +183,6 @@ export const it: PartialStrings = {
       'living-room': 'Il soggiorno',
       dexter: 'Dexter',
       'main-bedroom': 'La camera da letto principale',
-      'main-bedroom-2': 'La camera da letto principale',
       chickens: 'Le galline',
       kitchen: 'La cucina',
       'lake-winter': 'Lake Hāwea in inverno',
