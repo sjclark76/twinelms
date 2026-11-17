@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cleanTown, isPlaceId, normaliseQuery, pickPlace, toPlace } from './towns';
+import { cleanTown, isPlaceId, normaliseQuery, pickPlace, readBody, toPlace, turnstileAccepts } from './towns';
 import { bucketFor, findTowns, foldName, startFor, topTowns, type SearchFile } from '../data/places-search';
 
 describe('cleanTown', () => {
@@ -120,5 +120,32 @@ describe('town search (must match scripts/build-places.py)', () => {
     const split = { sa: [[3448439, 'São Paulo', 'São Paulo', 'Brazil', 10021295]] as [number, string, string, string, number][] };
     expect(topTowns(split, 'sa')).toEqual([{ id: 'G3448439', name: 'São Paulo', detail: 'Brazil' }]);
     expect(topTowns(split, 'me')).toEqual([]);
+  });
+});
+
+describe('turnstileAccepts', () => {
+  const real = '0x4AAAAAAArealsecret';
+  it('needs success and a token issued on the same site', () => {
+    expect(turnstileAccepts({ success: true, hostname: 'thenest.twinelms.co.nz' }, 'thenest.twinelms.co.nz', real)).toBe(true);
+    expect(turnstileAccepts({ success: true, hostname: 'evil.example' }, 'thenest.twinelms.co.nz', real)).toBe(false);
+    expect(turnstileAccepts({ success: true }, 'thenest.twinelms.co.nz', real)).toBe(false);
+    expect(turnstileAccepts({ success: false, hostname: 'thenest.twinelms.co.nz' }, 'thenest.twinelms.co.nz', real)).toBe(false);
+  });
+  it('skips the hostname check for the always-pass test secret used on previews', () => {
+    expect(turnstileAccepts({ success: true, hostname: 'example.com' }, 'preview.workers.dev', '1x0000000000000000000000000000000AA')).toBe(true);
+  });
+});
+
+describe('readBody', () => {
+  const post = (body: string, headers: Record<string, string> = {}) =>
+    new Request('https://x.test/api/towns', { method: 'POST', body, headers });
+  it('returns the text when it fits', async () => {
+    expect(await readBody(post('{"town":"Berlin"}'), 100)).toBe('{"town":"Berlin"}');
+    expect(await readBody(post('東京'), 6)).toBe('東京');
+  });
+  it('refuses bodies over the limit, by header or by actual size', async () => {
+    expect(await readBody(post('x', { 'content-length': '5000' }), 100)).toBeNull();
+    expect(await readBody(post('x'.repeat(101)), 100)).toBeNull();
+    expect(await readBody(post('東京'), 5)).toBeNull();
   });
 });
