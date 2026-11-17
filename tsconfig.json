@@ -1,5 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  // The worker runs on Cloudflare, not in a browser: it has its own types and is checked with src/worker/tsconfig.json.
+  "exclude": ["dist", "src/worker", "worker-configuration.d.ts"]
 }
