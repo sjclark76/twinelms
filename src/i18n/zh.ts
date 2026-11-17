@@ -88,6 +88,8 @@ export const zh: PartialStrings = {
       checkInSub: '上午 11:00 前退房。如果需要更灵活的时间，请告诉我们，我们会尽力帮忙。',
       wifi: 'Wi-Fi',
       wifiSub: '网络名称和密码在房间里的卡片上。',
+      extras: '有需要请告诉我们',
+      extrasSub: '如需干净的毛巾、盘子和餐具，或靴子和手套烘干机，都可以向我们索取。',
       smoking: '请勿在室内吸烟',
       bins: '垃圾与回收',
       binsSub: '红色：普通垃圾。黄色：可回收物。蓝色：玻璃。',

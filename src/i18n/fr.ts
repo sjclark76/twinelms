@@ -88,6 +88,8 @@ export const fr: PartialStrings = {
       checkInSub: 'Départ avant 11 h. Dites-nous si vous avez besoin d’un peu de souplesse, nous ferons de notre mieux.',
       wifi: 'Wi-Fi',
       wifiSub: 'Le nom du réseau et le mot de passe figurent sur la carte dans la chambre.',
+      extras: 'Demandez-nous',
+      extrasSub: 'Serviettes propres, assiettes et couverts propres, ainsi qu’un sèche-bottes et sèche-gants sont disponibles sur demande.',
       smoking: 'Merci de ne pas fumer à l’intérieur',
       bins: 'Déchets et recyclage',
       binsSub: 'Rouge : déchets ordinaires. Jaune : recyclage. Bleu : verre.',

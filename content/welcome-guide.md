@@ -112,6 +112,10 @@ What goes in each bin [added from the QLDC kerbside guide; hosts to confirm]:
 
 - **Local Medical Centre**: Aspiring Medical Centre: +64 443 0725. The medical centre provides both a “walk-in” and” after hours” service. They are equipped to manage acute and urgent care as well as non-urgent health services.
 
+**Just Ask**
+
+Fresh towels, clean plates and cutlery, and a boot and glove dryer are available on request.
+
 **Before You Leave**
 
 We’d appreciate it if you could:
