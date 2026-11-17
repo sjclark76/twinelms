@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import tokens from '../../design-system/tokens.json';
+import { scriptHash } from '../data/inline-scripts';
 
 // Component previews are plain HTML. Strip their demo <script> and <link> tags (previews load fonts from Google); real behaviour is built per page.
 const raw = import.meta.glob('/design-system/components/*/preview.html', {
@@ -12,6 +13,9 @@ const components = Object.entries(raw).map(([path, html]) => ({
   name: path.split('/').at(-2) as string,
   html: html.replace(/<!--[\s\S]*?-->/, '').replace(/<script[\s\S]*?<\/script>/g, '').replace(/<link[^>]*>/g, ''),
 }));
+// The previews carry their own <style> blocks; allow each one in the Content Security Policy.
+for (const { html } of components)
+  for (const [, css] of html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)) Astro.csp?.insertStyleHash(scriptHash(css));
 ---
 
 <BaseLayout title="Style guide | The Nest at Twin Elms" noindex>
