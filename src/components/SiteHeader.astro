@@ -2,6 +2,7 @@
 import { localePath, stripLocale, type Locale } from '../i18n/config';
 import { useStrings } from '../i18n/ui';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import { headerMenu } from '../data/inline-scripts';
 
 interface Props {
   locale: Locale;
@@ -49,24 +50,4 @@ const links = [
   </div>
 </header>
 
-<script is:inline>
-  // Runs before first paint so phones never flash the open menu. Without JavaScript the links simply stay visible.
-  (function () {
-    var header = document.currentScript.previousElementSibling;
-    var btn = header.querySelector('.nest-menu-btn');
-    header.classList.add('has-menu');
-    var set = function (open) {
-      header.classList.toggle('is-open', open);
-      btn.setAttribute('aria-expanded', String(open));
-    };
-    btn.addEventListener('click', function () {
-      set(btn.getAttribute('aria-expanded') !== 'true');
-    });
-    header.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
-        set(false);
-        btn.focus();
-      }
-    });
-  })();
-</script>
+<script is:inline set:html={headerMenu} />

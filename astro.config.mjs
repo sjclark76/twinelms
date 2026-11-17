@@ -27,7 +27,28 @@ const localisedNotFoundPages = {
 
 // https://astro.build/config
 export default defineConfig({
-  // Update when a custom domain is connected (issue #12).
   site: 'https://thenest.twinelms.co.nz',
   integrations: [localisedNotFoundPages],
+  // Content Security Policy: Astro hashes every script and style it writes into a page and puts the policy in a <meta> tag.
+  // Headers that a <meta> tag can't set (framing, HSTS and so on) are in public/_headers.
+  security: {
+    csp: {
+      directives: [
+        "default-src 'self'",
+        // Map tiles from OpenStreetMap; data: for Leaflet's built-in images.
+        "img-src 'self' data: https://tile.openstreetmap.org",
+        // data: for the tiny font files the build inlines.
+        "font-src 'self' data:",
+        "connect-src 'self'",
+        // Cloudflare Turnstile (the robot check on the map form) runs in a frame.
+        'frame-src https://challenges.cloudflare.com',
+        "base-uri 'self'",
+        "form-action 'self'",
+        "object-src 'none'",
+      ],
+      scriptDirective: { resources: ["'self'", 'https://challenges.cloudflare.com'] },
+      // Map pins and a few tiles size themselves with style attributes.
+      styleDirective: { resources: ["'self'", { resource: "'unsafe-inline'", kind: 'attribute' }] },
+    },
+  },
 });

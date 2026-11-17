@@ -1,0 +1,18 @@
+# Response headers for the static site (Cloudflare Workers static assets).
+# The Content Security Policy itself is a <meta> tag that Astro writes into each page (see astro.config.mjs).
+
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Content-Security-Policy: frame-ancestors 'none'
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+
+# Fingerprinted build files (CSS, JS, images, fonts): the name changes when the contents do, so keep them for a year.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Town search files: rebuilt rarely, so a day is plenty.
+/places/*
+  Cache-Control: public, max-age=86400
