@@ -88,6 +88,8 @@ export const nl: PartialStrings = {
       checkInSub: 'Uitchecken voor 11:00 uur. Laat het ons weten als je wat meer tijd wilt, we doen ons best om te helpen.',
       wifi: 'Wifi',
       wifiSub: 'De netwerknaam en het wachtwoord staan op de kaart in de kamer.',
+      extras: 'Vraag het gerust',
+      extrasSub: 'Schone handdoeken, schone borden en bestek en een laarzen- en handschoenendroger zijn op verzoek beschikbaar.',
       smoking: 'Niet roken in huis, alsjeblieft',
       bins: 'Afval en recycling',
       binsSub: 'Rood: restafval. Geel: recycling. Blauw: glas.',

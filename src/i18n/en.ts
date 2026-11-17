@@ -93,6 +93,8 @@ export const en = {
       checkInSub: 'Check-out by 11:00am. Let us know if you’d like some flexibility, we’ll do our best to help.',
       wifi: 'Wi-Fi',
       wifiSub: 'The network name and password are on the card in the room.',
+      extras: 'Just ask',
+      extrasSub: 'Fresh towels, clean plates and cutlery, and a boot and glove dryer are all available on request.',
       smoking: 'Please no smoking inside',
       bins: 'Rubbish and recycling',
       binsSub: 'Red: general waste. Yellow: recycling. Blue: glass.',
