@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "typecheck": "astro sync && tsc --noEmit -p . && tsc -p src/worker",
     "preview": "astro preview",
     "tokens": "node scripts/build-tokens.mjs",
     "i18n:check": "tsx scripts/i18n-check.ts",
